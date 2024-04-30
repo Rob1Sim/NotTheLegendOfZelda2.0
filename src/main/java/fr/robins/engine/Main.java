@@ -1,6 +1,8 @@
-package fr.robins;
+package fr.robins.engine;
 
 import fr.robins.entities.Player;
+import fr.robins.types.Utilities;
+import fr.robins.world.TileManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -12,28 +14,42 @@ public class Main extends Application {
         launch(args);
     }
 
+    //Relations
     private Player player;
+    private TileManager tileManager;
+
+    //Widows parameters
+    int windowWidth = Utilities.WINDOW_WIDTH , windowHeight = Utilities.WINDOW_HEIGHT ;
+
 
     @Override
     public void start(Stage stage) throws Exception {
         player = new Player();
-
+        tileManager = new TileManager("/tiles/tilemap/grandeMap.xml");
         Pane pane = new Pane();
 
+        pane.setPrefSize(windowWidth, windowHeight );
+
+
+        //Display tiles
+        for (int i = 0; i < tileManager.getNumberOfLayers(); i++) {
+            tileManager.draw(i,pane);
+        }
+
+        //Display player
         pane.getChildren().add(player.draw());
 
-        Scene scene = new Scene(pane, 600,400);
+        Scene scene = new Scene(pane);
 
         stage.setScene(scene);
         stage.setTitle("Not the legend of zelda");
         stage.show();
 
+        //GameLoop
         AnimationTimer gameLoop = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                //Boucle de gameplay
                 Player.handlePlayerInput(scene,player);
-
             }
         };
         gameLoop.start();
