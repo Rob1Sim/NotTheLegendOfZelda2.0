@@ -35,7 +35,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>${javafx.maven.plugin.version}</version>
                 <configuration>
-                    <mainClass>fr.robins.Main</mainClass>
+                    <mainClass>fr.robins.engine.Main</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -50,7 +50,7 @@
                         <configuration>
                             <classifier>spring-boot</classifier>
                             <mainClass>
-                                fr.robins.Main
+                                fr.robins.engine.Main
                             </mainClass>
                         </configuration>
                     </execution>

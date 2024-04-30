@@ -1,4 +1,4 @@
-package fr.robins.type;
+package fr.robins.types;
 
 public enum DirectionType {
     UP("up"),

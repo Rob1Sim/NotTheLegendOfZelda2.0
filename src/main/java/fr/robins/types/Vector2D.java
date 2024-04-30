@@ -1,4 +1,4 @@
-package fr.robins.type;
+package fr.robins.types;
 
 import java.util.Objects;
 
