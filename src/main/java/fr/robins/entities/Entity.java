@@ -2,14 +2,17 @@ package fr.robins.entities;
 
 import fr.robins.engine.Displayable;
 import fr.robins.items.Inventory;
-import fr.robins.type.Vector2D;
+import fr.robins.types.Vector2D;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.util.Objects;
 
 
 public abstract class Entity implements Displayable {
     private double hp;
-    private double speed;
+    private double speed = 2;
     private int strength;
     private int constitution;
     private double range;
@@ -21,52 +24,40 @@ public abstract class Entity implements Displayable {
     protected Vector2D position;
     protected Vector2D velocity;
     protected Inventory inventory;
-    protected Image sprite;
+    private ImageView spriteView;
 
     /**
      * Define a Entity
      * Position, inventory and sprites needs to be redefined
+     * @param spritePath path to the sprite of the entity
      */
-    protected Entity(String name, double hp, int strength, int constitution, double range, int money, Vector2D position, Inventory inventory, Image sprite ) {
+    protected Entity(String name, double hp, int strength, int constitution, double range, int money, Vector2D position, Inventory inventory, String spritePath ) {
         this.name = name;
         this.hp = hp;
         this.strength = strength;
         this.constitution = constitution;
         this.range = range;
         this.money = money;
-        speed = 4;
         this.position = position;
         this.inventory = inventory;
-        this.sprite = sprite;
         this.velocity = new Vector2D(0, 0);
-    }
-    protected Entity(String name, double hp, int strength, int constitution, double range, int money, Vector2D position) {
-        this.name = name;
-        this.hp = hp;
-        this.strength = strength;
-        this.constitution = constitution;
-        this.range = range;
-        this.money = money;
-        speed = 4;
-        this.position = position;
-        this.inventory = new Inventory();
-        this.velocity = new Vector2D(0, 0);
+
+        setSprite(spritePath);
 
     }
 
-    protected Entity(String name, Vector2D position, Image sprite) {
+    protected Entity(String name, Vector2D position, String spritePath) {
         this.name = name;
         this.hp = 50;
         this.strength = 5;
         this.constitution = 5;
         this.range = 5;
         this.money = 50;
-        speed = 4;
         this.position = position;
         this.inventory = new Inventory();
-        this.sprite = sprite;
         this.velocity = new Vector2D(0, 0);
 
+        setSprite(spritePath);
     }
 
     public double getHp() {
@@ -149,7 +140,12 @@ public abstract class Entity implements Displayable {
         return inventory;
     }
 
-    public Image getSprite() {
-        return sprite;
+    protected ImageView getSprite() {
+        return spriteView;
+    }
+
+    protected void setSprite(String spritePath) {
+        Image sprite = new Image(Objects.requireNonNull(getClass().getResourceAsStream(spritePath)));
+        this.spriteView = new ImageView(sprite);
     }
 }
