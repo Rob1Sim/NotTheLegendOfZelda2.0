@@ -19,9 +19,14 @@ public abstract class Entity implements Displayable {
     private Rectangle2D hitBox;
 
     protected Vector2D position;
+    protected Vector2D velocity;
     protected Inventory inventory;
     protected Image sprite;
 
+    /**
+     * Define a Entity
+     * Position, inventory and sprites needs to be redefined
+     */
     protected Entity(String name, double hp, int strength, int constitution, double range, int money, Vector2D position, Inventory inventory, Image sprite ) {
         this.name = name;
         this.hp = hp;
@@ -33,6 +38,7 @@ public abstract class Entity implements Displayable {
         this.position = position;
         this.inventory = inventory;
         this.sprite = sprite;
+        this.velocity = new Vector2D(0, 0);
     }
     protected Entity(String name, double hp, int strength, int constitution, double range, int money, Vector2D position) {
         this.name = name;
@@ -44,6 +50,7 @@ public abstract class Entity implements Displayable {
         speed = 4;
         this.position = position;
         this.inventory = new Inventory();
+        this.velocity = new Vector2D(0, 0);
 
     }
 
@@ -58,6 +65,8 @@ public abstract class Entity implements Displayable {
         this.position = position;
         this.inventory = new Inventory();
         this.sprite = sprite;
+        this.velocity = new Vector2D(0, 0);
+
     }
 
     public double getHp() {

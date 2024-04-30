@@ -1,10 +1,10 @@
 package fr.robins;
 
+import fr.robins.entities.Player;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -12,10 +12,16 @@ public class Main extends Application {
         launch(args);
     }
 
+    private Player player;
+
     @Override
     public void start(Stage stage) throws Exception {
+        player = new Player();
 
         Pane pane = new Pane();
+
+        pane.getChildren().add(player.draw());
+
         Scene scene = new Scene(pane, 600,400);
 
         stage.setScene(scene);
@@ -26,6 +32,7 @@ public class Main extends Application {
             @Override
             public void handle(long now) {
                 //Boucle de gameplay
+                Player.handlePlayerInput(scene,player);
 
             }
         };
