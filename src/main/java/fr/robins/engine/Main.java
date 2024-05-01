@@ -21,33 +21,40 @@ public class Main extends Application {
     private TileManager tileManager;
 
     //Widows parameters
-    int windowWidth = Utilities.WINDOW_WIDTH , windowHeight = Utilities.WINDOW_HEIGHT ;
+    double windowWidth = Utilities.WINDOW_WIDTH , windowHeight = Utilities.WINDOW_HEIGHT ;
 
 
     @Override
     public void start(Stage stage) throws Exception {
-        player = new Player(new Vector2D(0*Utilities.TILE_SIZE,0*Utilities.TILE_SIZE));
+        player = new Player(new Vector2D((double) Utilities.WINDOW_WIDTH /2,(double) Utilities.WINDOW_HEIGHT /2));
         tileManager = new TileManager("/tiles/tilemap/grandeMap.xml");
-        Pane pane = new Pane();
+        Pane backgroundPane = new Pane();
 
-        pane.setPrefSize(windowWidth, windowHeight );
 
 
         //Display tiles
         for (int i = 0; i < tileManager.getNumberOfLayers(); i++) {
-            tileManager.draw(i,pane);
+            tileManager.draw(i,backgroundPane);
         }
 
         //Display player
         Node playerNode = player.draw();
 
-        playerNode.setTranslateX(player.getPosition().getX());
-        playerNode.setTranslateY(player.getPosition().getY());
 
-        pane.getChildren().add(playerNode);
 
-        Scene scene = new Scene(pane);
+        //Scene settings
+        backgroundPane.getChildren().add(playerNode);
 
+        Player.teleportPlayer(backgroundPane,new Vector2D(3364,3364));
+
+        backgroundPane.setPrefSize(windowWidth, windowHeight );
+
+
+        Scene scene = new Scene(backgroundPane);
+
+        //Utilities.setFullScreen(stage);
+
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.setTitle("Not the legend of zelda");
         stage.show();
@@ -56,7 +63,7 @@ public class Main extends Application {
         AnimationTimer gameLoop = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                Player.handlePlayerInput(scene,player);
+                Inputs.handleKeyInput(scene,player, backgroundPane,stage);
             }
         };
         gameLoop.start();
