@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public abstract class Entity implements Displayable {
     private double hp;
-    private double speed = 2;
+    private double speed = 4;
     private int strength;
     private int constitution;
     private double range;
@@ -147,5 +147,9 @@ public abstract class Entity implements Displayable {
     protected void setSprite(String spritePath) {
         Image sprite = new Image(Objects.requireNonNull(getClass().getResourceAsStream(spritePath)));
         this.spriteView = new ImageView(sprite);
+    }
+
+    public Vector2D getVelocity() {
+        return velocity;
     }
 }
