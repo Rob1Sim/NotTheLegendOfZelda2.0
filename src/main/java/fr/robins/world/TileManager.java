@@ -199,6 +199,13 @@ public class TileManager {
         return tilesMap;
     }
 
+    public List<List<Integer>> getLayersMapData(int layer) {
+        if (layer < 0 || layer > numberOfLayers ){
+            throw new IllegalArgumentException("Invalid layer number");
+        }
+        return mapData.get(layer);
+    }
+
     public int getNumberOfLayers() {
         return numberOfLayers;
     }
@@ -209,5 +216,13 @@ public class TileManager {
      */
     public static Vector2D tilesToCoordinates(int column, int row){
         return new Vector2D(column * Utilities.TILE_SIZE, row * Utilities.TILE_SIZE);
+    }
+
+    /**
+     * From coordinates return the column and row
+     * @return [column, row]
+     */
+    public static int[] coordinatesToTiles(Vector2D coordinates){
+        return new int[]{(int)(coordinates.getY()/Utilities.TILE_SIZE), (int)(coordinates.getX()/Utilities.TILE_SIZE)};
     }
 }
