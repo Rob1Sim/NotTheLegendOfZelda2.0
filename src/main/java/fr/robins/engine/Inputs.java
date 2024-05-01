@@ -14,28 +14,26 @@ public class Inputs {
 
         scene.setOnKeyPressed(event ->{
             KeyCode keycode = event.getCode();
-            if (!player.getCollisionHitBox().isColliding()){
-                switch (keycode) {
-                    case Z:
-                        player.getVelocity().setY(+player.getSpeed());
-                        player.setDirection(DirectionType.UP);
-                        break;
-                    case S:
-                        player.getVelocity().setY(-player.getSpeed());
+            switch (keycode) {
+                case Z:
+                    player.getVelocity().setY(+player.getSpeed());
+                    player.setDirection(DirectionType.UP);
+                    break;
+                case S:
+                    player.getVelocity().setY(-player.getSpeed());
 
-                        player.setDirection(DirectionType.DOWN);
-                        break;
-                    case D:
-                        player.getVelocity().setX(-player.getSpeed());
-                        player.setDirection(DirectionType.RIGHT);
-                        break;
-                    case Q:
-                        player.getVelocity().setX(+player.getSpeed());
-                        player.setDirection(DirectionType.LEFT);
-                        break;
-                    case F11:
-                        Utilities.setFullScreen(stage,!stage.isFullScreen());
-                }
+                    player.setDirection(DirectionType.DOWN);
+                    break;
+                case D:
+                    player.getVelocity().setX(-player.getSpeed());
+                    player.setDirection(DirectionType.RIGHT);
+                    break;
+                case Q:
+                    player.getVelocity().setX(+player.getSpeed());
+                    player.setDirection(DirectionType.LEFT);
+                    break;
+                case F11:
+                    Utilities.setFullScreen(stage,!stage.isFullScreen());
             }
         });
 
