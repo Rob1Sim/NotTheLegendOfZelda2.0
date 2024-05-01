@@ -13,7 +13,6 @@ import java.util.Objects;
 
 
 public class Player extends Entity{
-    private DirectionType direction = DirectionType.DOWN;
 
     private final Image[] sprites;
     private Image currentSprite;
@@ -39,10 +38,10 @@ public class Player extends Entity{
                 currentSprite = sprites[0];
                 break;
             case LEFT:
-                currentSprite = sprites[3];
+                currentSprite = sprites[2];
                 break;
             case RIGHT:
-                currentSprite = sprites[2];
+                currentSprite = sprites[3];
                 break;
         }
         super.getSprite().setImage(currentSprite);
@@ -51,25 +50,19 @@ public class Player extends Entity{
         return super.getSprite();
     }
 
-    @Override
-    public void setWorldPosition(Vector2D newWorldPosition) {
-        super.setWorldPosition(newWorldPosition);
-        if (direction != null){
-            this.draw();
-        }
-    }
+
 
     public static void teleportPlayer(Pane backgroundPane, Vector2D coordinates){
         backgroundPane.setTranslateX(-coordinates.getX() + ((Utilities.WINDOW_WIDTH /2)-((double) Utilities.TILE_SIZE /2)));
         backgroundPane.setTranslateY(-coordinates.getY() + ((Utilities.WINDOW_WIDTH /2)-((double) Utilities.TILE_SIZE /2)));
     }
 
-    public DirectionType getDirection() {
-        return direction;
-    }
-
-    public void setDirection(DirectionType direction) {
-        this.direction = direction;
+    @Override
+    public void setWorldPosition(Vector2D newWorldPosition) {
+        super.setWorldPosition(newWorldPosition);
+        if (sprites != null){
+            this.draw();
+        }
     }
 
 }

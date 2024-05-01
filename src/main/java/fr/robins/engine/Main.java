@@ -1,5 +1,6 @@
 package fr.robins.engine;
 
+import fr.robins.engine.collisions.CollisionManager;
 import fr.robins.entities.Entity;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.CCEnemy;
@@ -33,6 +34,7 @@ public class Main extends Application {
         CCEnemy ghost = new CCEnemy(EntityType.ENEMY_GHOST,TileManager.tilesToCoordinates(36,33), new Inventory());
 
 
+
         //Display tiles
         for (int i = 0; i < tileManager.getNumberOfLayers(); i++) {
             tileManager.draw(i,backgroundPane);
@@ -45,6 +47,7 @@ public class Main extends Application {
 
         //Display Enemies
         Entity.renderEntity(ghost,backgroundPane);
+
 
 
         //Scene settings
@@ -63,6 +66,7 @@ public class Main extends Application {
             @Override
             public void handle(long now) {
                 Inputs.handleKeyInput(scene,player, backgroundPane,stage);
+                CollisionManager.environmentCollisionChecker(player,tileManager);
             }
         };
         gameLoop.start();
