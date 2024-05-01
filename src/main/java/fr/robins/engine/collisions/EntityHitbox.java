@@ -1,28 +1,19 @@
-package fr.robins.engine;
+package fr.robins.engine.collisions;
 
 import fr.robins.entities.Entity;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
-import javafx.scene.Node;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
-public class HitBox implements Displayable {
-    private final Rectangle hitBox;
-    private boolean isColliding;
+public class EntityHitbox extends HitBox{
     private final Entity hitEntity;
 
-    public HitBox(Entity entity) {
-
+    public EntityHitbox(Entity entity) {
+        super();
         this.hitEntity = entity;
-        this.hitBox = new Rectangle();
         setHitBoxCoordinates(hitEntity.getWorldPosition());
 
-        hitBox.setFill(Color.TRANSPARENT);
-        hitBox.setStroke(Color.RED);
-        this.isColliding = false;
-    }
 
+    }
     /**
      * Caluclate the hitBox in function of the world coordinates
      */
@@ -31,18 +22,5 @@ public class HitBox implements Displayable {
         hitBox.setTranslateY(worldCoordonates.getY()+ (double) Utilities.TILE_SIZE/2 );
         hitBox.setWidth((double) Utilities.TILE_SIZE /2);
         hitBox.setHeight((double) Utilities.TILE_SIZE /2);
-    }
-
-    public boolean isColliding() {
-        return isColliding;
-    }
-    public void setColliding(boolean isColliding) {
-        this.isColliding = isColliding;
-    }
-
-
-    @Override
-    public Node draw() {
-        return hitBox;
     }
 }

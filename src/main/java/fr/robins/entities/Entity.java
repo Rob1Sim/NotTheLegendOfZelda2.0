@@ -1,18 +1,22 @@
 package fr.robins.entities;
 
 import fr.robins.engine.Displayable;
-import fr.robins.engine.HitBox;
+import fr.robins.engine.collisions.EntityHitbox;
+import fr.robins.engine.collisions.HasCollisions;
+import fr.robins.engine.collisions.HitBox;
 import fr.robins.items.Inventory;
+import fr.robins.types.DirectionType;
 import fr.robins.types.Vector2D;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 import java.util.Objects;
 
 
-public abstract class Entity implements Displayable {
+public abstract class Entity implements Displayable, HasCollisions {
     private double hp;
     private double speed = 4;
     private int strength;
@@ -21,7 +25,10 @@ public abstract class Entity implements Displayable {
     private int money;
     private String name;
 
-    private HitBox dmgHitBox;
+
+    private EntityHitbox hitBox;
+    private HitBox collisionHitBox;
+    protected DirectionType direction;
 
     protected Vector2D worldPosition;
     protected Vector2D velocity;
@@ -34,6 +41,7 @@ public abstract class Entity implements Displayable {
      * @param spritePath path to the sprite of the entity
      */
     protected Entity(String name, String spritePath) {
+        this.direction = DirectionType.DOWN;
         this.name = name;
         this.hp = 50;
         this.strength = 5;
@@ -44,7 +52,8 @@ public abstract class Entity implements Displayable {
         this.inventory = new Inventory();
         this.velocity = new Vector2D(0, 0);
 
-        dmgHitBox = new HitBox(this);
+        collisionHitBox = new HitBox(worldPosition,1,1, Color.BLUE);
+        hitBox = new EntityHitbox(this);
         setSprite(spritePath);
     }
     protected Entity(String name, double hp, int strength, int constitution, double range, int money, Vector2D worldPosition, Inventory inventory, String spritePath ) {
@@ -65,7 +74,7 @@ public abstract class Entity implements Displayable {
     public void setWorldPosition(Vector2D newPosition) {
         worldPosition = newPosition;
 
-        dmgHitBox.setHitBoxCoordinates(worldPosition);
+        hitBox.setHitBoxCoordinates(worldPosition);
 
         spriteView.setTranslateX(this.worldPosition.getX());
         spriteView.setTranslateY(this.worldPosition.getY());
@@ -77,7 +86,7 @@ public abstract class Entity implements Displayable {
     }
 
     public static void renderEntity(Entity entity,Pane pane) {
-        pane.getChildren().addAll(entity.draw(),entity.getDmgHitBox().draw());
+        pane.getChildren().addAll(entity.draw(),entity.getHitBox().draw(), entity.collisionHitBox.draw());
     }
     //region Getter et Setter
     public double getHp() {
@@ -136,12 +145,13 @@ public abstract class Entity implements Displayable {
         this.name = name;
     }
 
-    public HitBox getDmgHitBox() {
-        return dmgHitBox;
+    @Override
+    public HitBox getHitBox() {
+        return hitBox;
     }
 
-    public void setHitBox(HitBox hitBox) {
-        this.dmgHitBox = hitBox;
+    public void setHitBox(EntityHitbox hitBox) {
+        this.hitBox = hitBox;
     }
 
     public Vector2D getWorldPosition() {
@@ -162,6 +172,18 @@ public abstract class Entity implements Displayable {
 
     public Vector2D getVelocity() {
         return velocity;
+    }
+
+    public DirectionType getDirection() {
+        return direction;
+    }
+
+    public void setDirection(DirectionType direction) {
+        this.direction = direction;
+    }
+
+    public HitBox getCollisionHitBox() {
+        return collisionHitBox;
     }
     //endregion
 
