@@ -26,6 +26,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        //Initialisation
         player = new Player(new Vector2D((double) Utilities.WINDOW_WIDTH /2,(double) Utilities.WINDOW_HEIGHT /2));
         tileManager = new TileManager("/tiles/tilemap/grandeMap.xml");
         Pane backgroundPane = new Pane();
@@ -39,21 +40,15 @@ public class Main extends Application {
 
         //Display player
         Node playerNode = player.draw();
-
-
-
-        //Scene settings
         backgroundPane.getChildren().add(playerNode);
-
         Player.teleportPlayer(backgroundPane,new Vector2D(3364,3364));
 
+        //Scene settings
         backgroundPane.setPrefSize(windowWidth, windowHeight );
-
-
         Scene scene = new Scene(backgroundPane);
 
-        //Utilities.setFullScreen(stage);
-
+        //Stage settings
+        stage.setFullScreenExitHint("");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.setTitle("Not the legend of zelda");
