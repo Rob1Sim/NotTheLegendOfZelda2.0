@@ -1,12 +1,13 @@
 package fr.robins.entities;
 
 import fr.robins.engine.Displayable;
+import fr.robins.engine.HitBox;
 import fr.robins.items.Inventory;
 import fr.robins.types.Vector2D;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 import java.util.Objects;
 
@@ -19,10 +20,11 @@ public abstract class Entity implements Displayable {
     private double range;
     private int money;
     private String name;
-    private boolean isCollidable;
-    private Rectangle2D hitBox;
 
-    protected Vector2D position;
+    private HitBox dmgHitBox;
+    private HitBox obstacleHitBox;
+
+    protected Vector2D worldPosition;
     protected Vector2D velocity;
     protected Inventory inventory;
     private ImageView spriteView;
@@ -32,50 +34,53 @@ public abstract class Entity implements Displayable {
      * Position, inventory and sprites needs to be redefined
      * @param spritePath path to the sprite of the entity
      */
-    protected Entity(String name, double hp, int strength, int constitution, double range, int money, Vector2D position, Inventory inventory, String spritePath ) {
-        this.name = name;
-        this.hp = hp;
-        this.strength = strength;
-        this.constitution = constitution;
-        this.range = range;
-        this.money = money;
-        this.inventory = inventory;
-        this.velocity = new Vector2D(0, 0);
-
-        setSprite(spritePath);
-        setPosition(position);
-    }
-
-    /**
-     * Constructor for the player class
-     */
-    protected Entity(String name, double hp, int strength, int constitution, double range, int money, Inventory inventory, String spritePath ) {
-        this.name = name;
-        this.hp = hp;
-        this.strength = strength;
-        this.constitution = constitution;
-        this.range = range;
-        this.money = money;
-        this.inventory = inventory;
-        this.velocity = new Vector2D(0, 0);
-
-        setSprite(spritePath);
-    }
-
-    protected Entity(String name, Vector2D position, String spritePath) {
+    protected Entity(String name, String spritePath) {
         this.name = name;
         this.hp = 50;
         this.strength = 5;
         this.constitution = 5;
         this.range = 5;
         this.money = 50;
+        this.worldPosition = new Vector2D(0, 0);
         this.inventory = new Inventory();
         this.velocity = new Vector2D(0, 0);
 
+        dmgHitBox = new HitBox(this);
         setSprite(spritePath);
-        setPosition(position);
+    }
+    protected Entity(String name, double hp, int strength, int constitution, double range, int money, Vector2D worldPosition, Inventory inventory, String spritePath ) {
+        this(name, spritePath);
+        this.hp = hp;
+        this.strength = strength;
+        this.constitution = constitution;
+        this.range = range;
+        this.money = money;
+        this.inventory = inventory;
+
+        setWorldPosition(worldPosition);
     }
 
+    /**
+     * Set an entity on the map
+     */
+    public void setWorldPosition(Vector2D newPosition) {
+        worldPosition = newPosition;
+
+        dmgHitBox.setHitBoxCoordinates(worldPosition);
+
+        spriteView.setTranslateX(this.worldPosition.getX());
+        spriteView.setTranslateY(this.worldPosition.getY());
+    }
+
+    @Override
+    public Node draw() {
+        return spriteView;
+    }
+
+    public static void renderEntity(Entity entity,Pane pane) {
+        pane.getChildren().addAll(entity.draw(),entity.getDmgHitBox().draw());
+    }
+    //region Getter et Setter
     public double getHp() {
         return hp;
     }
@@ -132,33 +137,16 @@ public abstract class Entity implements Displayable {
         this.name = name;
     }
 
-    public boolean isCollidable() {
-        return isCollidable;
+    public HitBox getDmgHitBox() {
+        return dmgHitBox;
     }
 
-    public void setCollidable(boolean collidable) {
-        isCollidable = collidable;
+    public void setHitBox(HitBox hitBox) {
+        this.dmgHitBox = hitBox;
     }
 
-    public Rectangle2D getHitBox() {
-        return hitBox;
-    }
-
-    public void setHitBox(Rectangle2D hitBox) {
-        this.hitBox = hitBox;
-    }
-
-    public Vector2D getPosition() {
-        return position;
-    }
-
-    /**
-     * Set an entity on the map
-     */
-    public void setPosition(Vector2D newPosition) {
-        position = newPosition.cloneVector();
-        spriteView.setTranslateX(this.position.getX());
-        spriteView.setTranslateY(this.position.getY());
+    public Vector2D getWorldPosition() {
+        return worldPosition;
     }
     public Inventory getInventory() {
         return inventory;
@@ -176,9 +164,6 @@ public abstract class Entity implements Displayable {
     public Vector2D getVelocity() {
         return velocity;
     }
+    //endregion
 
-    @Override
-    public Node draw() {
-        return spriteView;
-    }
 }

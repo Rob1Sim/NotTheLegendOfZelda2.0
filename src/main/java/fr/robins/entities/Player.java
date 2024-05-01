@@ -19,7 +19,7 @@ public class Player extends Entity{
     private Image currentSprite;
 
     public Player(Vector2D spawnPosition) {
-        super("Player",100,5,5,5,100, new Inventory(),"/sprites/player/chevalier_idle.png" );
+        super("Player",100,5,5,5,100,spawnPosition ,new Inventory(),"/sprites/player/chevalier_idle.png" );
         sprites = new Image[4];
         sprites[0] = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/sprites/player/chevalier_idle.png")));
         sprites[1] = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/sprites/player/chevalier_back.png")));
@@ -27,8 +27,6 @@ public class Player extends Entity{
         sprites[3] = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/sprites/player/chevalier_right.png")));
 
         currentSprite = sprites[0];
-
-        position = spawnPosition;
     }
 
     @Override
@@ -54,10 +52,12 @@ public class Player extends Entity{
     }
 
     @Override
-    public void setPosition(Vector2D newPosition){
-        throw new UnsupportedOperationException("Player position can not be changed with this function. Use static method teleportPlayer instead.");
+    public void setWorldPosition(Vector2D newWorldPosition) {
+        super.setWorldPosition(newWorldPosition);
+        if (direction != null){
+            this.draw();
+        }
     }
-
 
     public static void teleportPlayer(Pane backgroundPane, Vector2D coordinates){
         backgroundPane.setTranslateX(-coordinates.getX() + ((Utilities.WINDOW_WIDTH /2)-((double) Utilities.TILE_SIZE /2)));

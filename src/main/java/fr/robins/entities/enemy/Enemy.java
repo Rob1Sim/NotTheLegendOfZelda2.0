@@ -7,8 +7,8 @@ import fr.robins.types.entities.EntityType;
 
 public abstract class Enemy extends Entity {
 
-    protected Enemy(EntityType type, Vector2D position, Inventory inventory) {
-        super(type.getName(), type.getHp(), type.getStrength(), type.getConstitution(), type.getRange(), type.getMoney(), position, inventory, type.getSpritePath());
+    protected Enemy(EntityType type, Vector2D worldPosition, Inventory inventory) {
+        super(type.getName(), type.getHp(), type.getStrength(), type.getConstitution(), type.getRange(), type.getMoney(), worldPosition, inventory, type.getSpritePath());
     }
 
 }

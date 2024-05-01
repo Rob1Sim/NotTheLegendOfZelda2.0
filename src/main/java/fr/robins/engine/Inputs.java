@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 
 public class Inputs {
     public static void handleKeyInput(Scene scene, Player player, Pane backgroundPane, Stage stage){
-        Node playerNode = player.draw();
 
         scene.setOnKeyPressed(event ->{
             KeyCode keycode = event.getCode();
@@ -49,16 +48,15 @@ public class Inputs {
             }
         });
 
-
+        //Correspond à la position du fond
         Vector2D cameraPosition = new Vector2D(-backgroundPane.getTranslateX(), -backgroundPane.getTranslateY());
 
-        player.getPosition().set((cameraPosition.getX() + ((Utilities.WINDOW_WIDTH /2)-((double) Utilities.TILE_SIZE /2)) + player.getVelocity().getX()),
-                (cameraPosition.getY() + ( Utilities.WINDOW_HEIGHT /2)-((double) Utilities.TILE_SIZE /2))+ player.getVelocity().getY());
-
-        playerNode.setTranslateX(player.getPosition().getX());
-        playerNode.setTranslateY(player.getPosition().getY());
+        //Remets le joueur au millieu
+        player.setWorldPosition(new Vector2D((cameraPosition.getX() + ((Utilities.WINDOW_WIDTH /2)-((double) Utilities.TILE_SIZE /2)) + player.getVelocity().getX()),
+                (cameraPosition.getY() + ( Utilities.WINDOW_HEIGHT /2)-((double) Utilities.TILE_SIZE /2))+ player.getVelocity().getY()));
 
 
+        //déplace le fond
         backgroundPane.setTranslateY(backgroundPane.getTranslateY() + player.getVelocity().getY());
         backgroundPane.setTranslateX(backgroundPane.getTranslateX() + player.getVelocity().getX());
 

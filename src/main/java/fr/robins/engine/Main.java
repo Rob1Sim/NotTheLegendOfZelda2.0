@@ -1,5 +1,6 @@
 package fr.robins.engine;
 
+import fr.robins.entities.Entity;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.CCEnemy;
 import fr.robins.items.Inventory;
@@ -42,15 +43,12 @@ public class Main extends Application {
         }
 
         //Display player
-        Node playerNode = player.draw();
-        backgroundPane.getChildren().add(playerNode);
+
+        Entity.renderEntity(player,backgroundPane);
         Player.teleportPlayer(backgroundPane,TileManager.tilesToCoordinates(35,33));
-        System.out.println("Player "+playerNode.getTranslateX() + " " + playerNode.getTranslateY());
 
         //Display Enemies
-        Node ghostNode = ghost.draw();
-        System.out.println("Ghost "+ghostNode.getTranslateX() + " " + ghostNode.getTranslateY());
-        backgroundPane.getChildren().add(ghostNode);
+        Entity.renderEntity(ghost,backgroundPane);
 
 
         //Scene settings
