@@ -39,12 +39,27 @@ public abstract class Entity implements Displayable {
         this.constitution = constitution;
         this.range = range;
         this.money = money;
-        this.position = position;
         this.inventory = inventory;
         this.velocity = new Vector2D(0, 0);
 
         setSprite(spritePath);
+        setPosition(position);
+    }
 
+    /**
+     * Constructor for the player class
+     */
+    protected Entity(String name, double hp, int strength, int constitution, double range, int money, Inventory inventory, String spritePath ) {
+        this.name = name;
+        this.hp = hp;
+        this.strength = strength;
+        this.constitution = constitution;
+        this.range = range;
+        this.money = money;
+        this.inventory = inventory;
+        this.velocity = new Vector2D(0, 0);
+
+        setSprite(spritePath);
     }
 
     protected Entity(String name, Vector2D position, String spritePath) {
@@ -54,11 +69,11 @@ public abstract class Entity implements Displayable {
         this.constitution = 5;
         this.range = 5;
         this.money = 50;
-        this.position = position;
         this.inventory = new Inventory();
         this.velocity = new Vector2D(0, 0);
 
         setSprite(spritePath);
+        setPosition(position);
     }
 
     public double getHp() {
@@ -139,12 +154,11 @@ public abstract class Entity implements Displayable {
 
     /**
      * Set an entity on the map
-     * @param entityNode
      */
-    public void setPosition(Vector2D newPosition, Node entityNode) {
+    public void setPosition(Vector2D newPosition) {
         position = newPosition.cloneVector();
-        entityNode.setTranslateX(-this.position.getX());
-        entityNode.setTranslateY(-this.position.getY());
+        spriteView.setTranslateX(this.position.getX());
+        spriteView.setTranslateY(this.position.getY());
     }
     public Inventory getInventory() {
         return inventory;

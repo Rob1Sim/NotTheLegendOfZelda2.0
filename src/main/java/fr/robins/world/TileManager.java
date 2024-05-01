@@ -1,6 +1,7 @@
 package fr.robins.world;
 
 import fr.robins.types.Utilities;
+import fr.robins.types.Vector2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -201,5 +202,13 @@ public class TileManager {
 
     public int getNumberOfLayers() {
         return numberOfLayers;
+    }
+
+    /**
+     * Return the corresponding coordonates of the column and row entered
+     * @return
+     */
+    public static Vector2D tilesToCoordinates(int column, int row){
+        return new Vector2D(column * Utilities.TILE_SIZE, row * Utilities.TILE_SIZE);
     }
 }

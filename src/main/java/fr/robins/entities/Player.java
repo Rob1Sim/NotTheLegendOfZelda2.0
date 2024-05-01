@@ -4,16 +4,9 @@ import fr.robins.items.Inventory;
 import fr.robins.types.DirectionType;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
-import javafx.animation.Transition;
-import javafx.animation.TranslateTransition;
-import javafx.scene.Camera;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 
 import java.util.Objects;
 
@@ -26,8 +19,7 @@ public class Player extends Entity{
     private Image currentSprite;
 
     public Player(Vector2D spawnPosition) {
-        super("Player",100,5,5,5,100,spawnPosition, new Inventory(),"/sprites/player/chevalier_idle.png" );
-
+        super("Player",100,5,5,5,100, new Inventory(),"/sprites/player/chevalier_idle.png" );
         sprites = new Image[4];
         sprites[0] = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/sprites/player/chevalier_idle.png")));
         sprites[1] = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/sprites/player/chevalier_back.png")));
@@ -36,6 +28,7 @@ public class Player extends Entity{
 
         currentSprite = sprites[0];
 
+        position = spawnPosition;
     }
 
     @Override
@@ -61,7 +54,7 @@ public class Player extends Entity{
     }
 
     @Override
-    public void setPosition(Vector2D newPosition, Node entityNode){
+    public void setPosition(Vector2D newPosition){
         throw new UnsupportedOperationException("Player position can not be changed with this function. Use static method teleportPlayer instead.");
     }
 
