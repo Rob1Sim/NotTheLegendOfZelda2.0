@@ -4,12 +4,19 @@ import fr.robins.items.Inventory;
 import fr.robins.types.DirectionType;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
+import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
+import javafx.scene.Camera;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 import java.util.Objects;
+
 
 
 public class Player extends Entity{
@@ -53,44 +60,10 @@ public class Player extends Entity{
         return super.getSprite();
     }
 
-    public static void handlePlayerInput(Scene scene, Player player){
-        Node playerNode = player.draw();
 
-        scene.setOnKeyPressed(event ->{
-            KeyCode keycode = event.getCode();
-            switch (keycode) {
-                case Z:
-                    player.velocity.setY(-player.getSpeed());
-                    player.direction = DirectionType.UP;
-                    break;
-                case S:
-                    player.velocity.setY(player.getSpeed());
-                    player.direction = DirectionType.DOWN;
-                    break;
-                case D:
-                    player.velocity.setX(player.getSpeed());
-                    player.direction = DirectionType.LEFT;
-                    break;
-                case Q:
-                    player.velocity.setX(-player.getSpeed());
-                    player.direction = DirectionType.RIGHT;
-                    break;
-            }
-        });
-
-        scene.setOnKeyReleased(keyEvent -> {
-            KeyCode keycode = keyEvent.getCode();
-            if (keycode == KeyCode.Z || keycode == KeyCode.S) {
-                player.velocity.setY(0);
-            }
-            if (keycode == KeyCode.D || keycode == KeyCode.Q) {
-                player.velocity.setX(0);
-            }
-        });
-
-        playerNode.setTranslateY(playerNode.getTranslateY() + player.velocity.getY());
-        playerNode.setTranslateX(playerNode.getTranslateX() + player.velocity.getX());
-
+    public static void teleportPlayer(Pane backgroundPane, Vector2D coordinates){
+        backgroundPane.setTranslateX(-coordinates.getX() + ((Utilities.WINDOW_WIDTH /2)-((double) Utilities.TILE_SIZE /2)));
+        backgroundPane.setTranslateY(-coordinates.getY() + ((Utilities.WINDOW_WIDTH /2)-((double) Utilities.TILE_SIZE /2)));
     }
 
     public DirectionType getDirection() {
@@ -100,4 +73,5 @@ public class Player extends Entity{
     public void setDirection(DirectionType direction) {
         this.direction = direction;
     }
+
 }
