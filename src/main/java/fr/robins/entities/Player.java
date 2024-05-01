@@ -18,8 +18,8 @@ public class Player extends Entity{
     private Image[] sprites;
     private Image currentSprite;
 
-    public Player() {
-        super("Player",100,5,5,5,100,new Vector2D(0,0), new Inventory(),"/sprites/player/chevalier_idle.png" );
+    public Player(Vector2D spawnPosition) {
+        super("Player",100,5,5,5,100,spawnPosition, new Inventory(),"/sprites/player/chevalier_idle.png" );
 
         sprites = new Image[4];
         sprites[0] = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/sprites/player/chevalier_idle.png")));

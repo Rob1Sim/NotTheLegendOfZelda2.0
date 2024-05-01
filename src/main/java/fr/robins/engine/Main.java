@@ -2,9 +2,11 @@ package fr.robins.engine;
 
 import fr.robins.entities.Player;
 import fr.robins.types.Utilities;
+import fr.robins.types.Vector2D;
 import fr.robins.world.TileManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -24,7 +26,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        player = new Player();
+        player = new Player(new Vector2D(0*Utilities.TILE_SIZE,0*Utilities.TILE_SIZE));
         tileManager = new TileManager("/tiles/tilemap/grandeMap.xml");
         Pane pane = new Pane();
 
@@ -37,7 +39,12 @@ public class Main extends Application {
         }
 
         //Display player
-        pane.getChildren().add(player.draw());
+        Node playerNode = player.draw();
+
+        playerNode.setTranslateX(player.getPosition().getX());
+        playerNode.setTranslateY(player.getPosition().getY());
+
+        pane.getChildren().add(playerNode);
 
         Scene scene = new Scene(pane);
 
