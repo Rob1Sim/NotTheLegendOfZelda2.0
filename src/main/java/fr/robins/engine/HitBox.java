@@ -10,7 +10,7 @@ import javafx.scene.shape.Rectangle;
 public class HitBox implements Displayable {
     private final Rectangle hitBox;
     private boolean isColliding;
-    private Entity hitEntity;
+    private final Entity hitEntity;
 
     public HitBox(Entity entity) {
 

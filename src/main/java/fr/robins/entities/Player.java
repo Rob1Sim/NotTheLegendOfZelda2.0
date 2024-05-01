@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Player extends Entity{
     private DirectionType direction = DirectionType.DOWN;
 
-    private Image[] sprites;
+    private final Image[] sprites;
     private Image currentSprite;
 
     public Player(Vector2D spawnPosition) {

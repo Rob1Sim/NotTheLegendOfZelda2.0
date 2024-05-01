@@ -22,7 +22,6 @@ public abstract class Entity implements Displayable {
     private String name;
 
     private HitBox dmgHitBox;
-    private HitBox obstacleHitBox;
 
     protected Vector2D worldPosition;
     protected Vector2D velocity;

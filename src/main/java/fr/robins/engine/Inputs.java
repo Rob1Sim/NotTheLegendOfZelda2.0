@@ -4,7 +4,6 @@ import fr.robins.entities.Player;
 import fr.robins.types.DirectionType;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;

@@ -10,7 +10,6 @@ import fr.robins.types.entities.EntityType;
 import fr.robins.world.TileManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -22,17 +21,14 @@ public class Main extends Application {
 
     //Relations
     private Player player;
-    private TileManager tileManager;
 
-    //Widows parameters
-    double windowWidth = Utilities.WINDOW_WIDTH , windowHeight = Utilities.WINDOW_HEIGHT ;
 
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         //Initialisation
-        player = new Player(new Vector2D((double) Utilities.WINDOW_WIDTH /2,(double) Utilities.WINDOW_HEIGHT /2));
-        tileManager = new TileManager("/tiles/tilemap/grandeMap.xml");
+        player = new Player(new Vector2D(Utilities.WINDOW_WIDTH /2,Utilities.WINDOW_HEIGHT /2));
+        TileManager tileManager = new TileManager("/tiles/tilemap/grandeMap.xml");
         Pane backgroundPane = new Pane();
         CCEnemy ghost = new CCEnemy(EntityType.ENEMY_GHOST,TileManager.tilesToCoordinates(36,33), new Inventory());
 
@@ -52,7 +48,7 @@ public class Main extends Application {
 
 
         //Scene settings
-        backgroundPane.setPrefSize(windowWidth, windowHeight);
+        backgroundPane.setPrefSize(Utilities.WINDOW_WIDTH, Utilities.WINDOW_HEIGHT);
         Scene scene = new Scene(backgroundPane);
 
         //Stage settings

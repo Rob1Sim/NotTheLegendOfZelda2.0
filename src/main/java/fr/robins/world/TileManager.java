@@ -2,7 +2,6 @@ package fr.robins.world;
 
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -18,16 +17,16 @@ import java.util.List;
 import java.util.*;
 
 public class TileManager {
-    private Map<Integer,Tile> tilesMap;
+    private final Map<Integer,Tile> tilesMap;
 
     //Matrice de toute ls tiles
     private List<List<List<Integer>>> mapData;
     //Ensemble qui contient le numéro unique de chaque tile
-    private Set<Integer> tileSet;
+    private final Set<Integer> tileSet;
     //Ensemble qui contient le numéro unique des tiles avec colision
-    private Set<Integer> collisableTileSet;
+    private final Set<Integer> collisableTileSet;
     //Ensemble qui contient le numéro unique des tiles destructible
-    private Set<Integer> destructibleTileSet;
+    private final Set<Integer> destructibleTileSet;
 
     private int mapWidth;
     private int mapHeight;
@@ -111,7 +110,7 @@ public class TileManager {
                 if (tileNumber > -1){
                     Tile newTile = new Tile();
 
-                    String tileNumberString  = "";
+                    String tileNumberString;
                     if (tileNumber < 10){
                         tileNumberString = "000"+tileNumber;
                     } else if (tileNumber < 100) {
@@ -206,7 +205,7 @@ public class TileManager {
 
     /**
      * Return the corresponding coordonates of the column and row entered
-     * @return
+     * @return coordinates
      */
     public static Vector2D tilesToCoordinates(int column, int row){
         return new Vector2D(column * Utilities.TILE_SIZE, row * Utilities.TILE_SIZE);

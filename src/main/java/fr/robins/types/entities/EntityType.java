@@ -1,7 +1,5 @@
 package fr.robins.types.entities;
 
-import fr.robins.items.Inventory;
-
 public enum EntityType {
     ENEMY_MAGE("Mage", 50, 1, 5, 15, 20, "/sprites/characters/c_dark_magician.png"),
     ENEMY_GHOST("Ghost", 10, 5, 5, 5, 10, "/sprites/characters/c_white_ghost.png"),
