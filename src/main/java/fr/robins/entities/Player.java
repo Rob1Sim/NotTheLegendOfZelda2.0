@@ -60,6 +60,11 @@ public class Player extends Entity{
         return super.getSprite();
     }
 
+    @Override
+    public void setPosition(Vector2D newPosition, Node entityNode){
+        throw new UnsupportedOperationException("Player position can not be changed with this function. Use static method teleportPlayer instead.");
+    }
+
 
     public static void teleportPlayer(Pane backgroundPane, Vector2D coordinates){
         backgroundPane.setTranslateX(-coordinates.getX() + ((Utilities.WINDOW_WIDTH /2)-((double) Utilities.TILE_SIZE /2)));

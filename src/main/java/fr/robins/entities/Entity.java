@@ -4,6 +4,7 @@ import fr.robins.engine.Displayable;
 import fr.robins.items.Inventory;
 import fr.robins.types.Vector2D;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -136,6 +137,15 @@ public abstract class Entity implements Displayable {
         return position;
     }
 
+    /**
+     * Set an entity on the map
+     * @param entityNode
+     */
+    public void setPosition(Vector2D newPosition, Node entityNode) {
+        position = newPosition.cloneVector();
+        entityNode.setTranslateX(-this.position.getX());
+        entityNode.setTranslateY(-this.position.getY());
+    }
     public Inventory getInventory() {
         return inventory;
     }
@@ -151,5 +161,10 @@ public abstract class Entity implements Displayable {
 
     public Vector2D getVelocity() {
         return velocity;
+    }
+
+    @Override
+    public Node draw() {
+        return spriteView;
     }
 }
