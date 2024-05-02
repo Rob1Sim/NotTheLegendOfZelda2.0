@@ -56,7 +56,7 @@ public class Main extends Application {
 
         //Stage settings
         stage.setFullScreenExitHint("");
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.setScene(scene);
         stage.setTitle("Not the legend of zelda");
         stage.show();

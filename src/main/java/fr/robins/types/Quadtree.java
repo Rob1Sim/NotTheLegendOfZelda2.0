@@ -1,6 +1,6 @@
 package fr.robins.types;
 
-import fr.robins.engine.collisions.HasCollisions;
+import fr.robins.engine.collisions.Collisionable;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -12,7 +12,7 @@ public class Quadtree {
     private static final int MAX_LEVELS = 10;
 
     private final int level;
-    private final List<HasCollisions> objectsWithHitBoxs;
+    private final List<Collisionable> objectsWithHitBoxs;
     private final Quadtree[] nodes;
     private final Rectangle bounds;
 
@@ -28,7 +28,7 @@ public class Quadtree {
         this.nodes = new Quadtree[4];
     }
 
-    public void insert(HasCollisions object){
+    public void insert(Collisionable object){
         if (nodes[0] != null){
             int index = getIndex(object);
             //Si on trouve de la place dans une des cases
@@ -88,7 +88,7 @@ public class Quadtree {
      * Choose in wich case the object will finish
      * @return
      */
-    private int getIndex(HasCollisions object){
+    private int getIndex(Collisionable object){
         int index = -1;
 
         double x = object.getHitBox().getX();

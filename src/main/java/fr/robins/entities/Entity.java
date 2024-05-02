@@ -2,7 +2,7 @@ package fr.robins.entities;
 
 import fr.robins.engine.Displayable;
 import fr.robins.engine.collisions.EntityHitbox;
-import fr.robins.engine.collisions.HasCollisions;
+import fr.robins.engine.collisions.Collisionable;
 import fr.robins.engine.collisions.HitBox;
 import fr.robins.items.Inventory;
 import fr.robins.types.DirectionType;
@@ -16,7 +16,7 @@ import javafx.scene.paint.Color;
 import java.util.Objects;
 
 
-public abstract class Entity implements Displayable, HasCollisions {
+public abstract class Entity implements Displayable, Collisionable {
     private double hp;
     private double speed = 4;
     private int strength;

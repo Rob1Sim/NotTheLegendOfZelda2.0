@@ -32,7 +32,7 @@ public class Inputs {
                     player.getVelocity().setX(+player.getSpeed());
                     player.setDirection(DirectionType.LEFT);
                     break;
-                case F11:
+                case M:
                     Utilities.setFullScreen(stage,!stage.isFullScreen());
             }
         });
