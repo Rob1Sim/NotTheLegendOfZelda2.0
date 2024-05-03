@@ -1,14 +1,13 @@
 package fr.robins.entities.enemy;
 
-import fr.robins.entities.Entity;
-import fr.robins.items.Inventory;
+
+import fr.robins.entities.Fighter;
 import fr.robins.types.Vector2D;
-import fr.robins.types.entities.EntityType;
+import fr.robins.types.entities.EnemyType;
 
-public abstract class Enemy extends Entity {
-
-    protected Enemy(EntityType type, Vector2D worldPosition, Inventory inventory) {
-        super(type.getName(), type.getHp(), type.getStrength(), type.getConstitution(), type.getRange(), type.getMoney(), worldPosition, inventory, type.getSpritePath());
+public class Enemy extends Fighter {
+    public Enemy(EnemyType enemyType, Vector2D worldPosition) {
+        super(enemyType.getName(), enemyType.getHp(), enemyType.getMana(), enemyType.getConstitution(), enemyType.getStrength(), enemyType.getDexterity(),enemyType.getMoney(),worldPosition,enemyType.getSprite(), enemyType.getSpells());
+        setInventory(enemyType.getInventory());
     }
-
 }

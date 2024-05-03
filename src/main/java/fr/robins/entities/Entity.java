@@ -17,17 +17,18 @@ import java.util.Objects;
 
 
 public abstract class Entity implements Displayable, Collisionable {
-    private double hp;
-    private double speed = 4;
-    private int strength;
-    private int constitution;
-    private double range;
-    private int money;
-    private String name;
 
+    private String name;
+    private int hp;
+    private int mana;
+    private int constitution;
+    private int strength;
+    private int dexterity;
+    private int money;
+    private double speed = 4;
 
     private EntityHitbox hitBox;
-    private HitBox collisionHitBox;
+    private final HitBox collisionHitBox;
     protected DirectionType direction;
 
     protected Vector2D worldPosition;
@@ -46,7 +47,6 @@ public abstract class Entity implements Displayable, Collisionable {
         this.hp = 50;
         this.strength = 5;
         this.constitution = 5;
-        this.range = 5;
         this.money = 50;
         this.worldPosition = new Vector2D(0, 0);
         this.inventory = new Inventory();
@@ -56,14 +56,15 @@ public abstract class Entity implements Displayable, Collisionable {
         hitBox = new EntityHitbox(this);
         setSprite(spritePath);
     }
-    protected Entity(String name, double hp, int strength, int constitution, double range, int money, Vector2D worldPosition, Inventory inventory, String spritePath ) {
+    protected Entity(String name, int hp, int mana, int constitution, int strength, int dexterity, int money, Vector2D worldPosition, String spritePath ) {
         this(name, spritePath);
         this.hp = hp;
+        this.mana = mana;
         this.strength = strength;
         this.constitution = constitution;
-        this.range = range;
+        this.dexterity = dexterity;
         this.money = money;
-        this.inventory = inventory;
+        this.inventory = new Inventory();
 
         setWorldPosition(worldPosition);
     }
@@ -89,11 +90,11 @@ public abstract class Entity implements Displayable, Collisionable {
         pane.getChildren().addAll(entity.draw(),entity.getHitBox().draw(), entity.collisionHitBox.draw());
     }
     //region Getter et Setter
-    public double getHp() {
+    public int getHp() {
         return hp;
     }
 
-    public void setHp(double hp) {
+    public void setHp(int hp) {
         this.hp = hp;
     }
 
@@ -119,14 +120,6 @@ public abstract class Entity implements Displayable, Collisionable {
 
     public void setConstitution(int constitution) {
         this.constitution = constitution;
-    }
-
-    public double getRange() {
-        return range;
-    }
-
-    public void setRange(double range) {
-        this.range = range;
     }
 
     public int getMoney() {
@@ -184,6 +177,26 @@ public abstract class Entity implements Displayable, Collisionable {
 
     public HitBox getCollisionHitBox() {
         return collisionHitBox;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
+    public int getDexterity() {
+        return dexterity;
+    }
+
+    public void setDexterity(int dexterity) {
+        this.dexterity = dexterity;
+    }
+
+    protected void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
     //endregion
 

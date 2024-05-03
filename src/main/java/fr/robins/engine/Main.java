@@ -3,11 +3,10 @@ package fr.robins.engine;
 import fr.robins.engine.collisions.CollisionManager;
 import fr.robins.entities.Entity;
 import fr.robins.entities.Player;
-import fr.robins.entities.enemy.CCEnemy;
-import fr.robins.items.Inventory;
+
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
-import fr.robins.types.entities.EntityType;
+
 import fr.robins.world.TileManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -31,7 +30,6 @@ public class Main extends Application {
         player = new Player(new Vector2D(Utilities.WINDOW_WIDTH /2,Utilities.WINDOW_HEIGHT /2));
         TileManager tileManager = new TileManager("/tiles/tilemap/grandeMap.xml");
         Pane backgroundPane = new Pane();
-        CCEnemy ghost = new CCEnemy(EntityType.ENEMY_GHOST,TileManager.tilesToCoordinates(36,33), new Inventory());
 
 
 
@@ -46,7 +44,6 @@ public class Main extends Application {
         Player.teleportPlayer(backgroundPane,TileManager.tilesToCoordinates(35,33));
 
         //Display Enemies
-        Entity.renderEntity(ghost,backgroundPane);
 
 
 

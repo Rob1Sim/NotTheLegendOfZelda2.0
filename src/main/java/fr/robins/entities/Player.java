@@ -1,7 +1,5 @@
 package fr.robins.entities;
 
-import fr.robins.items.Inventory;
-import fr.robins.types.DirectionType;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
 import javafx.scene.Node;
@@ -18,7 +16,7 @@ public class Player extends Entity{
     private Image currentSprite;
 
     public Player(Vector2D spawnPosition) {
-        super("Player",100,5,5,5,100,spawnPosition ,new Inventory(),"/sprites/player/chevalier_idle.png" );
+        super("Player",100,30,10,10,10,100,spawnPosition ,"/sprites/player/chevalier_idle.png" );
         sprites = new Image[4];
         sprites[0] = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/sprites/player/chevalier_idle.png")));
         sprites[1] = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/sprites/player/chevalier_back.png")));
