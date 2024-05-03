@@ -1,0 +1,14 @@
+fr.robins.engine
+fr.robins.engine.collisions
+fr.robins.engine.controller
+fr.robins.entities
+fr.robins.entities.enemy
+fr.robins.entities.npc
+fr.robins.items
+fr.robins.items.combat
+fr.robins.items.consumable
+fr.robins.items.interactable
+fr.robins.types
+fr.robins.types.entities
+fr.robins.types.items
+fr.robins.world
