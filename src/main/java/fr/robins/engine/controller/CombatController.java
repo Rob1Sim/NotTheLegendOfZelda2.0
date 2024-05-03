@@ -1,4 +1,4 @@
-package fr.robins.engine;
+package fr.robins.engine.controller;
 
 
 import fr.robins.entities.Fighter;
@@ -8,12 +8,12 @@ import fr.robins.types.IAttack;
 
 import java.util.Random;
 
-public class CombatManager {
+public class CombatController {
 
     private final Player player;
     private final Enemy enemy;
 
-    public CombatManager(Player player, Enemy enemy){
+    public CombatController(Player player, Enemy enemy){
         this.player = player;
         this.enemy = enemy;
     }

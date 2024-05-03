@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Inputs {
-    public static void handleKeyInput(Scene scene, Player player, Pane backgroundPane, Stage stage){
+    public static void handleMovementInput(Scene scene, Player player, Pane backgroundPane, Stage stage){
 
         scene.setOnKeyPressed(event ->{
             KeyCode keycode = event.getCode();
@@ -32,7 +32,7 @@ public class Inputs {
                     player.getVelocity().setX(+player.getSpeed());
                     player.setDirection(DirectionType.LEFT);
                     break;
-                case M:
+                case F11:
                     Utilities.setFullScreen(stage,!stage.isFullScreen());
             }
         });
@@ -59,6 +59,22 @@ public class Inputs {
         backgroundPane.setTranslateY(backgroundPane.getTranslateY() + player.getVelocity().getY());
         backgroundPane.setTranslateX(backgroundPane.getTranslateX() + player.getVelocity().getX());
 
+    }
+
+    public static void handleArrowInput(Scene scene){
+        scene.setOnKeyPressed(event ->{
+            KeyCode keycode = event.getCode();
+            switch (keycode){
+                case UP:
+                    break;
+                case DOWN:
+                    break;
+                case LEFT:
+                    break;
+                case RIGHT:
+                    break;
+            }
+        });
     }
 
 }

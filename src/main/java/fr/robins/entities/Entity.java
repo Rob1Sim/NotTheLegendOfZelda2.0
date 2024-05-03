@@ -86,9 +86,7 @@ public abstract class Entity implements Displayable, Collisionable {
         return spriteView;
     }
 
-    public static void renderEntity(Entity entity,Pane pane) {
-        pane.getChildren().addAll(entity.draw(),entity.getHitBox().draw(), entity.collisionHitBox.draw());
-    }
+
     //region Getter et Setter
     public int getHp() {
         return hp;

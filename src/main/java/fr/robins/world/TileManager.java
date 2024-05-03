@@ -225,4 +225,5 @@ public class TileManager {
     public static int[] coordinatesToTiles(Vector2D coordinates){
         return new int[]{(int)(coordinates.getY()/Utilities.TILE_SIZE), (int)(coordinates.getX()/Utilities.TILE_SIZE)};
     }
+
 }

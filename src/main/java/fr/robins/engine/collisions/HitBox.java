@@ -88,4 +88,9 @@ public class HitBox implements Displayable {
     public Node draw() {
         return hitBox;
     }
+
+    @Override
+    public HitBox getHitBox() {
+        return this;
+    }
 }
