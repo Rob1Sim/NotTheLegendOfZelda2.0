@@ -1,13 +1,14 @@
 package fr.robins.entities;
 
 
+import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.entities.entitiestype.CharacType;
 import fr.robins.items.combat.spells.Spell;
 import fr.robins.types.Vector2D;
 
 import java.util.Random;
 
-public abstract class Fighter extends Entity {
+public abstract class Fighter extends Entity implements Displayable {
     private final Spell[] spells;
 
     public Fighter(String name, int hp, int mana, int constitution, int strength, int dexterity, int money, Vector2D worldPosition, String spritePath, Spell[] spells) {

@@ -1,15 +1,21 @@
 package fr.robins.items.consumable;
 
+import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.entities.Entity;
+import fr.robins.items.Collectable;
 import fr.robins.items.Item;
+import fr.robins.types.Vector2D;
 
 import java.util.List;
 
-public abstract class Consumable extends Item {
+public abstract class Consumable extends Item implements Collectable, Displayable {
     private int quantity;
     protected boolean useHasWeapon = false;
-    public Consumable(String name, boolean useHasWeapon) {
-        super(name);
+    public Consumable(String name, String spritePath , Vector2D position, boolean useHasWeapon) {
+        this(name,spritePath,position);
+    }
+    public Consumable(String name, String spritePath, Vector2D position){
+        super(name,spritePath,position);
         quantity = 1;
     }
 
@@ -47,5 +53,10 @@ public abstract class Consumable extends Item {
 
     public boolean isUseHasWeapon() {
         return useHasWeapon;
+    }
+
+    @Override
+    public String toString() {
+        return getName()+" - Quantité: "+quantity;
     }
 }

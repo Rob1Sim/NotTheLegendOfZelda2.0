@@ -2,7 +2,6 @@ package fr.robins.entities;
 
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.engine.collisions.EntityHitbox;
-import fr.robins.engine.collisions.Collisionable;
 import fr.robins.engine.collisions.HitBox;
 import fr.robins.items.Inventory;
 import fr.robins.types.DirectionType;
@@ -15,7 +14,7 @@ import javafx.scene.paint.Color;
 import java.util.Objects;
 
 
-public abstract class Entity implements Displayable, Collisionable {
+public abstract class Entity implements Displayable {
 
     private String name;
     private int hp;
@@ -143,21 +142,19 @@ public abstract class Entity implements Displayable, Collisionable {
     public void setHitBox(EntityHitbox hitBox) {
         this.hitBox = hitBox;
     }
-
-    public Vector2D getWorldPosition() {
+    @Override
+    public Vector2D getPosition() {
         return worldPosition;
     }
     public Inventory getInventory() {
         return inventory;
     }
 
-    protected ImageView getSprite() {
-        return spriteView;
-    }
 
-    protected void setSprite(String spritePath) {
+    public void setSprite(String spritePath) {
         Image sprite = new Image(Objects.requireNonNull(getClass().getResourceAsStream(spritePath)));
         this.spriteView = new ImageView(sprite);
+        this.spriteView.setCache(false);
     }
 
     public Vector2D getVelocity() {
@@ -195,6 +192,21 @@ public abstract class Entity implements Displayable, Collisionable {
     protected void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }
+
+    @Override
+    public String toString() {
+        return getName()+" - hp: "+getHp()+", Mana: "+getMana()+", Const: "+getConstitution()+", Strength: "+getStrength()+", Dexterity: "+getDexterity()+", Money: "+getMoney()+", Inventory: "+getInventory();
+    }
+
+    protected ImageView getSprite(){
+        return spriteView;
+    }
+
+    @Override
+    public void deleteSprite() {
+        spriteView.setImage(null);
+    }
+
     //endregion
 
 }

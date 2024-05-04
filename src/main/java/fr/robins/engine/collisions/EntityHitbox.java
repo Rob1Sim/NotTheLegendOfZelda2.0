@@ -10,7 +10,7 @@ public class EntityHitbox extends HitBox{
     public EntityHitbox(Entity entity) {
         super();
         this.hitEntity = entity;
-        setHitBoxCoordinates(hitEntity.getWorldPosition());
+        setHitBoxCoordinates(hitEntity.getPosition());
 
 
     }

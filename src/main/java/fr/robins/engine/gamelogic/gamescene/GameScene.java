@@ -1,6 +1,7 @@
 package fr.robins.engine.gamelogic.gamescene;
 
 import fr.robins.engine.gamelogic.displayable.Displayable;
+import fr.robins.entities.Entity;
 import fr.robins.entities.Player;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
@@ -10,7 +11,6 @@ import javafx.scene.layout.Pane;
 import java.util.List;
 
 public class GameScene {
-    private final List<Displayable> displayableList;
     private final Pane pane;
 
     /**
@@ -20,7 +20,6 @@ public class GameScene {
      * @param player The player
      */
     public GameScene(TileManager tileManager, List<Displayable> displayableList, Player player) {
-        this.displayableList = displayableList;
 
         //Pane settings
         pane = setMap(tileManager);
@@ -43,7 +42,7 @@ public class GameScene {
      * @param displayable
      * @param pane
      */
-    public static void renderDisplayable(Displayable displayable, Pane pane) {
+    private static void renderDisplayable(Displayable displayable, Pane pane) {
         pane.getChildren().addAll(displayable.draw(),displayable.getHitBox().draw());
     }
     /**
@@ -57,10 +56,24 @@ public class GameScene {
         }
     }
 
-    public static void renderPlayer(Player displayable, Pane pane) {
+    public static void removeDisplayableList(List<Displayable> displayableList, Pane pane) {
+        if(!displayableList.isEmpty()){
+            for (Displayable e : displayableList) {
+                removeDisplayable(e,pane);
+            }
+        }
+    }
+
+    private static void renderPlayer(Player displayable, Pane pane) {
         pane.getChildren().addAll(displayable.draw(),displayable.getHitBox().draw(), displayable.getCollisionHitBox().draw());
     }
 
+    public static void removeDisplayable(Displayable displayable, Pane pane){
+        displayable.deleteSprite();
+        displayable.getHitBox().deleteSprite();
+        pane.getChildren().remove(displayable.draw());
+        pane.getChildren().remove(displayable.getHitBox().draw());
+    }
 
     /**
      * Set map from the xml file

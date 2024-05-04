@@ -13,9 +13,11 @@ public class Inventory {
 
     public void addItem(Item item) {
         if (item instanceof Consumable consumableItem){
-            if (getItemByName(consumableItem.getName()) != null){
+            Item consumable = getItemByName(consumableItem.getName());
+            if (consumable != null){
 
-                consumableItem.increaseQuantity();
+                ((Consumable)consumable).increaseQuantity();
+
             }else{
                 items.add(item);
             }
@@ -72,4 +74,12 @@ public class Inventory {
         return items;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Item item : items) {
+            sb.append(item.toString()).append("\n");
+        }
+        return sb.toString();
+    }
 }

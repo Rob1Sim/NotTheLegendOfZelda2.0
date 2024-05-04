@@ -34,6 +34,12 @@ public class Inputs {
                     break;
                 case F11:
                     Utilities.setFullScreen(stage,!stage.isFullScreen());
+                case N:
+                    if (Utilities.DEBUG)
+                        Utilities.NO_CLIPPING = !Utilities.NO_CLIPPING;
+                    break;
+                case F1:
+                    Utilities.DEBUG = !Utilities.DEBUG;
             }
         });
 
@@ -47,7 +53,7 @@ public class Inputs {
             }
         });
 
-        if (!player.getHitBox().isColliding()){
+        if (!player.getHitBox().isColliding() || Utilities.NO_CLIPPING){
             //Correspond à la position du fond
             Vector2D cameraPosition = new Vector2D(-backgroundPane.getTranslateX(), -backgroundPane.getTranslateY());
 

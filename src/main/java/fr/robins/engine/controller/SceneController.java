@@ -8,6 +8,12 @@ import fr.robins.engine.gamelogic.displayable.DisplayableSubject;
 import fr.robins.engine.gamelogic.gamescene.GameSceneObserver;
 import fr.robins.engine.gamelogic.gamescene.GameSceneSubject;
 import fr.robins.entities.Player;
+import fr.robins.entities.enemy.Enemy;
+import fr.robins.entities.enemy.EnemyType;
+import fr.robins.items.combat.weapons.WeaponItem;
+import fr.robins.items.combat.weapons.WeaponType;
+import fr.robins.items.consumable.potions.Potion;
+import fr.robins.items.consumable.potions.PotionType;
 import fr.robins.types.Vector2D;
 import fr.robins.world.TileManager;
 import javafx.event.ActionEvent;
@@ -44,7 +50,11 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         this.gameSceneObserver.attach(this);
 
         this.displayableObserver.setDisplayables(new ArrayList<>());
-
+        this.displayableObserver.add(
+                new Enemy(EnemyType.ENEMY_GHOST,TileManager.tilesToCoordinates(38,33)),
+                new WeaponItem(WeaponType.AXE, TileManager.tilesToCoordinates(35,31)),
+                new Potion(PotionType.HEAL_POTION,TileManager.tilesToCoordinates(32,36)),
+                new Potion(PotionType.HEAL_POTION,TileManager.tilesToCoordinates(38,35)));
     }
 
     /**

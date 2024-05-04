@@ -1,9 +1,21 @@
 package fr.robins.engine.collisions;
 
+import fr.robins.engine.gamelogic.displayable.Displayable;
+import fr.robins.engine.gamelogic.displayable.DisplayableSubject;
+import fr.robins.engine.gamelogic.gamescene.GameScene;
+import fr.robins.engine.gamelogic.gamescene.GameSceneSubject;
 import fr.robins.entities.Entity;
+import fr.robins.entities.enemy.Enemy;
+import fr.robins.entities.npc.NPC;
+import fr.robins.items.Collectable;
+import fr.robins.items.Item;
+import fr.robins.items.interactable.Interactable;
 import fr.robins.types.Utilities;
+
 import fr.robins.types.Vector2D;
 import fr.robins.world.TileManager;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,6 +121,81 @@ public class CollisionManager {
 
                 entity.getHitBox().setColliding(true);
             }
+        }
+    }
+
+    /**
+     * Check if there a collision from the player with an Entity/Item/Interactable
+     * @param displayableObserver the observer of the list of displayable
+     * @param entity the player
+     */
+    public static void displayableCollisionChecker(DisplayableSubject displayableObserver, Pane pane, Entity entity){
+        int index = -1;
+        List<Displayable> items = displayableObserver.getDisplayables();
+
+        for (int i = 0; i < items.size(); i++) {
+            HitBox futureHitBox = new HitBox();
+
+            futureHitBox.setHeight(entity.getHitBox().getHeight());
+            futureHitBox.setWidth(entity.getHitBox().getWidth());
+
+            switch (entity.getDirection()){
+                case UP:
+                    futureHitBox.setCoords(new Vector2D(entity.getHitBox().getX(),entity.getHitBox().getY() - entity.getSpeed()));
+                    if (futureHitBox.isIntersecting(items.get(i).getHitBox())){
+                        index = i;
+                        checkCollision(entity,items.get(i));
+                    }
+                    break;
+                case DOWN:
+                    futureHitBox.setCoords(new Vector2D(entity.getHitBox().getX(),entity.getHitBox().getY() + entity.getSpeed()));
+                    if (futureHitBox.isIntersecting(items.get(i).getHitBox())){
+                        index = i;
+                        checkCollision(entity,items.get(i));
+                    }
+                    break;
+                case LEFT:
+                    futureHitBox.setCoords(new Vector2D(entity.getHitBox().getX() - entity.getSpeed(),entity.getHitBox().getY()));
+                    if (futureHitBox.isIntersecting(items.get(i).getHitBox())){
+                        index = i;
+                        checkCollision(entity,items.get(i));
+                    }
+                    break;
+                case RIGHT:
+                    futureHitBox.setCoords(new Vector2D(entity.getHitBox().getX() + entity.getSpeed(),entity.getHitBox().getY()));
+                    if (futureHitBox.isIntersecting(items.get(i).getHitBox())){
+                        index = i;
+                        checkCollision(entity,items.get(i));
+                    }
+                    break;
+            }
+        }
+
+        if (index != -1){
+            if (items.get(index) instanceof Collectable collectable){
+
+                entity.getInventory().addItem((Item) collectable);
+                GameScene.removeDisplayable(items.get(index),pane);
+                displayableObserver.remove(items.get(index));
+            }else if (items.get(index) instanceof Interactable interactableI){
+                interactableI.interact(entity);
+            }else if (items.get(index) instanceof Enemy enemy){
+                System.out.println("OUIN OUIN OUIN OUIN OUIN TOUM TOUM TOUM TOUM TOUM ");
+            }
+        }
+    }
+
+    /**
+     * check and set collision with a displayable if there is one
+     */
+    private static void checkCollision( Entity entity, Displayable items){
+        if (items instanceof Interactable interactableItem){
+            if (interactableItem.isCollisionable()){
+                entity.getHitBox().setColliding(true);
+            }
+        }
+        if (items instanceof NPC){
+            entity.getHitBox().setColliding(true);
         }
     }
 }

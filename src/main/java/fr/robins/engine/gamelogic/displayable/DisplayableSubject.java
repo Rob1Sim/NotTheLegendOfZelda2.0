@@ -29,6 +29,13 @@ public class DisplayableSubject {
         displayables.add(displayable);
         notifyObservers();
     }
+
+    public void add(Displayable ... displayables) {
+        for (Displayable displayable : displayables) {
+            add(displayable);
+        }
+    }
+
     public void remove(Displayable displayable) {
         displayables.remove(displayable);
         notifyObservers();

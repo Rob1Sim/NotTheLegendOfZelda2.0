@@ -1,15 +1,21 @@
 package fr.robins.items.combat.weapons;
 
 
+import fr.robins.engine.collisions.HitBox;
+import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.entities.Fighter;
+import fr.robins.items.Collectable;
 import fr.robins.items.Item;
 import fr.robins.items.combat.IAttack;
+import fr.robins.types.Vector2D;
+import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 
-public class WeaponItem extends Item implements IAttack {
+public class WeaponItem extends Item implements IAttack, Collectable, Displayable {
 
     private final int damage;
-    public WeaponItem(WeaponType weaponType) {
-        super(weaponType.getName());
+    public WeaponItem(WeaponType weaponType, Vector2D position) {
+        super(weaponType.getName(), weaponType.getSpritePath(), position);
         this.damage = weaponType.getDamage();
     }
 
@@ -21,6 +27,12 @@ public class WeaponItem extends Item implements IAttack {
     public int getDamage() {
         return damage;
     }
+
+    @Override
+    public String toString() {
+        return getName()+" : "+getDamage();
+    }
+
 
     /**
     public static String listWeaponsNames(List<Item> weaponItems){

@@ -1,22 +1,25 @@
 package fr.robins.entities;
 
+import fr.robins.engine.gamelogic.displayable.Displayable;
+import fr.robins.items.combat.spells.Spell;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import java.util.Objects;
 
 
 
-public class Player extends Entity{
+public class Player extends Fighter implements Displayable {
 
     private final Image[] sprites;
     private Image currentSprite;
 
     public Player(Vector2D spawnPosition) {
-        super("Player",100,30,10,10,10,100,spawnPosition ,"/sprites/player/chevalier_idle.png" );
+        super("Player",100,30,10,10,10,10,spawnPosition ,"/sprites/player/chevalier_idle.png",new Spell[]{} );
         sprites = new Image[4];
         sprites[0] = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/sprites/player/chevalier_idle.png")));
         sprites[1] = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/sprites/player/chevalier_back.png")));

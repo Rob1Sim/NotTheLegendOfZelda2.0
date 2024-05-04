@@ -43,6 +43,7 @@ public class GameController implements GameStateObserver, DisplayableListObserve
         this.gmObserver = new GameStateSubject();
         this.gmObserver.attach(this);
         this.displayableListObserver = new DisplayableSubject();
+        this.displayableListObserver.attach(this);
         this.gameSceneObserver = new GameSceneSubject();
         this.gameSceneObserver.attach(this);
 
@@ -96,13 +97,9 @@ public class GameController implements GameStateObserver, DisplayableListObserve
             case START:
                 break;
             case WALKING:
-                //Si la liste des entité est mis à jour alors on re-rend les entités
-                if (isDisplayableListChanging){
-                    GameScene.renderDisplayableList(displayableListObserver.getDisplayables(),currentGameScene.getPane());
-                    isDisplayableListChanging = false;
-                }
                 Inputs.handleMovementInput(sceneController.getCurrentScene(),player, sceneController.getPane(),stage);
                 CollisionManager.environmentCollisionChecker(player,sceneController.getTileManager());
+                CollisionManager.displayableCollisionChecker(displayableListObserver,currentGameScene.getPane(),player);
                 break;
             case WIN:
                 break;
@@ -123,7 +120,9 @@ public class GameController implements GameStateObserver, DisplayableListObserve
 
     @Override
     public void updateDisplayableList() {
-        isDisplayableListChanging = true;
+        if (gameState == GameState.WALKING){
+            isDisplayableListChanging = true;
+        }
     }
 
     @Override

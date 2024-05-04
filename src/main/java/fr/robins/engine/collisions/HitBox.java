@@ -4,6 +4,7 @@ import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
 import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -45,7 +46,10 @@ public class HitBox implements Displayable {
     }
 
     public boolean isIntersecting(HitBox hitBox){
-        return this.hitBox.intersects(hitBox.hitBox.getLayoutBounds());
+        return this.hitBox.getBoundsInParent().intersects(hitBox.hitBox.getBoundsInParent());
+    }
+    public Rectangle rectangle(){
+        return hitBox;
     }
 
     //region getter and setter
@@ -80,9 +84,22 @@ public class HitBox implements Displayable {
     public double getY(){
         return hitBox.getTranslateY();
     }
-    public Vector2D getCoords(){
+    @Override
+    public Vector2D getPosition(){
         return new Vector2D(hitBox.getTranslateX(), hitBox.getTranslateY());
     }
+
+
+    @Override
+    public void setSprite(String spritePath) {
+        throw new UnsupportedOperationException("Not supported.");
+    }
+
+    @Override
+    public void deleteSprite() {
+        hitBox.setStroke(null);
+    }
+
     //endregion
     @Override
     public Node draw() {

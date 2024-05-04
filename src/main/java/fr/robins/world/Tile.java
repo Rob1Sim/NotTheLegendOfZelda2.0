@@ -3,6 +3,7 @@ package fr.robins.world;
 
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.engine.collisions.HitBox;
+import fr.robins.types.Vector2D;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 
@@ -54,6 +55,21 @@ public class Tile implements Displayable {
     @Override
     public HitBox getHitBox() {
         return null;
+    }
+
+    @Override
+    public Vector2D getPosition() {
+        return null;
+    }
+
+    @Override
+    public void setSprite(String spritePath) {
+        throw new UnsupportedOperationException("Not supported.");
+    }
+
+    @Override
+    public void deleteSprite() {
+        throw new UnsupportedOperationException("Not supported.");
     }
 
     public ImageView getUniqueImageView() {
