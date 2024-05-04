@@ -29,7 +29,7 @@ public class GameScene {
         entitySpawn();
 
         //Spawn player
-        renderDisplayable(player,pane);
+        renderPlayer(player,pane);
         Player.teleportPlayer(pane,TileManager.tilesToCoordinates(playerPostitionTile.getIntX(),playerPostitionTile.getIntY()));
 
 
@@ -57,6 +57,10 @@ public class GameScene {
      */
     public static void renderDisplayable(Displayable displayable, Pane pane) {
         pane.getChildren().addAll(displayable.draw(),displayable.getHitBox().draw());
+    }
+
+    public static void renderPlayer(Player displayable, Pane pane) {
+        pane.getChildren().addAll(displayable.draw(),displayable.getHitBox().draw(), displayable.getCollisionHitBox().draw());
     }
 
     /**
