@@ -62,6 +62,18 @@ public class Vector2D {
         return new Vector2D(x + vector2D.x, y + vector2D.y);
     }
 
+
+    public static Vector2D fromDoubleArray(double[] array){
+        if (array.length == 0) return new Vector2D(0, 0);
+        if (array.length > 2)
+            throw new ArrayIndexOutOfBoundsException();
+        return new Vector2D(array[0], array[1]);
+    }
+
+    public static Vector2D fromIntArray(int[] array){
+        return Vector2D.fromDoubleArray(new double[]{array[0], array[1]});
+    }
+
     public Vector2D subtract(Vector2D vector2D) {
         return new Vector2D(x - vector2D.x, y - vector2D.y);
     }
