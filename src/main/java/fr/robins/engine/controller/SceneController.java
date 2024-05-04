@@ -7,6 +7,7 @@ import fr.robins.engine.gamelogic.displayable.DisplayableListObserver;
 import fr.robins.engine.gamelogic.displayable.DisplayableSubject;
 import fr.robins.engine.gamelogic.gamescene.GameSceneObserver;
 import fr.robins.engine.gamelogic.gamescene.GameSceneSubject;
+import fr.robins.entities.Player;
 import fr.robins.types.Vector2D;
 import fr.robins.world.TileManager;
 import javafx.event.ActionEvent;
@@ -54,20 +55,9 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
 
         //Map de spawn
         tileManager = new TileManager("/tiles/tilemap/grandeMap.xml");
-        gameSceneObserver.setGameScene(new GameScene(tileManager, displayable, gameController.getPlayer(), new Vector2D(35,33)));
+        gameSceneObserver.setGameScene(new GameScene(tileManager, displayable, gameController.getPlayer()));
 
-        switchToScene();
-        gameController.setGameState(GameState.WALKING);
-    }
-
-    public void test(Stage stage) {
-        this.stage = stage;
-
-        //Map de spawn
-        tileManager = new TileManager("/tiles/tilemap/grandeMap.xml");
-        gameSceneObserver.setGameScene(new GameScene(tileManager, displayable, gameController.getPlayer(), new Vector2D(35,33)));
-
-        switchToScene();
+        switchToScene(new Vector2D(35,33));
         gameController.setGameState(GameState.WALKING);
     }
 
@@ -84,9 +74,18 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
     }
 
     /**
+     * Change the scene with javafx and move the player to the desired position
+     * @param playerTilePosition on which tile should the player spawn, if set to null
+     */
+    private void switchToScene(Vector2D playerTilePosition) {
+        switchToScene();
+        Player.teleportPlayer(currentGameScene.getPane(), TileManager.tilesToCoordinates(playerTilePosition.getIntX(),playerTilePosition.getIntY()));
+    }
+
+    /**
      * Change the scene with javafx
      */
-    private void switchToScene() {
+    private void switchToScene(){
         Scene scene = new Scene(currentGameScene.getPane());
         currentScene = scene;
         stage.setScene(scene);

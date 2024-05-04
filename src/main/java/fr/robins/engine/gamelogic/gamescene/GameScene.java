@@ -18,9 +18,8 @@ public class GameScene {
      * @param tileManager tileManager with the map to display
      * @param displayableList List of item or entity that should be dispayed
      * @param player The player
-     * @param playerPostitionTile The tiles where the player should spawn
      */
-    public GameScene(TileManager tileManager, List<Displayable> displayableList, Player player, Vector2D playerPostitionTile) {
+    public GameScene(TileManager tileManager, List<Displayable> displayableList, Player player) {
         this.displayableList = displayableList;
 
         //Pane settings
@@ -32,9 +31,6 @@ public class GameScene {
 
         //Spawn player
         renderPlayer(player,pane);
-        Player.teleportPlayer(pane,TileManager.tilesToCoordinates(playerPostitionTile.getIntX(),playerPostitionTile.getIntY()));
-
-
     }
 
     public Pane getPane() {
@@ -64,6 +60,7 @@ public class GameScene {
     public static void renderPlayer(Player displayable, Pane pane) {
         pane.getChildren().addAll(displayable.draw(),displayable.getHitBox().draw(), displayable.getCollisionHitBox().draw());
     }
+
 
     /**
      * Set map from the xml file

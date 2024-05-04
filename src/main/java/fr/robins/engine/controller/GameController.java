@@ -12,6 +12,9 @@ import fr.robins.engine.gamelogic.displayable.*;
 import fr.robins.entities.Player;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
+import fr.robins.world.TileManager;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -66,26 +69,23 @@ public class GameController implements GameStateObserver, DisplayableListObserve
             stage.close();
         });
 
-
         //Scene settings
         root.setPrefSize(Utilities.WINDOW_WIDTH, Utilities.WINDOW_HEIGHT);
 
         //Start Menu
-        /**
+
         root.setPadding(new Insets(10));
         root.getChildren().addAll(title,startButton, leaveButton);
 
         Scene scene = new Scene(root);
-        **/
-
 
         //Stage settings
         stage.setFullScreenExitHint("");
         stage.setResizable(true);
         stage.setTitle("Not the legend of zelda");
-        sceneController.test(stage);
-        //stage.setScene(scene);
-        //stage.show();
+        //sceneController.test(stage);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void update(){
