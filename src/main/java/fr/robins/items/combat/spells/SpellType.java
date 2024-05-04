@@ -1,7 +1,7 @@
-package fr.robins.types.items;
+package fr.robins.items.combat.spells;
 
-import fr.robins.types.entities.CharacType;
-import fr.robins.types.entities.EntityType;
+import fr.robins.entities.entitiestype.CharacType;
+import fr.robins.entities.entitiestype.EntityType;
 
 
 public enum SpellType {

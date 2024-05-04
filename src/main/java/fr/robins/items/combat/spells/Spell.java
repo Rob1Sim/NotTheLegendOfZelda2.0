@@ -1,11 +1,10 @@
-package fr.robins.items.combat;
+package fr.robins.items.combat.spells;
 
 
 import fr.robins.entities.Fighter;
-import fr.robins.types.IAttack;
-import fr.robins.types.entities.CharacType;
-import fr.robins.types.entities.EntityType;
-import fr.robins.types.items.SpellType;
+import fr.robins.items.combat.IAttack;
+import fr.robins.entities.entitiestype.CharacType;
+import fr.robins.entities.entitiestype.EntityType;
 
 public class Spell implements IAttack {
     private final String name;

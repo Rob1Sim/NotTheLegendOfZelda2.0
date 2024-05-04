@@ -1,9 +1,9 @@
 package fr.robins.entities;
 
 
-import fr.robins.items.combat.Spell;
+import fr.robins.entities.entitiestype.CharacType;
+import fr.robins.items.combat.spells.Spell;
 import fr.robins.types.Vector2D;
-import fr.robins.types.entities.CharacType;
 
 import java.util.Random;
 

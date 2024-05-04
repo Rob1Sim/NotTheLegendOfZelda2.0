@@ -1,12 +1,9 @@
-package fr.robins.items.combat;
+package fr.robins.items.combat.weapons;
 
 
 import fr.robins.entities.Fighter;
 import fr.robins.items.Item;
-import fr.robins.types.IAttack;
-import fr.robins.types.items.WeaponType;
-
-import java.util.List;
+import fr.robins.items.combat.IAttack;
 
 public class WeaponItem extends Item implements IAttack {
 

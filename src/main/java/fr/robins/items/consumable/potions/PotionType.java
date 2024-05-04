@@ -1,7 +1,7 @@
-package fr.robins.types.items;
+package fr.robins.items.consumable.potions;
 
 
-import fr.robins.types.entities.CharacType;
+import fr.robins.entities.entitiestype.CharacType;
 
 public enum PotionType {
     HEAL_POTION("Potion de soin",25, CharacType.HP,false),

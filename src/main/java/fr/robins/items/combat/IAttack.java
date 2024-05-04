@@ -1,4 +1,4 @@
-package fr.robins.types;
+package fr.robins.items.combat;
 
 
 import fr.robins.entities.Fighter;

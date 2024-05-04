@@ -1,9 +1,9 @@
-package fr.robins.items.consumable;
+package fr.robins.items.consumable.potions;
 
 
 import fr.robins.entities.Entity;
-import fr.robins.types.entities.CharacType;
-import fr.robins.types.items.PotionType;
+import fr.robins.items.consumable.Consumable;
+import fr.robins.entities.entitiestype.CharacType;
 
 public class Potion extends Consumable {
 

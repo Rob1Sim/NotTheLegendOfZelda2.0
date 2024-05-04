@@ -1,4 +1,4 @@
-package fr.robins.types.items;
+package fr.robins.items.combat.weapons;
 
 public enum WeaponType {
     AXE("Hache",20),

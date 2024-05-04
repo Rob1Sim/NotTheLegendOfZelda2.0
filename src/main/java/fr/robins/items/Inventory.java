@@ -1,7 +1,6 @@
 package fr.robins.items;
 
 import fr.robins.items.consumable.Consumable;
-import fr.robins.types.items.ItemType;
 
 import java.util.ArrayList;
 import java.util.List;

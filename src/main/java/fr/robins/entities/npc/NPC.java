@@ -1,9 +1,7 @@
 package fr.robins.entities.npc;
 
 import fr.robins.entities.Entity;
-import fr.robins.items.Inventory;
 import fr.robins.types.Vector2D;
-import fr.robins.types.entities.NPCType;
 
 public class NPC extends Entity {
 

@@ -1,4 +1,4 @@
-package fr.robins.types.entities;
+package fr.robins.entities.entitiestype;
 
 public enum CharacType {
     HP("Point de vie"),

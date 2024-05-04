@@ -1,10 +1,9 @@
-package fr.robins.types.entities;
+package fr.robins.entities.enemy;
 
 
 import fr.robins.items.Inventory;
-import fr.robins.items.combat.Spell;
-import fr.robins.types.Vector2D;
-import fr.robins.types.items.SpellType;
+import fr.robins.items.combat.spells.Spell;
+import fr.robins.items.combat.spells.SpellType;
 
 public enum EnemyType {
 

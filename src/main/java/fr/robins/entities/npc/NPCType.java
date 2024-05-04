@@ -1,7 +1,6 @@
-package fr.robins.types.entities;
+package fr.robins.entities.npc;
 
 import fr.robins.items.Inventory;
-import fr.robins.types.Vector2D;
 
 public enum NPCType {
     NPC_BLACK_SMITH("Black Smith", 10, 10, 10, 5, 10,new Inventory(), 100,  "/sprites/characters/c_black_smith.png"),

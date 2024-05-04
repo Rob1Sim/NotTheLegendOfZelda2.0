@@ -1,10 +1,9 @@
-package fr.robins.types.items;
+package fr.robins.items;
 
 
-import fr.robins.items.Item;
-import fr.robins.items.combat.WeaponItem;
+import fr.robins.items.combat.weapons.WeaponItem;
 import fr.robins.items.consumable.Consumable;
-import fr.robins.items.consumable.Potion;
+import fr.robins.items.consumable.potions.Potion;
 
 public enum ItemType {
     WEAPON(WeaponItem.class),

@@ -4,7 +4,7 @@ package fr.robins.engine.controller;
 import fr.robins.entities.Fighter;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.Enemy;
-import fr.robins.types.IAttack;
+import fr.robins.items.combat.IAttack;
 
 import java.util.Random;
 
