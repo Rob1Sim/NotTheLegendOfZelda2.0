@@ -1,6 +1,6 @@
 package fr.robins.entities;
 
-import fr.robins.engine.Displayable;
+import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.engine.collisions.EntityHitbox;
 import fr.robins.engine.collisions.Collisionable;
 import fr.robins.engine.collisions.HitBox;
@@ -10,7 +10,6 @@ import fr.robins.types.Vector2D;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 import java.util.Objects;

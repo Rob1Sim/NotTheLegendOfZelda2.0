@@ -1,5 +1,6 @@
-package fr.robins.engine;
+package fr.robins.engine.gamelogic.gamescene;
 
+import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.entities.Player;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
@@ -25,8 +26,9 @@ public class GameScene {
         //Pane settings
         pane = setMap(tileManager);
         pane.setPrefSize(Utilities.WINDOW_WIDTH,Utilities.WINDOW_HEIGHT);
-        //Spawn enemy
-        entitySpawn();
+
+        //Spawn enemy/PNJ/Items
+        renderDisplayableList(displayableList,pane);
 
         //Spawn player
         renderPlayer(player,pane);
@@ -39,16 +41,6 @@ public class GameScene {
         return pane;
     }
 
-    /**
-     * Display the displayables
-     */
-    private void entitySpawn(){
-        if (!displayableList.isEmpty()){
-            for (Displayable e : displayableList) {
-                renderDisplayable(e,pane);
-            }
-        }
-    }
 
     /**
      * Display an entity with its hitBox
@@ -57,6 +49,16 @@ public class GameScene {
      */
     public static void renderDisplayable(Displayable displayable, Pane pane) {
         pane.getChildren().addAll(displayable.draw(),displayable.getHitBox().draw());
+    }
+    /**
+     * Display the displayables
+     */
+    public static void renderDisplayableList(List<Displayable> displayableList, Pane pane) {
+        if (!displayableList.isEmpty()){
+            for (Displayable e : displayableList) {
+                renderDisplayable(e,pane);
+            }
+        }
     }
 
     public static void renderPlayer(Player displayable, Pane pane) {

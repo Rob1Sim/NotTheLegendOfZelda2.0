@@ -1,4 +1,4 @@
-package fr.robins.engine.gamestate;
+package fr.robins.engine.gamelogic.gamestate;
 
 import java.util.ArrayList;
 import java.util.List;

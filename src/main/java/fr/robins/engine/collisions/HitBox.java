@@ -1,6 +1,6 @@
 package fr.robins.engine.collisions;
 
-import fr.robins.engine.Displayable;
+import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
 import javafx.scene.Node;

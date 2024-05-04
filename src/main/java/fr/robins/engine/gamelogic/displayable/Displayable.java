@@ -1,4 +1,4 @@
-package fr.robins.engine;
+package fr.robins.engine.gamelogic.displayable;
 
 import fr.robins.engine.collisions.HitBox;
 import javafx.scene.Node;

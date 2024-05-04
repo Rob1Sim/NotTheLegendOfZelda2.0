@@ -1,8 +1,12 @@
 package fr.robins.engine.controller;
 
-import fr.robins.engine.Displayable;
-import fr.robins.engine.GameScene;
-import fr.robins.engine.gamestate.GameState;
+import fr.robins.engine.gamelogic.displayable.Displayable;
+import fr.robins.engine.gamelogic.gamescene.GameScene;
+import fr.robins.engine.gamelogic.gamestate.GameState;
+import fr.robins.engine.gamelogic.displayable.DisplayableListObserver;
+import fr.robins.engine.gamelogic.displayable.DisplayableSubject;
+import fr.robins.engine.gamelogic.gamescene.GameSceneObserver;
+import fr.robins.engine.gamelogic.gamescene.GameSceneSubject;
 import fr.robins.types.Vector2D;
 import fr.robins.world.TileManager;
 import javafx.event.ActionEvent;
@@ -12,17 +16,34 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class SceneController {
+public class SceneController implements DisplayableListObserver, GameSceneObserver {
     private Stage stage;
     private Scene currentScene;
 
     private TileManager tileManager;
     private final GameController gameController;
-    private GameScene currentGameScene;
 
-    public SceneController(GameController gameController) {
+    private GameScene currentGameScene;
+    private List<Displayable> displayable;
+
+    //Observers
+    private final DisplayableSubject displayableObserver;
+    private final GameSceneSubject gameSceneObserver;
+
+
+    public SceneController(GameController gameController, DisplayableSubject displayableObserver, GameSceneSubject gameSceneObserver) {
         this.gameController = gameController;
+
+        this.displayableObserver = displayableObserver;
+        this.gameSceneObserver = gameSceneObserver;
+
+        this.displayableObserver.attach(this);
+        this.gameSceneObserver.attach(this);
+
+        this.displayableObserver.setDisplayables(new ArrayList<>());
+
     }
 
     /**
@@ -33,7 +54,7 @@ public class SceneController {
 
         //Map de spawn
         tileManager = new TileManager("/tiles/tilemap/grandeMap.xml");
-        currentGameScene = new GameScene(tileManager, new ArrayList<Displayable>(), gameController.getPlayer(), new Vector2D(35,33));
+        gameSceneObserver.setGameScene(new GameScene(tileManager, displayable, gameController.getPlayer(), new Vector2D(35,33)));
 
         switchToScene();
         gameController.setGameState(GameState.WALKING);
@@ -44,7 +65,7 @@ public class SceneController {
 
         //Map de spawn
         tileManager = new TileManager("/tiles/tilemap/grandeMap.xml");
-        currentGameScene = new GameScene(tileManager, new ArrayList<Displayable>(), gameController.getPlayer(), new Vector2D(35,33));
+        gameSceneObserver.setGameScene(new GameScene(tileManager, displayable, gameController.getPlayer(), new Vector2D(35,33)));
 
         switchToScene();
         gameController.setGameState(GameState.WALKING);
@@ -89,4 +110,13 @@ public class SceneController {
     }
 
 
+    @Override
+    public void updateDisplayableList() {
+        displayable = displayableObserver.getDisplayables();
+    }
+
+    @Override
+    public void updateGameScene() {
+        currentGameScene = gameSceneObserver.getGameScene();
+    }
 }

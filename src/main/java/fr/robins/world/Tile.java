@@ -1,7 +1,7 @@
 package fr.robins.world;
 
 
-import fr.robins.engine.Displayable;
+import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.engine.collisions.HitBox;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;

@@ -1,10 +1,14 @@
 package fr.robins.engine.controller;
 
-import fr.robins.engine.gamestate.GameState;
+import fr.robins.engine.gamelogic.gamescene.GameScene;
+import fr.robins.engine.gamelogic.gamestate.GameState;
 import fr.robins.engine.Inputs;
 import fr.robins.engine.collisions.CollisionManager;
-import fr.robins.engine.gamestate.GameStateObserver;
-import fr.robins.engine.gamestate.GameStateSubject;
+import fr.robins.engine.gamelogic.gamescene.GameSceneObserver;
+import fr.robins.engine.gamelogic.gamescene.GameSceneSubject;
+import fr.robins.engine.gamelogic.gamestate.GameStateObserver;
+import fr.robins.engine.gamelogic.gamestate.GameStateSubject;
+import fr.robins.engine.gamelogic.displayable.*;
 import fr.robins.entities.Player;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
@@ -14,25 +18,39 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class GameController implements GameStateObserver {
+public class GameController implements GameStateObserver, DisplayableListObserver, GameSceneObserver {
 
     private Player player;
     private final Stage stage;
-    private SceneController sceneController;
-    private final GameStateSubject gmObserver;
-    private GameState gameState;
+    private final SceneController sceneController;
 
-    public GameController(Stage stage, GameStateSubject gmObserver) {
+    //Observers
+    private final GameStateSubject gmObserver;
+    private final DisplayableSubject displayableListObserver;
+    private final GameSceneSubject gameSceneObserver;
+
+    private GameState gameState;
+    private GameScene currentGameScene;
+
+    private boolean isDisplayableListChanging = false;
+
+    public GameController(Stage stage ) {
         this.stage = stage;
-        this.gmObserver = gmObserver;
+
+        this.gmObserver = new GameStateSubject();
         this.gmObserver.attach(this);
+        this.displayableListObserver = new DisplayableSubject();
+        this.gameSceneObserver = new GameSceneSubject();
+        this.gameSceneObserver.attach(this);
+
+        sceneController = new SceneController(this,this.displayableListObserver, this.gameSceneObserver);
+
     }
 
     public void init(){
         //Initialisation
         gmObserver.setGameState(GameState.START);
 
-        sceneController = new SceneController(this);
 
         Pane root = new VBox(10);
         Label title = new Label("Not the legend of zelda !");
@@ -42,9 +60,7 @@ public class GameController implements GameStateObserver {
         player = new Player(new Vector2D(Utilities.WINDOW_WIDTH /2,Utilities.WINDOW_HEIGHT /2));
 
         //Button listener
-        startButton.setOnAction(actionEvent -> {
-            sceneController.switchToGameScene(actionEvent);
-        });
+        startButton.setOnAction(sceneController::switchToGameScene);
 
         leaveButton.setOnAction(actionEvent -> {
             stage.close();
@@ -80,6 +96,11 @@ public class GameController implements GameStateObserver {
             case START:
                 break;
             case WALKING:
+                //Si la liste des entité est mis à jour alors on re-rend les entités
+                if (isDisplayableListChanging){
+                    GameScene.renderDisplayableList(displayableListObserver.getDisplayables(),currentGameScene.getPane());
+                    isDisplayableListChanging = false;
+                }
                 Inputs.handleMovementInput(sceneController.getCurrentScene(),player, sceneController.getPane(),stage);
                 CollisionManager.environmentCollisionChecker(player,sceneController.getTileManager());
                 break;
@@ -94,21 +115,32 @@ public class GameController implements GameStateObserver {
     }
 
 
+    @Override
+    public void updateGameState() {
+        gameState = gmObserver.getGameState();
+    }
+
+
+    @Override
+    public void updateDisplayableList() {
+        isDisplayableListChanging = true;
+    }
+
+    @Override
+    public void updateGameScene() {
+        currentGameScene = gameSceneObserver.getGameScene();
+
+    }
 
     public GameState getGameState() {
         return gameState;
     }
 
     public void setGameState(GameState gameState) {
-        this.gameState = gameState;
+        this.gmObserver.setGameState(gameState);
     }
 
     public Player getPlayer() {
         return player;
-    }
-
-    @Override
-    public void updateGameState() {
-        gameState = gmObserver.getGameState();
     }
 }

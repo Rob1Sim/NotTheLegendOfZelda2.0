@@ -2,8 +2,6 @@ package fr.robins.engine;
 
 import fr.robins.engine.controller.GameController;
 
-import fr.robins.engine.gamestate.GameStateObserver;
-import fr.robins.engine.gamestate.GameStateSubject;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -17,8 +15,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        GameStateSubject gameState = new GameStateSubject();
-        GameController gameController = new GameController(stage, gameState);
+
+        GameController gameController = new GameController(stage);
 
         gameController.init();
 
