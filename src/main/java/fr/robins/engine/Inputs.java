@@ -47,7 +47,7 @@ public class Inputs {
             }
         });
 
-        if (!player.getCollisionHitBox().isColliding()){
+        if (!player.getHitBox().isColliding()){
             //Correspond à la position du fond
             Vector2D cameraPosition = new Vector2D(-backgroundPane.getTranslateX(), -backgroundPane.getTranslateY());
 

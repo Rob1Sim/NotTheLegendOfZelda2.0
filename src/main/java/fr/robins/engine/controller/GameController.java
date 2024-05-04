@@ -1,38 +1,40 @@
 package fr.robins.engine.controller;
 
-import fr.robins.engine.GameState;
+import fr.robins.engine.gamestate.GameState;
 import fr.robins.engine.Inputs;
 import fr.robins.engine.collisions.CollisionManager;
+import fr.robins.engine.gamestate.GameStateObserver;
+import fr.robins.engine.gamestate.GameStateSubject;
 import fr.robins.entities.Player;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class GameController {
+public class GameController implements GameStateObserver {
 
     private Player player;
-    private Pane root;
-    private Stage stage;
+    private final Stage stage;
     private SceneController sceneController;
+    private final GameStateSubject gmObserver;
     private GameState gameState;
 
-    public GameController(Stage stage) {
+    public GameController(Stage stage, GameStateSubject gmObserver) {
         this.stage = stage;
+        this.gmObserver = gmObserver;
+        this.gmObserver.attach(this);
     }
 
     public void init(){
         //Initialisation
-        gameState = GameState.START;
+        gmObserver.setGameState(GameState.START);
 
         sceneController = new SceneController(this);
 
-        root = new VBox(10);
+        Pane root = new VBox(10);
         Label title = new Label("Not the legend of zelda !");
         Button startButton = new Button("Commencer");
         Button leaveButton = new Button("Quitter");
@@ -72,7 +74,7 @@ public class GameController {
 
     public void update(){
         if (gameState != GameState.DEAD && player.getHp() <= 0){
-            gameState = GameState.DEAD;
+            gmObserver.setGameState(GameState.DEAD);
         }
         switch (gameState){
             case START:
@@ -103,5 +105,10 @@ public class GameController {
 
     public Player getPlayer() {
         return player;
+    }
+
+    @Override
+    public void updateGameState() {
+        gameState = gmObserver.getGameState();
     }
 }

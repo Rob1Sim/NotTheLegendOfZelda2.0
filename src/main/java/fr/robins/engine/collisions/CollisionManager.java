@@ -2,6 +2,7 @@ package fr.robins.engine.collisions;
 
 import fr.robins.entities.Entity;
 import fr.robins.types.Utilities;
+import fr.robins.types.Vector2D;
 import fr.robins.world.TileManager;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class CollisionManager {
 
         //à chaque début on désactive les collisions du joueur
 
-        entity.getCollisionHitBox().setColliding(false);
+        entity.getHitBox().setColliding(false);
 
         int entityLeftWorldx = (int) (entity.getHitBox().getX());
         int entityRightWorldx = (int) (entity.getHitBox().getX() + entity.getHitBox().getWidth());
@@ -45,6 +46,7 @@ public class CollisionManager {
             case UP:
                 //on prédit la case qui va arrivé
                 entityTopRow = (int) ((entityTopWorldy - entity.getSpeed())/Utilities.TILE_SIZE);
+
                 getTilesFromLayersBottomTop(tileManager, entityLeftCol, entityRightCol, entityTopRow, listOfFrontTilesOnLayers);
                 isThereACollision(entity,listOfFrontTilesOnLayers, tileManager);
                 break;
@@ -105,7 +107,7 @@ public class CollisionManager {
             if (listOfFrontTilesOnLayer[0] != -1 && tileManager.getTilesMap().get(listOfFrontTilesOnLayer[0]).isCollision() ||
                     listOfFrontTilesOnLayer[1] != -1 && tileManager.getTilesMap().get(listOfFrontTilesOnLayer[1]).isCollision()){
 
-                entity.getCollisionHitBox().setColliding(true);
+                entity.getHitBox().setColliding(true);
             }
         }
     }

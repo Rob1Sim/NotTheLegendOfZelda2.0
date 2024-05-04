@@ -2,7 +2,7 @@ package fr.robins.engine.controller;
 
 import fr.robins.engine.Displayable;
 import fr.robins.engine.GameScene;
-import fr.robins.engine.GameState;
+import fr.robins.engine.gamestate.GameState;
 import fr.robins.types.Vector2D;
 import fr.robins.world.TileManager;
 import javafx.event.ActionEvent;

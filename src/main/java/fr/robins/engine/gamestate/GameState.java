@@ -1,4 +1,4 @@
-package fr.robins.engine;
+package fr.robins.engine.gamestate;
 
 public enum GameState {
     START,
