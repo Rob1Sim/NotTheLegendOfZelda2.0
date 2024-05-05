@@ -24,6 +24,9 @@ public abstract class Entity implements Displayable {
     private int dexterity;
     private int money;
     private double speed = 4;
+    private int maxHp;
+    private int maxMana;
+    private String spritePath;
 
     private EntityHitbox hitBox;
     private final HitBox collisionHitBox;
@@ -52,6 +55,9 @@ public abstract class Entity implements Displayable {
 
         collisionHitBox = new HitBox(worldPosition,1,1, Color.BLUE);
         hitBox = new EntityHitbox(this);
+        this.spritePath = spritePath;
+        maxHp = hp;
+        maxMana = mana;
         setSprite(spritePath);
     }
     protected Entity(String name, int hp, int mana, int constitution, int strength, int dexterity, int money, Vector2D worldPosition, String spritePath ) {
@@ -63,6 +69,8 @@ public abstract class Entity implements Displayable {
         this.dexterity = dexterity;
         this.money = money;
         this.inventory = new Inventory();
+        maxHp = hp;
+        maxMana = mana;
 
         setWorldPosition(worldPosition);
     }
@@ -207,6 +215,17 @@ public abstract class Entity implements Displayable {
         spriteView.setImage(null);
     }
 
+    public String getSpritePath() {
+        return spritePath;
+    }
+
+    public int getMaxHp() {
+        return maxHp;
+    }
+
+    public int getMaxMana() {
+        return maxMana;
+    }
     //endregion
 
 }
