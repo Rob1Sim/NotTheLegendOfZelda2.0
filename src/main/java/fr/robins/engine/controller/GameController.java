@@ -82,7 +82,7 @@ public class GameController implements GameStateObserver, DisplayableListObserve
 
         //Stage settings
         stage.setFullScreenExitHint("");
-        stage.setResizable(true);
+        stage.setResizable(false);
         stage.setTitle("Not the legend of zelda");
         //sceneController.test(stage);
         stage.setScene(scene);
@@ -99,12 +99,12 @@ public class GameController implements GameStateObserver, DisplayableListObserve
             case WALKING:
                 Inputs.handleMovementInput(sceneController.getCurrentScene(),player, sceneController.getPane(),stage);
                 CollisionManager.environmentCollisionChecker(player,sceneController.getTileManager());
-                CollisionManager.displayableCollisionChecker(displayableListObserver,currentGameScene.getPane(),player);
+                CollisionManager.displayableCollisionChecker(displayableListObserver,currentGameScene.getPane(),player, sceneController);
                 break;
             case WIN:
                 break;
             case COMBAT:
-                Inputs.handleArrowInput(sceneController.getCurrentScene());
+                //Inputs.handleArrowInput(sceneController.getCurrentScene());
                 break;
             case DEAD:
                 break;

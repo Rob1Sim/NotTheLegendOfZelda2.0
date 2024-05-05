@@ -1,5 +1,6 @@
 package fr.robins.engine.collisions;
 
+import fr.robins.engine.controller.SceneController;
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.engine.gamelogic.displayable.DisplayableSubject;
 import fr.robins.engine.gamelogic.gamescene.GameScene;
@@ -129,7 +130,7 @@ public class CollisionManager {
      * @param displayableObserver the observer of the list of displayable
      * @param entity the player
      */
-    public static void displayableCollisionChecker(DisplayableSubject displayableObserver, Pane pane, Entity entity){
+    public static void displayableCollisionChecker(DisplayableSubject displayableObserver, Pane pane, Entity entity, SceneController sceneController){
         int index = -1;
         List<Displayable> items = displayableObserver.getDisplayables();
 
@@ -180,7 +181,7 @@ public class CollisionManager {
             }else if (items.get(index) instanceof Interactable interactableI){
                 interactableI.interact(entity);
             }else if (items.get(index) instanceof Enemy enemy){
-                System.out.println("OUIN OUIN OUIN OUIN OUIN TOUM TOUM TOUM TOUM TOUM ");
+                sceneController.switchToCombatScene(enemy);
             }
         }
     }

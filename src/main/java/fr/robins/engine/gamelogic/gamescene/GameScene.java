@@ -11,7 +11,7 @@ import javafx.scene.layout.Pane;
 import java.util.List;
 
 public class GameScene {
-    private final Pane pane;
+    protected Pane pane;
 
     /**
      * Represent a game scene
@@ -30,6 +30,9 @@ public class GameScene {
 
         //Spawn player
         renderPlayer(player,pane);
+    }
+
+    protected GameScene() {
     }
 
     public Pane getPane() {

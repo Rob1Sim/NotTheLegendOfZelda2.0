@@ -4,8 +4,8 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class Utilities {
-    public static double WINDOW_WIDTH = 1920;
-    public static double WINDOW_HEIGHT = 1080;
+    public static double WINDOW_WIDTH = 1600;
+    public static double WINDOW_HEIGHT = 900;
     public final static int TILE_SIZE = 96;
     public static boolean DEBUG = true;
     public static boolean NO_CLIPPING = false;

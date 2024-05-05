@@ -1,97 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.robins.engine.gamelogic.gamescene.CombatSceneController">
+<AnchorPane prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: black;" stylesheets="/sceneBuilder/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.robins.engine.gamelogic.gamescene.CombatSceneController">
    <children>
-      <VBox layoutY="-1.0" prefHeight="400.0" prefWidth="600.0">
+      <GridPane layoutX="54.0" layoutY="125.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="209.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="391.0" minHeight="10.0" prefHeight="199.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="515.0" minHeight="10.0" prefHeight="406.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <VBox prefHeight="304.0" prefWidth="600.0" style="-fx-padding: 2;">
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
                <children>
-                  <HBox prefHeight="138.0" prefWidth="600.0">
-                     <children>
-                        <GridPane prefHeight="139.0" prefWidth="259.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="68.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="191.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="66.0" text="HP" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="67.0" text="MP" GridPane.rowIndex="2">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <ProgressBar prefWidth="200.0" progress="1.0" styleClass="hp-bar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <ProgressBar prefWidth="200.0" progress="1.0" styleClass="mp-bar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="191.0" text="Mage" GridPane.columnIndex="1">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </GridPane>
-                        <StackPane prefHeight="150.0" prefWidth="200.0" />
-
-                     </children></HBox>
-                   <HBox prefHeight="114.0" prefWidth="600.0">
-                       <children>
-                           <StackPane prefHeight="150.0" prefWidth="200.0" />
-                           <GridPane prefHeight="139.0" prefWidth="259.0">
-                               <columnConstraints>
-                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="68.0" />
-                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="191.0" />
-                               </columnConstraints>
-                               <rowConstraints>
-                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                               </rowConstraints>
-                               <children>
-                                   <Label alignment="CENTER" prefHeight="25.0" prefWidth="66.0" text="HP" GridPane.rowIndex="1">
-                                       <font>
-                                           <Font size="16.0" />
-                                       </font>
-                                   </Label>
-                                   <Label alignment="CENTER" prefHeight="25.0" prefWidth="67.0" text="MP" GridPane.rowIndex="2">
-                                       <font>
-                                           <Font size="16.0" />
-                                       </font>
-                                   </Label>
-                                   <ProgressBar prefWidth="200.0" progress="1.0" styleClass="hp-bar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                   <ProgressBar prefWidth="200.0" progress="1.0" styleClass="mp-bar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                   <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="191.0" text="Player" GridPane.columnIndex="1">
-                                       <font>
-                                           <Font size="20.0" />
-                                       </font>
-                                   </Label>
-                               </children>
-                           </GridPane>
-                       </children>
-                   </HBox>
-               </children>
-            </VBox>
-            <HBox prefHeight="201.0" prefWidth="600.0">
-               <children>
-                  <Label prefHeight="149.0" prefWidth="233.0" style="-fx-padding: 5;" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" textAlignment="JUSTIFY" wrapText="true">
+                  <Label prefHeight="299.0" prefWidth="982.0" text="J'ai juré ça pue la merde" HBox.hgrow="ALWAYS">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="21.0" />
                      </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
                   </Label>
-                  <StackPane prefHeight="96.0" prefWidth="33.0" />
-                  <GridPane prefHeight="96.0" prefWidth="334.0">
+                  <GridPane prefHeight="300.0" prefWidth="841.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -100,32 +39,143 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="165.0" prefWidth="167.0" styleClass="action-button" text="Attaque" />
-                        <Button mnemonicParsing="false" prefHeight="157.0" prefWidth="167.0" styleClass="action-button" text="Objet" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" prefHeight="123.0" prefWidth="167.0" styleClass="action-button" text="Sort" GridPane.columnIndex="1" />
-                        <Button mnemonicParsing="false" prefHeight="183.0" prefWidth="167.0" styleClass="action-button" text="Fuite" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="attackBtn" mnemonicParsing="false" onAction="#showAttackMenu" prefHeight="451.0" prefWidth="365.0" styleClass="action-button" text="Attaque">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Button>
+                        <Button fx:id="spellBtn" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="Sorts" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Button>
+                        <Button fx:id="objectBtn" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="Objets" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Button>
+                        <Button fx:id="runBtn" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0" styleClass="action-button" text="にげるんだよ" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Button>
 
-                         <Button mnemonicParsing="false" prefHeight="165.0" prefWidth="167.0" styleClass="action-button" text="Attaque 1" visible="false" />
-                         <Button mnemonicParsing="false" prefHeight="157.0" prefWidth="167.0" styleClass="action-button" text="Attaque 2" visible="false" GridPane.rowIndex="1" />
-                         <Button mnemonicParsing="false" prefHeight="123.0" prefWidth="167.0" styleClass="action-button" text="Attaque 3" visible="false" GridPane.columnIndex="1" />
-                         <Button mnemonicParsing="false" prefHeight="183.0" prefWidth="167.0" styleClass="action-button" text="Attaque 4" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                         <Button fx:id="attack1" mnemonicParsing="false" prefHeight="451.0" prefWidth="365.0" styleClass="action-button" text="Attack" visible="false">
+                             <font>
+                                 <Font size="20.0" />
+                             </font></Button>
+                         <Button fx:id="attack2" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="Attack" visible="false" GridPane.columnIndex="1">
+                             <font>
+                                 <Font size="20.0" />
+                             </font></Button>
+                         <Button fx:id="attack3" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="Attack" visible="false" GridPane.rowIndex="1">
+                             <font>
+                                 <Font size="20.0" />
+                             </font></Button>
+                         <Button fx:id="attack4" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0" styleClass="action-button" text="Attack" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                             <font>
+                                 <Font size="20.0" />
+                             </font></Button>
+                         <Button fx:id="spell1" mnemonicParsing="false" prefHeight="451.0" prefWidth="365.0" styleClass="action-button" text="Spell" visible="false">
+                             <font>
+                                 <Font size="20.0" />
+                             </font></Button>
+                         <Button fx:id="spell2" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="Spell" visible="false" GridPane.columnIndex="1">
+                             <font>
+                                 <Font size="20.0" />
+                             </font></Button>
+                         <Button fx:id="spell3" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="Spell" visible="false" GridPane.rowIndex="1">
+                             <font>
+                                 <Font size="20.0" />
+                             </font></Button>
+                         <Button fx:id="spell4" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0" styleClass="action-button" text="Spell" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                             <font>
+                                 <Font size="20.0" />
+                             </font></Button>
+                         <Button fx:id="object1" mnemonicParsing="false" prefHeight="451.0" prefWidth="365.0" styleClass="action-button" text="Object" visible="false">
+                             <font>
+                                 <Font size="20.0" />
+                             </font></Button>
+                         <Button fx:id="object2" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="Object" visible="false" GridPane.columnIndex="1">
+                             <font>
+                                 <Font size="20.0" />
+                             </font></Button>
+                         <Button fx:id="object3" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="Object" visible="false" GridPane.rowIndex="1">
+                             <font>
+                                 <Font size="20.0" />
+                             </font></Button>
+                         <Button fx:id="object4" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0" styleClass="action-button" text="Object" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                             <font>
+                                 <Font size="20.0" />
+                             </font></Button>
 
-                         <Button mnemonicParsing="false" prefHeight="165.0" prefWidth="167.0" styleClass="action-button" text="Sort 1" visible="false" />
-                         <Button mnemonicParsing="false" prefHeight="157.0" prefWidth="167.0" styleClass="action-button" text="Sort 2" visible="false" GridPane.rowIndex="1" />
-                         <Button mnemonicParsing="false" prefHeight="123.0" prefWidth="167.0" styleClass="action-button" text="Sort 3" visible="false" GridPane.columnIndex="1" />
-                         <Button mnemonicParsing="false" prefHeight="183.0" prefWidth="167.0" styleClass="action-button" text="Sort 4" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-                         <Button mnemonicParsing="false" prefHeight="165.0" prefWidth="167.0" styleClass="action-button" text="Objet 1" visible="false" />
-                         <Button mnemonicParsing="false" prefHeight="157.0" prefWidth="167.0" styleClass="action-button" text="Objet 2" visible="false" GridPane.rowIndex="1" />
-                         <Button mnemonicParsing="false" prefHeight="123.0" prefWidth="167.0" styleClass="action-button" text="Objet 3" visible="false" GridPane.columnIndex="1" />
-                         <Button mnemonicParsing="false" prefHeight="183.0" prefWidth="167.0" styleClass="action-button" text="Objet 4" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-
                </children>
             </HBox>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="57.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="652.0" minWidth="10.0" prefWidth="477.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="53.0" prefWidth="387.0" text="Mage" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="86.0" prefWidth="148.0" text="HP" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="67.0" prefWidth="57.0" text="MP" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar prefHeight="21.0" prefWidth="477.0" progress="1.0" styleClass="hp-bar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ProgressBar prefHeight="18.0" prefWidth="479.0" progress="1.0" styleClass="mp-bar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="48.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="495.0" minWidth="10.0" prefWidth="485.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" text="HP" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="MP" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar prefHeight="18.0" prefWidth="483.0" progress="1.0" styleClass="hp-bar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ProgressBar prefHeight="18.0" prefWidth="484.0" progress="1.0" styleClass="mp-bar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Player" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <ImageView fitHeight="299.0" fitWidth="540.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+            <ImageView fitHeight="300.0" fitWidth="533.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
          </children>
-      </VBox>
+      </GridPane>
    </children>
 </AnchorPane>

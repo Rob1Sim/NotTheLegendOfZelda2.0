@@ -1,12 +1,14 @@
 package fr.robins.engine.controller;
 
 import fr.robins.engine.gamelogic.displayable.Displayable;
+import fr.robins.engine.gamelogic.gamescene.CombatScene;
 import fr.robins.engine.gamelogic.gamescene.GameScene;
 import fr.robins.engine.gamelogic.gamestate.GameState;
 import fr.robins.engine.gamelogic.displayable.DisplayableListObserver;
 import fr.robins.engine.gamelogic.displayable.DisplayableSubject;
 import fr.robins.engine.gamelogic.gamescene.GameSceneObserver;
 import fr.robins.engine.gamelogic.gamescene.GameSceneSubject;
+import fr.robins.entities.Fighter;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.Enemy;
 import fr.robins.entities.enemy.EnemyType;
@@ -27,7 +29,9 @@ import java.util.List;
 
 public class SceneController implements DisplayableListObserver, GameSceneObserver {
     private Stage stage;
+
     private Scene currentScene;
+    private Scene lastScene;
 
     private TileManager tileManager;
     private final GameController gameController;
@@ -71,7 +75,9 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         gameController.setGameState(GameState.WALKING);
     }
 
-    public void switchToCombatScene() {
+    public void switchToCombatScene(Fighter enemy) {
+        gameSceneObserver.setGameScene(new CombatScene(gameController.getPlayer(),enemy));
+        switchToScene();
         gameController.setGameState(GameState.COMBAT);
     }
 
@@ -96,6 +102,9 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
      * Change the scene with javafx
      */
     private void switchToScene(){
+        if (currentScene != null){
+            lastScene = currentScene;
+        }
         Scene scene = new Scene(currentGameScene.getPane());
         currentScene = scene;
         stage.setScene(scene);

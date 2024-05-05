@@ -4,6 +4,7 @@ import fr.robins.engine.controller.GameController;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -15,6 +16,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
+        Font.loadFont(getClass().getResourceAsStream("/sceneBuilder/fonts/ARCADEIN.ttf"), 12);
+        Font.loadFont(getClass().getResourceAsStream("/sceneBuilder/fonts/ARCADEOUT.ttf"), 12);
 
         GameController gameController = new GameController(stage);
 
