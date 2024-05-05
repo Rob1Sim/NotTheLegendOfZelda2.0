@@ -16,7 +16,7 @@ public class Inventory {
             Item consumable = getItemByName(consumableItem.getName());
             if (consumable != null){
 
-                ((Consumable)consumable).increaseQuantity();
+                ((Consumable)consumable).addQuantity(consumableItem.getQuantity());
 
             }else{
                 items.add(item);
@@ -25,6 +25,7 @@ public class Inventory {
             items.add(item);
         }
     }
+
 
     public void removeItem(Item item) {
         if (item instanceof Consumable consumableItem){

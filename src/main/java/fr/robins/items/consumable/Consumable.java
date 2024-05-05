@@ -34,6 +34,10 @@ public abstract class Consumable extends Item implements Collectable, Displayabl
         quantity--;
     }
 
+    public void addQuantity(int quantity) {
+        this.quantity += quantity;
+    }
+
     public abstract void use(Entity entity);
 
     /**
