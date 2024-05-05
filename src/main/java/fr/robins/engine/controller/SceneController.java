@@ -57,6 +57,10 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         this.displayableObserver.add(
                 new Enemy(EnemyType.ENEMY_GHOST,TileManager.tilesToCoordinates(38,33)),
                 new WeaponItem(WeaponType.AXE, TileManager.tilesToCoordinates(35,31)),
+                new WeaponItem(WeaponType.DOUBLE_AXE, TileManager.tilesToCoordinates(36,31)),
+                new WeaponItem(WeaponType.KNIFE, TileManager.tilesToCoordinates(37,31)),
+                new WeaponItem(WeaponType.IRON_SWORD, TileManager.tilesToCoordinates(38,31)),
+                new WeaponItem(WeaponType.AXE, TileManager.tilesToCoordinates(39,31)),
                 new Potion(PotionType.HEAL_POTION,TileManager.tilesToCoordinates(32,36)),
                 new Potion(PotionType.HEAL_POTION,TileManager.tilesToCoordinates(38,35)));
     }

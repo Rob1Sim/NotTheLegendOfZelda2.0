@@ -4,7 +4,8 @@ public enum WeaponType {
     AXE("Hache",20,"/sprites/items/axe.png"),
     DOUBLE_AXE("Double Hache",25,"/sprites/items/double_axe.png"),
     KNIFE("Couteau",5,"/sprites/items/daguer.png"),
-    SWORD("Epée",15,"/sprites/items/iron_sword.png");
+    IRON_SWORD("Epée",15,"/sprites/items/iron_sword.png"),
+    SHORT_SWORD("Epée courte",10,"/sprites/items/short_sword.png"),;
 
     private final String name;
     private final int damage;

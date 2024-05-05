@@ -45,7 +45,7 @@ public class GameScene {
      * @param displayable
      * @param pane
      */
-    private static void renderDisplayable(Displayable displayable, Pane pane) {
+    public static void renderDisplayable(Displayable displayable, Pane pane) {
         pane.getChildren().addAll(displayable.draw(),displayable.getHitBox().draw());
     }
     /**
