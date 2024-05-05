@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: black;" stylesheets="/sceneBuilder/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.robins.engine.gamelogic.gamescene.CombatSceneController">
+<AnchorPane prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: black;" stylesheets="/sceneBuilder/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.robins.engine.gamelogic.gamescene.combatScene.CombatSceneController">
    <children>
       <GridPane layoutX="54.0" layoutY="125.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -22,7 +22,7 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
                <children>
-                  <Label prefHeight="299.0" prefWidth="982.0" text="J'ai juré ça pue la merde" HBox.hgrow="ALWAYS">
+                  <Label fx:id="actionTxt" prefHeight="299.0" prefWidth="982.0" text="J'ai juré ça pue la merde" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -34,6 +34,7 @@
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -47,11 +48,11 @@
                            <font>
                               <Font size="20.0" />
                            </font></Button>
-                        <Button fx:id="spellBtn" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="Sorts" GridPane.columnIndex="1">
+                        <Button fx:id="spellBtn" mnemonicParsing="false" onAction="#showSpellMenu" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="Sorts" GridPane.columnIndex="1">
                            <font>
                               <Font size="20.0" />
                            </font></Button>
-                        <Button fx:id="objectBtn" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="Objets" GridPane.rowIndex="1">
+                        <Button fx:id="objectBtn" mnemonicParsing="false" onAction="#showObjectMenu" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="Objets" GridPane.rowIndex="1">
                            <font>
                               <Font size="20.0" />
                            </font></Button>
@@ -108,6 +109,11 @@
                              <font>
                                  <Font size="20.0" />
                              </font></Button>
+                        <Button fx:id="returnBtn" disable="true" mnemonicParsing="false" onAction="#returnButton" prefHeight="284.0" prefWidth="243.0" styleClass="action-button" text="Retour" GridPane.columnIndex="2">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
 
                      </children>
                   </GridPane>
@@ -139,8 +145,8 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <ProgressBar prefHeight="21.0" prefWidth="477.0" progress="1.0" styleClass="hp-bar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ProgressBar prefHeight="18.0" prefWidth="479.0" progress="1.0" styleClass="mp-bar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ProgressBar fx:id="enemyHp" prefHeight="21.0" prefWidth="477.0" progress="1.0" styleClass="hp-bar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ProgressBar fx:id="enemyMp" prefHeight="18.0" prefWidth="479.0" progress="1.0" styleClass="mp-bar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -164,7 +170,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <ProgressBar prefHeight="18.0" prefWidth="483.0" progress="1.0" styleClass="hp-bar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ProgressBar fx:id="playerHp" prefHeight="18.0" prefWidth="483.0" progress="1.0" styleClass="hp-bar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <ProgressBar prefHeight="18.0" prefWidth="484.0" progress="1.0" styleClass="mp-bar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Player" GridPane.columnIndex="1">
                      <font>
@@ -173,8 +179,8 @@
                   </Label>
                </children>
             </GridPane>
-            <ImageView fitHeight="299.0" fitWidth="540.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-            <ImageView fitHeight="300.0" fitWidth="533.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
+            <ImageView fx:id="enemyImage" fitHeight="193.0" fitWidth="239.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+            <ImageView fx:id="playerImage" fitHeight="196.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

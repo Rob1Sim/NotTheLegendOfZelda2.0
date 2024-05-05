@@ -1,7 +1,7 @@
 package fr.robins.engine.controller;
 
 import fr.robins.engine.gamelogic.displayable.Displayable;
-import fr.robins.engine.gamelogic.gamescene.CombatScene;
+import fr.robins.engine.gamelogic.gamescene.combatScene.CombatScene;
 import fr.robins.engine.gamelogic.gamescene.GameScene;
 import fr.robins.engine.gamelogic.gamestate.GameState;
 import fr.robins.engine.gamelogic.displayable.DisplayableListObserver;
