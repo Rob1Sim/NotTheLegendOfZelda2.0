@@ -1,5 +1,6 @@
 package fr.robins.items;
 
+import fr.robins.items.combat.weapons.WeaponItem;
 import fr.robins.items.consumable.Consumable;
 
 import java.util.ArrayList;
@@ -7,8 +8,13 @@ import java.util.List;
 
 public class Inventory {
     private final List<Item> items;
+    private final List<Consumable> equipedConsumables;
+    private final List<WeaponItem> equipedWeapons;
+
     public Inventory() {
         items = new ArrayList<>();
+        equipedConsumables = new ArrayList<>();
+        equipedWeapons = new ArrayList<>();
     }
 
     public void addItem(Item item) {
@@ -20,9 +26,15 @@ public class Inventory {
 
             }else{
                 items.add(item);
+                if (equipedConsumables.size() < 4)
+                    equipedConsumables.add(consumableItem);
             }
         }else{
             items.add(item);
+            //if
+            if (item instanceof WeaponItem weaponItem && equipedWeapons.size() < 4)
+                equipedWeapons.add(weaponItem);
+
         }
     }
 
@@ -31,13 +43,16 @@ public class Inventory {
         if (item instanceof Consumable consumableItem){
             Consumable c = (Consumable) getItemByName(consumableItem.getName());
             if (c != null){
+                c.decreaseQuantity();
                 if (c.getQuantity() <= 0){
                     items.remove(item);
-
+                    equipedConsumables.remove(c);
                 }
             }
         }else{
             items.remove(item);
+            if (item instanceof WeaponItem)
+                equipedWeapons.remove(item);
         }
     }
 
@@ -82,5 +97,13 @@ public class Inventory {
             sb.append(item.toString()).append("\n");
         }
         return sb.toString();
+    }
+
+    public List<Consumable> getEquipedConsumables() {
+        return equipedConsumables;
+    }
+
+    public List<WeaponItem> getEquipedWeapons() {
+        return equipedWeapons;
     }
 }
