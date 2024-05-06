@@ -2,6 +2,7 @@ package fr.robins.entities;
 
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.items.combat.spells.Spell;
+import fr.robins.items.combat.spells.SpellType;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
 import javafx.scene.Node;
@@ -19,7 +20,7 @@ public class Player extends Fighter implements Displayable {
     private Image currentSprite;
 
     public Player(Vector2D spawnPosition) {
-        super("Player",100,30,10,10,10,10,spawnPosition ,"/sprites/player/chevalier_idle.png",new Spell[]{} );
+        super("Player",100,30,10,10,10,10,spawnPosition ,"/sprites/player/chevalier_idle.png",new Spell[]{new Spell(SpellType.LIGHTNING), new Spell(SpellType.REQUIEM), new Spell(SpellType.HEAL), new Spell(SpellType.KILLER_QUEEN)} );
         sprites = new Image[4];
         sprites[0] = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/sprites/player/chevalier_idle.png")));
         sprites[1] = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/sprites/player/chevalier_back.png")));

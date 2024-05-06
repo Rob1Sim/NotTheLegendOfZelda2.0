@@ -61,51 +61,51 @@
                               <Font size="20.0" />
                            </font></Button>
 
-                         <Button fx:id="attack1" mnemonicParsing="false" prefHeight="451.0" prefWidth="365.0" styleClass="action-button" text="Attack" visible="false">
+                         <Button fx:id="attack1" mnemonicParsing="false" prefHeight="451.0" prefWidth="365.0" styleClass="action-button" text="" visible="false">
                              <font>
                                  <Font size="20.0" />
                              </font></Button>
-                         <Button fx:id="attack2" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="Attack" visible="false" GridPane.columnIndex="1">
+                         <Button fx:id="attack2" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.columnIndex="1">
                              <font>
                                  <Font size="20.0" />
                              </font></Button>
-                         <Button fx:id="attack3" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="Attack" visible="false" GridPane.rowIndex="1">
+                         <Button fx:id="attack3" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.rowIndex="1">
                              <font>
                                  <Font size="20.0" />
                              </font></Button>
-                         <Button fx:id="attack4" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0" styleClass="action-button" text="Attack" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                         <Button fx:id="attack4" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                              <font>
                                  <Font size="20.0" />
                              </font></Button>
-                         <Button fx:id="spell1" mnemonicParsing="false" prefHeight="451.0" prefWidth="365.0" styleClass="action-button" text="Spell" visible="false">
+                         <Button fx:id="spell1" mnemonicParsing="false" prefHeight="451.0" prefWidth="365.0" styleClass="action-button" text="" visible="false">
                              <font>
                                  <Font size="20.0" />
                              </font></Button>
-                         <Button fx:id="spell2" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="Spell" visible="false" GridPane.columnIndex="1">
+                         <Button fx:id="spell2" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.columnIndex="1">
                              <font>
                                  <Font size="20.0" />
                              </font></Button>
-                         <Button fx:id="spell3" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="Spell" visible="false" GridPane.rowIndex="1">
+                         <Button fx:id="spell3" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.rowIndex="1">
                              <font>
                                  <Font size="20.0" />
                              </font></Button>
-                         <Button fx:id="spell4" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0" styleClass="action-button" text="Spell" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                         <Button fx:id="spell4" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                              <font>
                                  <Font size="20.0" />
                              </font></Button>
-                         <Button fx:id="object1" mnemonicParsing="false" prefHeight="451.0" prefWidth="365.0" styleClass="action-button" text="Object" visible="false">
+                         <Button fx:id="object1" mnemonicParsing="false" prefHeight="451.0" prefWidth="365.0" styleClass="action-button" text="" visible="false">
                              <font>
                                  <Font size="20.0" />
                              </font></Button>
-                         <Button fx:id="object2" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="Object" visible="false" GridPane.columnIndex="1">
+                         <Button fx:id="object2" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.columnIndex="1">
                              <font>
                                  <Font size="20.0" />
                              </font></Button>
-                         <Button fx:id="object3" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="Object" visible="false" GridPane.rowIndex="1">
+                         <Button fx:id="object3" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.rowIndex="1">
                              <font>
                                  <Font size="20.0" />
                              </font></Button>
-                         <Button fx:id="object4" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0" styleClass="action-button" text="Object" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                         <Button fx:id="object4" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                              <font>
                                  <Font size="20.0" />
                              </font></Button>

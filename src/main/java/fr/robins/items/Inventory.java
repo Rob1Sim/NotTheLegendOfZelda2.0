@@ -8,13 +8,13 @@ import java.util.List;
 
 public class Inventory {
     private final List<Item> items;
-    private final List<Consumable> equipedConsumables;
-    private final List<WeaponItem> equipedWeapons;
+    private final List<Item> equippedConsumables;
+    private final List<Item> equippedWeapons;
 
     public Inventory() {
         items = new ArrayList<>();
-        equipedConsumables = new ArrayList<>();
-        equipedWeapons = new ArrayList<>();
+        equippedConsumables = new ArrayList<>();
+        equippedWeapons = new ArrayList<>();
     }
 
     public void addItem(Item item) {
@@ -26,14 +26,14 @@ public class Inventory {
 
             }else{
                 items.add(item);
-                if (equipedConsumables.size() < 4)
-                    equipedConsumables.add(consumableItem);
+                if (equippedConsumables.size() < 4)
+                    equippedConsumables.add(consumableItem);
             }
         }else{
             items.add(item);
             //if
-            if (item instanceof WeaponItem weaponItem && equipedWeapons.size() < 4)
-                equipedWeapons.add(weaponItem);
+            if (item instanceof WeaponItem weaponItem && equippedWeapons.size() < 4)
+                equippedWeapons.add(weaponItem);
 
         }
     }
@@ -46,13 +46,13 @@ public class Inventory {
                 c.decreaseQuantity();
                 if (c.getQuantity() <= 0){
                     items.remove(item);
-                    equipedConsumables.remove(c);
+                    equippedConsumables.remove(c);
                 }
             }
         }else{
             items.remove(item);
             if (item instanceof WeaponItem)
-                equipedWeapons.remove(item);
+                equippedWeapons.remove(item);
         }
     }
 
@@ -99,11 +99,11 @@ public class Inventory {
         return sb.toString();
     }
 
-    public List<Consumable> getEquipedConsumables() {
-        return equipedConsumables;
+    public List<Item> getEquippedConsumables() {
+        return equippedConsumables;
     }
 
-    public List<WeaponItem> getEquipedWeapons() {
-        return equipedWeapons;
+    public List<Item> getEquippedWeapons() {
+        return equippedWeapons;
     }
 }
