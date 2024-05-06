@@ -13,6 +13,7 @@ import fr.robins.entities.Player;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
 import fr.robins.world.TileManager;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,6 +22,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Objects;
 import java.util.Random;
 
 public class GameController implements GameStateObserver, DisplayableListObserver, GameSceneObserver {
@@ -56,39 +60,46 @@ public class GameController implements GameStateObserver, DisplayableListObserve
     public void init(){
         //Initialisation
         gmObserver.setGameState(GameState.START);
-
-
-        Pane root = new VBox(10);
-        Label title = new Label("Not the legend of zelda !");
-        Button startButton = new Button("Commencer");
-        Button leaveButton = new Button("Quitter");
-
         player = new Player(new Vector2D(Utilities.WINDOW_WIDTH /2,Utilities.WINDOW_HEIGHT /2));
 
-        //Button listener
-        startButton.setOnAction(sceneController::switchToGameScene);
 
-        leaveButton.setOnAction(actionEvent -> {
-            stage.close();
-        });
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            InputStream fxmlStream = getClass().getResourceAsStream("/sceneBuilder/startScene.fxml");
+            Pane root = loader.load(fxmlStream);
 
-        //Scene settings
-        root.setPrefSize(Utilities.WINDOW_WIDTH, Utilities.WINDOW_HEIGHT);
 
-        //Start Menu
+            //Button listener
 
-        root.setPadding(new Insets(10));
-        root.getChildren().addAll(title,startButton, leaveButton);
+            Button startButton = (Button) root.lookup("#startBtn");
+            if (startButton != null) {
+                startButton.setOnAction(sceneController::switchToGameScene);
+            }
 
-        Scene scene = new Scene(root);
+            Button leaveButton = (Button) root.lookup("#quitBtn");
 
-        //Stage settings
-        stage.setFullScreenExitHint("");
-        stage.setResizable(false);
-        stage.setTitle("Not the legend of zelda");
-        //sceneController.test(stage);
-        stage.setScene(scene);
-        stage.show();
+            if (leaveButton != null) {
+                leaveButton.setOnAction(actionEvent -> {
+                    stage.close();
+                });
+
+            }
+
+            //Scene settings
+            //Start Menu
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/sceneBuilder/startScene.css")).toExternalForm());
+
+            //Stage settings
+            stage.setFullScreenExitHint("");
+            stage.setResizable(false);
+            stage.setTitle("Not the legend of zelda");
+            //sceneController.test(stage);
+            stage.setScene(scene);
+            stage.show();
+        }catch (IOException e){
+            throw new RuntimeException("Error loading Start scene.", e);
+        }
     }
 
     public void update(){
