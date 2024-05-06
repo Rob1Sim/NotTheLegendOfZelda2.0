@@ -2,6 +2,7 @@ package fr.robins.engine.gamelogic.combat;
 
 
 import fr.robins.engine.gamelogic.gamescene.combatScene.CombatScene;
+import fr.robins.engine.gamelogic.gamescene.combatScene.CombatSceneController;
 import fr.robins.entities.Fighter;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.Enemy;
@@ -25,7 +26,7 @@ public class CombatManager implements EventHandler<ActionEvent> {
 
     private final Player player;
     private final Enemy enemy;
-    private CombatProperty combatProperty;
+    private final CombatProperty combatProperty;
     public CombatManager(CombatProperty combatProperty){
 
         this.player = combatProperty.getPlayer();
@@ -45,6 +46,18 @@ public class CombatManager implements EventHandler<ActionEvent> {
         return player.getHp()<= 0 || enemy.getHp() <= 0;
     }
 
+    /**
+     * Instruction to do before leaving combat
+     */
+    private void endCombat(ActionEvent event){
+        Platform.runLater(()->{
+            combatProperty.setActionText(enemy.getDeathPhrase());
+        });
+        Button leaveButton = (Button) ((Button)event.getSource()).getScene().lookup("#leaveBtn");
+        leaveButton.setDisable(false);
+        leaveButton.setText("Quitter");
+        leaveButton.setOnAction(new LeaveCombat(combatProperty,enemy));
+    }
 
 
     private void attack(IAttack attackItem, Fighter caster, Fighter target){
@@ -82,8 +95,23 @@ public class CombatManager implements EventHandler<ActionEvent> {
         if (attack != null){
             attack(attack,player,enemy);
         }
-
         //Display the modifications
+        refreshUI(event, id);
+
+        if (isCombatOver()){
+            endCombat(event);
+        }
+
+        //Disables les boutons
+        //Bloquer le thread le temps que les joueurs puissent lire
+        //si l'enemie ou le joueur est mort quitter le combat
+
+    }
+
+    /**
+     * Refresh variables display on the screen
+     */
+    private void refreshUI(ActionEvent event, String id) {
         Platform.runLater(()->{
             if (!Objects.equals(enemy.getTextToDisplay(), ""))
                 combatProperty.setActionText(enemy.getTextToDisplay());
@@ -92,15 +120,9 @@ public class CombatManager implements EventHandler<ActionEvent> {
             refreshLoadingBars(event);
 
             //reset the menu
-            resetMenu(event,id);
+            resetMenu(event, id);
 
         });
-
-
-        //Disables les boutons
-        //Bloquer le thread le temps que les joueurs puissent lire
-        //si l'enemie ou le joueur est mort quitter le combat
-
     }
 
     private void resetMenu(ActionEvent event, String id){
@@ -129,17 +151,22 @@ public class CombatManager implements EventHandler<ActionEvent> {
         System.out.println("Real Mana : "+player.getMana() +" Max mana : "+player.getMaxMana()+" division:"+ player.getMana()/player.getMaxMana());
 
     }
+
+    private static class LeaveCombat implements EventHandler<ActionEvent>{
+
+        CombatProperty combatProperty;
+        Enemy enemy;
+
+        LeaveCombat(CombatProperty combatProperty, Enemy enemy){
+            this.combatProperty = combatProperty;
+            this.enemy = enemy;
+        }
+
+        @Override
+        public void handle(ActionEvent event) {
+            combatProperty.getSceneController().getDisplayableObserver().remove(enemy);
+            combatProperty.getSceneController().switchToGameSceneAfterCombat(event);
+        }
+    }
 }
 
-/**
- *             Spell attackSpell = (Spell)attack;
- *
- *             //text to display
- *             switch (attackSpell.getEntityTypeToModify()){
- *                 case ENEMY :
- *                     combatProperty.setActionText(player.getName()+" inflige "+attack.getDamage()+" à sa/ses "+attackSpell.getCharacToModify()+" !");
- *                     break;
- *                 case PLAYER:
- *                     combatProperty.setActionText(player.getName()+" récupère "+attack.getDamage()+" à sa/ses "+attackSpell.getCharacToModify()+" !");
- *             }
- */

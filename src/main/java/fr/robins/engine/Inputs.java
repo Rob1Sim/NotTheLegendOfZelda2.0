@@ -1,13 +1,17 @@
 package fr.robins.engine;
 
+import fr.robins.engine.gamelogic.combat.CombatProperty;
 import fr.robins.entities.Player;
+import fr.robins.entities.enemy.Enemy;
 import fr.robins.types.DirectionType;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
 
 public class Inputs {
     public static void handleMovementInput(Scene scene, Player player, Pane backgroundPane, Stage stage){
@@ -56,7 +60,6 @@ public class Inputs {
         if (!player.getHitBox().isColliding() || Utilities.NO_CLIPPING){
             //Correspond à la position du fond
             Vector2D cameraPosition = new Vector2D(-backgroundPane.getTranslateX(), -backgroundPane.getTranslateY());
-
             //Remets le joueur au millieu
             player.setWorldPosition(new Vector2D((cameraPosition.getX() + ((Utilities.WINDOW_WIDTH /2)-((double) Utilities.TILE_SIZE /2)) + player.getVelocity().getX()),
                     (cameraPosition.getY() + ( Utilities.WINDOW_HEIGHT /2)-((double) Utilities.TILE_SIZE /2))+ player.getVelocity().getY()));
@@ -69,20 +72,5 @@ public class Inputs {
 
     }
 
-    public static void handleArrowInput(Scene scene){
-        scene.setOnKeyPressed(event ->{
-            KeyCode keycode = event.getCode();
-            switch (keycode){
-                case UP:
-                    break;
-                case DOWN:
-                    break;
-                case LEFT:
-                    break;
-                case RIGHT:
-                    break;
-            }
-        });
-    }
-
 }
+

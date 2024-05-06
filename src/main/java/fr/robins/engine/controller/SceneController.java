@@ -80,13 +80,33 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
     }
 
     public void switchToCombatScene(Fighter enemy) {
-        gameSceneObserver.setGameScene(new CombatScene(gameController.getPlayer(),enemy));
-        switchToScene();
+
         gameController.setGameState(GameState.COMBAT);
+
+        //Désactive la vélocité pour éviter que le joueur s'envole en repassant dans le monde
+        gameController.getPlayer().getVelocity().set(0,0);
+
+        gameSceneObserver.setGameScene(new CombatScene(gameController.getPlayer(),enemy,this));
+        switchToScene();
+    }
+
+    public void switchToGameSceneAfterCombat(ActionEvent event) {
+        stage = (Stage) (((Node)event.getSource())).getScene().getWindow();
+
+        gameSceneObserver.setGameScene(new GameScene(tileManager, displayable, gameController.getPlayer()));
+
+        switchToScene();
+        //Renvoie le joueur à sa position antérieur
+        Player.teleportPlayer(currentGameScene.getPane(),gameController.getPlayer().getPosition());
+        gameController.setGameState(GameState.WALKING);
     }
 
     public void switchToEndScene() {
         gameController.setGameState(GameState.WIN);
+    }
+
+    public void switchToDeathScene(){
+
     }
 
     public void switchToALocationScene(String xmlMapPath) {
@@ -101,6 +121,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         switchToScene();
         Player.teleportPlayer(currentGameScene.getPane(), TileManager.tilesToCoordinates(playerTilePosition.getIntX(),playerTilePosition.getIntY()));
     }
+
 
     /**
      * Change the scene with javafx
@@ -140,5 +161,9 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
     @Override
     public void updateGameScene() {
         currentGameScene = gameSceneObserver.getGameScene();
+    }
+
+    public DisplayableSubject getDisplayableObserver() {
+        return displayableObserver;
     }
 }

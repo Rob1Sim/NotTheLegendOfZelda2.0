@@ -1,6 +1,7 @@
 package fr.robins.engine.gamelogic.gamescene.combatScene;
 
 
+import fr.robins.engine.controller.SceneController;
 import fr.robins.engine.gamelogic.combat.CombatManager;
 import fr.robins.engine.gamelogic.combat.CombatProperty;
 import fr.robins.engine.gamelogic.gamescene.GameScene;
@@ -30,7 +31,7 @@ public class CombatScene extends GameScene {
 
     CombatProperty combatProperty;
 
-    public CombatScene( Fighter player, Fighter enemy) {
+    public CombatScene(Fighter player, Fighter enemy, SceneController sceneController) {
         super();
 
 
@@ -80,7 +81,7 @@ public class CombatScene extends GameScene {
             }
 
             //Set default combat system values
-            combatProperty = new CombatProperty((Player) player, (Enemy) enemy, actionText);
+            combatProperty = new CombatProperty((Player) player, (Enemy) enemy, actionText,sceneController);
 
             //Set Attack/Object/Spell button
             setEquippedButton(player.getInventory().getEquippedWeapons(), "attack",root);

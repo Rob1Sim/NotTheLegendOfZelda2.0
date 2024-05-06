@@ -8,10 +8,12 @@ import fr.robins.types.Vector2D;
 
 public class Enemy extends Fighter implements Displayable {
     private final EnemyType enemyType;
+    private final String deathPhrase;
     public Enemy(EnemyType enemyType, Vector2D worldPosition) {
         super(enemyType.getName(), enemyType.getHp(), enemyType.getMana(), enemyType.getConstitution(), enemyType.getStrength(), enemyType.getDexterity(),enemyType.getMoney(),worldPosition,enemyType.getSprite(), enemyType.getSpells());
         setInventory(enemyType.getInventory());
         this.enemyType = enemyType;
+        this.deathPhrase = enemyType.getDeathPhrase();
     }
 
     @Override
@@ -24,5 +26,9 @@ public class Enemy extends Fighter implements Displayable {
             setTextToDisplay("Gros con je suis un fantôme, tu pensais pouvoir me toucher ??");
 
 
+    }
+
+    public String getDeathPhrase() {
+        return deathPhrase;
     }
 }

@@ -114,6 +114,7 @@
                               <Font size="20.0" />
                            </font>
                         </Button>
+                        <Button fx:id="leaveBtn" disable="true" mnemonicParsing="false" prefHeight="217.0" prefWidth="521.0" styleClass="action-button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
                      </children>
                   </GridPane>

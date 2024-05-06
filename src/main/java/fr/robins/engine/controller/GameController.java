@@ -93,6 +93,7 @@ public class GameController implements GameStateObserver, DisplayableListObserve
         if (gameState != GameState.DEAD && player.getHp() <= 0){
             gmObserver.setGameState(GameState.DEAD);
         }
+
         switch (gameState){
             case START:
                 break;
@@ -102,11 +103,10 @@ public class GameController implements GameStateObserver, DisplayableListObserve
                 CollisionManager.displayableCollisionChecker(displayableListObserver,currentGameScene.getPane(),player, sceneController);
                 break;
             case WIN:
-                break;
-            case COMBAT:
-                //Inputs.handleArrowInput(sceneController.getCurrentScene());
+                sceneController.switchToEndScene();
                 break;
             case DEAD:
+                sceneController.switchToDeathScene();
                 break;
         }
     }

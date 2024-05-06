@@ -1,5 +1,6 @@
 package fr.robins.engine.gamelogic.combat;
 
+import fr.robins.engine.controller.SceneController;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.Enemy;
 import javafx.scene.control.Label;
@@ -15,12 +16,15 @@ public class CombatProperty {
     private int starter;
     private Label actionText;
 
-    public CombatProperty(Player player, Enemy enemy, Label actionText){
+    private final SceneController sceneController;
+
+    public CombatProperty(Player player, Enemy enemy, Label actionText,SceneController sceneController){
         this.player = player;
         this.enemy = enemy;
         this.turnNumber = 0;
         this.starter = new Random().nextInt(2);
         this.actionText = actionText;
+        this.sceneController = sceneController;
     }
 
     public void setPlayer(Player player) {
@@ -72,5 +76,9 @@ public class CombatProperty {
      */
     public void setActionText(String actionText) {
         this.actionText.setText(actionText);
+    }
+
+    public SceneController getSceneController() {
+        return sceneController;
     }
 }
