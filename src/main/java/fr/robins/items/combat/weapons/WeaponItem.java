@@ -21,6 +21,10 @@ public class WeaponItem extends Item implements IAttack, Collectable, Displayabl
         this.damage = weaponType.getDamage();
     }
 
+    public WeaponItem(WeaponType weaponType){
+        this(weaponType, new Vector2D());
+    }
+
     @Override
     public void attack(Fighter fighter, Fighter target) {
         if (target instanceof Enemy enemy)
