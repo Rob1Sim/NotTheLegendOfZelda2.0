@@ -4,6 +4,7 @@ import fr.robins.items.combat.weapons.WeaponItem;
 import fr.robins.items.consumable.Consumable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Inventory {
@@ -17,14 +18,19 @@ public class Inventory {
         equippedWeapons = new ArrayList<>();
     }
 
+    public Inventory(Item... items) {
+        this();
+        this.items.addAll(Arrays.asList(items));
+
+    }
+
     public void addItem(Item item) {
         if (item instanceof Consumable consumableItem){
             Item consumable = getItemByName(consumableItem.getName());
             if (consumable != null){
-
                 ((Consumable)consumable).addQuantity(consumableItem.getQuantity());
-
             }else{
+
                 items.add(item);
                 if (equippedConsumables.size() < 4)
                     equippedConsumables.add(consumableItem);
@@ -42,6 +48,7 @@ public class Inventory {
     public void removeItem(Item item) {
         if (item instanceof Consumable consumableItem){
             Consumable c = (Consumable) getItemByName(consumableItem.getName());
+            System.out.println("bah alors "+consumableItem.getQuantity());
             if (c != null){
                 c.decreaseQuantity();
                 if (c.getQuantity() <= 0){

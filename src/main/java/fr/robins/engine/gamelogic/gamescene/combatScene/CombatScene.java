@@ -5,6 +5,8 @@ import fr.robins.engine.controller.SceneController;
 import fr.robins.engine.gamelogic.combat.CombatManager;
 import fr.robins.engine.gamelogic.combat.CombatProperty;
 import fr.robins.engine.gamelogic.gamescene.GameScene;
+import fr.robins.engine.gamelogic.gamestate.GameState;
+import fr.robins.engine.gamelogic.gamestate.GameStateSubject;
 import fr.robins.entities.Fighter;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.Enemy;
@@ -31,7 +33,7 @@ public class CombatScene extends GameScene {
 
     CombatProperty combatProperty;
 
-    public CombatScene(Fighter player, Fighter enemy, SceneController sceneController) {
+    public CombatScene(Fighter player, Fighter enemy, SceneController sceneController, GameStateSubject gameState) {
         super();
 
 
@@ -81,8 +83,7 @@ public class CombatScene extends GameScene {
             }
 
             //Set default combat system values
-            combatProperty = new CombatProperty((Player) player, (Enemy) enemy, actionText,sceneController);
-
+            combatProperty = new CombatProperty((Player) player, (Enemy) enemy, actionText,sceneController, gameState);
             //Set Attack/Object/Spell button
             setEquippedButton(player.getInventory().getEquippedWeapons(), "attack",root);
             setEquippedButton(player.getInventory().getEquippedConsumables(), "object",root);
@@ -116,6 +117,7 @@ public class CombatScene extends GameScene {
         for (int i = 0; i < 4; i ++){
             Button iItem = (Button) root.lookup("#"+btnId+(i+1));
             if (iItem != null){
+
                 if (i >= equippedItem.size()){
                     iItem.setText("");
                     iItem.setDisable(true);

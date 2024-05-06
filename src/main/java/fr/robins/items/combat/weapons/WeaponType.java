@@ -6,8 +6,8 @@ public enum WeaponType {
     KNIFE("Couteau",5,"/sprites/items/daguer.png"),
     IRON_SWORD("Epée",15,"/sprites/items/iron_sword.png"),
     SHORT_SWORD("Epée courte",10,"/sprites/items/short_sword.png"),
-    GHOST_FIST("Ghost Fist",5,""),
-    RAT_CLAWS("Rat Claws",5,""),;
+    GHOST_FIST("Ghost Fist",15,"/sprites/items/short_sword.png"),
+    RAT_CLAWS("Rat Claws",5,"/sprites/items/short_sword.png"),;
 
     private final String name;
     private final int damage;

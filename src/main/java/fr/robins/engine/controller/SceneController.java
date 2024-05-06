@@ -86,7 +86,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         //Désactive la vélocité pour éviter que le joueur s'envole en repassant dans le monde
         gameController.getPlayer().getVelocity().set(0,0);
 
-        gameSceneObserver.setGameScene(new CombatScene(gameController.getPlayer(),enemy,this));
+        gameSceneObserver.setGameScene(new CombatScene(gameController.getPlayer(),enemy,this,gameController.getGameStateSubject()));
         switchToScene();
     }
 
@@ -106,7 +106,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
     }
 
     public void switchToDeathScene(){
-
+        System.out.println("JE SUIS MORT");
     }
 
     public void switchToALocationScene(String xmlMapPath) {
@@ -166,4 +166,6 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
     public DisplayableSubject getDisplayableObserver() {
         return displayableObserver;
     }
+
+
 }

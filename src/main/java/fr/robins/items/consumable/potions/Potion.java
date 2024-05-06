@@ -27,7 +27,6 @@ public class Potion extends Consumable implements Displayable {
      */
     @Override
     public void use(Entity target) {
-        decreaseQuantity();
         Fighter fighter = (Fighter) target;
         String sType= "";
         switch (type) {

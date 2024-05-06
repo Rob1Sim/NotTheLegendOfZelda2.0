@@ -21,6 +21,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.Random;
+
 public class GameController implements GameStateObserver, DisplayableListObserver, GameSceneObserver {
 
     private Player player;
@@ -93,7 +95,6 @@ public class GameController implements GameStateObserver, DisplayableListObserve
         if (gameState != GameState.DEAD && player.getHp() <= 0){
             gmObserver.setGameState(GameState.DEAD);
         }
-
         switch (gameState){
             case START:
                 break;
@@ -141,5 +142,9 @@ public class GameController implements GameStateObserver, DisplayableListObserve
 
     public Player getPlayer() {
         return player;
+    }
+
+    public GameStateSubject getGameStateSubject() {
+        return gmObserver;
     }
 }

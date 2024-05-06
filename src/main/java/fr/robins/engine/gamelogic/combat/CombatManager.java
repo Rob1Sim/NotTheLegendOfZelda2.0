@@ -3,10 +3,12 @@ package fr.robins.engine.gamelogic.combat;
 
 import fr.robins.engine.gamelogic.gamescene.combatScene.CombatScene;
 import fr.robins.engine.gamelogic.gamescene.combatScene.CombatSceneController;
+import fr.robins.engine.gamelogic.gamestate.GameState;
 import fr.robins.entities.Fighter;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.Enemy;
 import fr.robins.items.Item;
+import fr.robins.items.ItemType;
 import fr.robins.items.combat.IAttack;
 import fr.robins.items.combat.spells.Spell;
 import fr.robins.items.combat.weapons.WeaponItem;
@@ -34,12 +36,82 @@ public class CombatManager implements EventHandler<ActionEvent> {
         this.combatProperty = combatProperty;
     }
 
-    private void playerTurn(){
+    @Override
+    public void handle(ActionEvent event) {
+        String id =  ((Button)event.getSource()).getId();
 
+        if (combatProperty.getStarter() != 0){
+            enemyTurn(event, id);
+        }
+        if (!isCombatOver()){
+
+            int actionIndex = Integer.parseInt(String.valueOf(id.charAt(id.length() - 1)));
+            actionIndex--;
+            IAttack attack = null;
+            if (id.contains("attack")){
+                attack  = (WeaponItem) player.getInventory().getEquippedWeapons().get(actionIndex);
+            } else if (id.contains("spell")) {
+                attack = player.getSpells()[actionIndex];
+            }else {
+                Consumable item = (Consumable) player.getInventory().getEquippedConsumables().get(actionIndex);
+                useConsumables(item,event);
+            }
+            if (attack != null){
+                attack(attack,player,enemy);
+            }
+            //Display the modifications
+            refreshUI(event, id,true);
+
+            if (isCombatOver()){
+                endCombat(event);
+            }else{
+                if (combatProperty.getStarter() == 0){
+                    disableMenu(event,true);
+                    enemyTurn(event, id);
+                    disableMenu(event,false);
+
+                }
+                combatProperty.setTurnNumber(combatProperty.getTurnNumber()+1);
+            }
+        }else
+            endCombat(event);
     }
+    private void enemyTurn(ActionEvent event, String id){
+        System.out.println("Je joue connard");
 
-    private void enemyTurn(){
 
+        int whatDoIDo = new Random().nextInt(3);
+
+        int spellNum = new Random().nextInt(enemy.getSpells().length);
+        if(whatDoIDo == 0){
+            if ((enemy.getMana() - enemy.getSpells()[spellNum].getManaCost())<=0){
+                whatDoIDo = 1;
+            }
+        } else if (whatDoIDo == 2 && enemy.getInventory().getItemsByClass(ItemType.CONSUMABLE).isEmpty()) {
+            whatDoIDo = 1;
+        }
+
+        switch (whatDoIDo){
+            case 0:
+                System.out.println("Je lance un spell : "+enemy.getSpells()[spellNum]);
+                enemy.getSpells()[spellNum].attack(enemy,player);
+                break;
+            case 1:
+                int whichAttack = new Random().nextInt(enemy.getInventory().getItemsByClass(ItemType.WEAPON).size());
+                WeaponItem weapon = (WeaponItem) enemy.getInventory().getItemsByClass(ItemType.WEAPON).get(whichAttack);
+                weapon.attack(enemy,player);
+                System.out.println("j'attaque "+weapon);
+
+                break;
+            case 2:
+                int whichPotion = new Random().nextInt(enemy.getInventory().getItemsByClass(ItemType.CONSUMABLE).size());
+                Consumable consumable = (Consumable) enemy.getInventory().getItemsByClass(ItemType.CONSUMABLE).get(whichPotion);
+                consumable.use(enemy);
+                System.out.println("j'utilise "+consumable);
+
+                break;
+        }
+        refreshUI(event,id,false);
     }
 
     private boolean isCombatOver(){
@@ -50,13 +122,17 @@ public class CombatManager implements EventHandler<ActionEvent> {
      * Instruction to do before leaving combat
      */
     private void endCombat(ActionEvent event){
-        Platform.runLater(()->{
-            combatProperty.setActionText(enemy.getDeathPhrase());
-        });
-        Button leaveButton = (Button) ((Button)event.getSource()).getScene().lookup("#leaveBtn");
-        leaveButton.setDisable(false);
-        leaveButton.setText("Quitter");
-        leaveButton.setOnAction(new LeaveCombat(combatProperty,enemy));
+        if (enemy.getHp()<=0){
+            Platform.runLater(()->{
+                combatProperty.setActionText(enemy.getDeathPhrase());
+            });
+            Button leaveButton = (Button) ((Button)event.getSource()).getScene().lookup("#leaveBtn");
+            leaveButton.setDisable(false);
+            leaveButton.setText("Quitter");
+            leaveButton.setOnAction(new LeaveCombat(combatProperty,enemy));
+        }else{
+            combatProperty.getGameState().setGameState(GameState.DEAD);
+        }
     }
 
 
@@ -69,53 +145,24 @@ public class CombatManager implements EventHandler<ActionEvent> {
             consumable.use(enemy);
         else consumable.use(player);
         player.getInventory().removeItem(consumable);
-        System.out.println(player.getInventory().getEquippedConsumables());
         Pane root = (Pane) ((Button)event.getSource()).getScene().getRoot();
+        System.out.println("Il est appelé");
         CombatScene.setEquippedButton(player.getInventory().getEquippedConsumables(),"object",root);
     }
 
-    @Override
-    public void handle(ActionEvent event) {
-        if (combatProperty.getTurnNumber() == 0 && combatProperty.getStarter() != 0){
-            enemyTurn();
-        }
-        String id =  ((Button)event.getSource()).getId();
 
-        int actionIndex = Integer.parseInt(String.valueOf(id.charAt(id.length() - 1)));
-        actionIndex--;
-        IAttack attack = null;
-        if (id.contains("attack")){
-            attack  = (WeaponItem) player.getInventory().getEquippedWeapons().get(actionIndex);
-        } else if (id.contains("spell")) {
-            attack = player.getSpells()[actionIndex];
-        }else {
-            Consumable item = (Consumable) player.getInventory().getEquippedConsumables().get(actionIndex);
-            useConsumables(item,event);
-        }
-        if (attack != null){
-            attack(attack,player,enemy);
-        }
-        //Display the modifications
-        refreshUI(event, id);
-
-        if (isCombatOver()){
-            endCombat(event);
-        }
-
-        //Disables les boutons
-        //Bloquer le thread le temps que les joueurs puissent lire
-        //si l'enemie ou le joueur est mort quitter le combat
-
-    }
 
     /**
      * Refresh variables display on the screen
      */
-    private void refreshUI(ActionEvent event, String id) {
+    private void refreshUI(ActionEvent event, String id, boolean playerTurn) {
         Platform.runLater(()->{
-            if (!Objects.equals(enemy.getTextToDisplay(), ""))
-                combatProperty.setActionText(enemy.getTextToDisplay());
-            else combatProperty.setActionText(player.getTextToDisplay());
+
+            if (playerTurn){
+                combatProperty.setActionText(combatProperty.getActionText().getText()+"\n>"+enemy.getTextToDisplay());
+            }else {
+                combatProperty.setActionText(combatProperty.getActionText().getText()+"\n>"+player.getTextToDisplay());
+            }
             //refresh the bars
             refreshLoadingBars(event);
 
@@ -134,6 +181,14 @@ public class CombatManager implements EventHandler<ActionEvent> {
         (((Button)event.getSource()).getScene().lookup("#spellBtn")).setVisible(true);
         (((Button)event.getSource()).getScene().lookup("#objectBtn")).setVisible(true);
         (((Button)event.getSource()).getScene().lookup("#runBtn")).setVisible(true);
+
+    }
+
+    private void disableMenu(ActionEvent event, boolean isDisable){
+        (((Button)event.getSource()).getScene().lookup("#attackBtn")).setDisable(isDisable);
+        (((Button)event.getSource()).getScene().lookup("#spellBtn")).setDisable(isDisable);
+        (((Button)event.getSource()).getScene().lookup("#objectBtn")).setDisable(isDisable);
+        (((Button)event.getSource()).getScene().lookup("#runBtn")).setDisable(isDisable);
     }
 
     private void refreshLoadingBars(ActionEvent event){
@@ -147,8 +202,6 @@ public class CombatManager implements EventHandler<ActionEvent> {
         enemyHpBar.setProgress((double) enemy.getHp() /enemy.getMaxHp());
         enemyMpBar.setProgress((double) enemy.getMana() /enemy.getMaxMana());
 
-        System.out.println("Mana : "+playerMpBar.getProgress());
-        System.out.println("Real Mana : "+player.getMana() +" Max mana : "+player.getMaxMana()+" division:"+ player.getMana()/player.getMaxMana());
 
     }
 

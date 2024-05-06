@@ -26,7 +26,6 @@ public abstract class Fighter extends Entity implements Displayable {
      * @param isDodgeable
      */
     public void modifyStatistics(int modificator, CharacType characType, boolean isDodgeable){
-        System.out.println("Ehoh");
         if(isDodging(isDodgeable)){
             modificator = 0;
             textToDisplay = getName() + " à esquivé !";
@@ -48,7 +47,6 @@ public abstract class Fighter extends Entity implements Displayable {
      * @param attackType Which kind of attaks it is (Magical, Bodily
      */
     public void takeDamage(int damage, boolean isDodgeable, AttackType attackType) {
-        System.out.println("on rentre du boulot");
         if (isDodging(isDodgeable)) {
             int realDamage = damage - getConstitution();
             if (realDamage> 0){
