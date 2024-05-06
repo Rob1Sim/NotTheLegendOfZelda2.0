@@ -171,7 +171,7 @@
                      </font>
                   </Label>
                   <ProgressBar fx:id="playerHp" prefHeight="18.0" prefWidth="483.0" progress="1.0" styleClass="hp-bar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ProgressBar prefHeight="18.0" prefWidth="484.0" progress="1.0" styleClass="mp-bar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ProgressBar fx:id="playerMp" prefHeight="18.0" prefWidth="484.0" progress="1.0" styleClass="mp-bar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Player" GridPane.columnIndex="1">
                      <font>
                         <Font size="30.0" />

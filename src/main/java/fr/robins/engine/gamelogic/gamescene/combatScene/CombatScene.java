@@ -1,10 +1,15 @@
 package fr.robins.engine.gamelogic.gamescene.combatScene;
 
+
+import fr.robins.engine.gamelogic.combat.CombatManager;
+import fr.robins.engine.gamelogic.combat.CombatProperty;
 import fr.robins.engine.gamelogic.gamescene.GameScene;
 import fr.robins.entities.Fighter;
+import fr.robins.entities.Player;
+import fr.robins.entities.enemy.Enemy;
 import fr.robins.items.Item;
-import fr.robins.items.combat.spells.Spell;
 import fr.robins.types.Utilities;
+import fr.robins.types.exceptions.CombatLoadingException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,16 +23,16 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
 
-
+/**
+ * Initialise a combat scene, the panel can be accessed by the method getPanel()
+ */
 public class CombatScene extends GameScene {
 
-    private final Fighter player;
-    private final Fighter enemy;
+    CombatProperty combatProperty;
 
     public CombatScene( Fighter player, Fighter enemy) {
         super();
-        this.player = player;
-        this.enemy = enemy;
+
 
         FXMLLoader loader = new FXMLLoader();
         try {
@@ -54,11 +59,15 @@ public class CombatScene extends GameScene {
             if (playerHpBar != null && playerMpBar != null){
                 playerHpBar.setProgress((double) player.getHp() /player.getMaxHp());
                 playerMpBar.setProgress((double) player.getMana() /player.getMaxMana());
+            }else {
+                throw new CombatLoadingException("Error while loading player loading bars !");
             }
 
             if (enemyHpBar != null && enemyMpBar != null){
                 enemyHpBar.setProgress((double) enemy.getHp() /enemy.getMaxHp());
                 enemyMpBar.setProgress((double) enemy.getMana() /enemy.getMaxMana());
+            }else{
+                throw new CombatLoadingException("Error while loading enemy loading bars !");
             }
 
             //Set Action text
@@ -66,7 +75,12 @@ public class CombatScene extends GameScene {
             if (actionText != null){
                 actionText.setWrapText(true);
                 actionText.setText("Oh non un "+enemy.getName()+" apparait !");
+            }else{
+                throw new CombatLoadingException("Error while loading action text !");
             }
+
+            //Set default combat system values
+            combatProperty = new CombatProperty((Player) player, (Enemy) enemy, actionText);
 
             //Set Attack/Object/Spell button
             setEquippedButton(player.getInventory().getEquippedWeapons(), "attack",root);
@@ -77,34 +91,51 @@ public class CombatScene extends GameScene {
                     spellButton.setText(player.getSpells()[i].getSpellName());
                 }
             }
-            disabledEmptyButton(root);
+            disabledEmptyButtonAndSetAction(root);
 
             root.setPrefSize(Utilities.WINDOW_WIDTH,Utilities.WINDOW_HEIGHT);
             super.pane = root;
 
         } catch (IOException e) {
             throw new RuntimeException("Error have occured while loading the scene :  "+e);
+        } catch (CombatLoadingException e) {
+            throw new RuntimeException(e);
         }
 
 
     }
 
-    private static void setEquippedButton(List<Item>  equippedItem, String btnId , Pane root){
-        for (int i = 0; i < equippedItem.size(); i ++){
+    /**
+     * Change name of the buttons for the quipement pass
+     * @param equippedItem list of equiped that should be visible on the menu
+     * @param btnId the id of the button (attack, spell, object)
+     * @param root the pane
+     */
+    public static void setEquippedButton(List<Item>  equippedItem, String btnId , Pane root){
+        for (int i = 0; i < 4; i ++){
             Button iItem = (Button) root.lookup("#"+btnId+(i+1));
             if (iItem != null){
-                iItem.setText(equippedItem.get(i).getName());
+                if (i >= equippedItem.size()){
+                    iItem.setText("");
+                    iItem.setDisable(true);
+                }else{
+                    iItem.setText(equippedItem.get(i).getName());
+                }
             }
+
         }
     }
 
-    private static void disabledEmptyButton(Pane root){
-        String[] ids = new String[]{"#attack","#object","spell"};
-        for (int i = 0; i < ids.length; i++){
-            for (int y = 0; y < 4; y++){
-                Button idButton = (Button) root.lookup(ids[i]+(y+1));
-                if (idButton != null && Objects.equals(idButton.getText(), "")){
-                    idButton.setDisable(true);
+    private void disabledEmptyButtonAndSetAction(Pane root){
+        String[] ids = new String[]{"#attack","#object","#spell"};
+        for (String id : ids) {
+            for (int y = 0; y < 4; y++) {
+                Button idButton = (Button) root.lookup(id + (y + 1));
+                if (idButton != null) {
+                    if (Objects.equals(idButton.getText(), ""))
+                        idButton.setDisable(true);
+                    else
+                        idButton.setOnAction(new CombatManager(combatProperty));
                 }
             }
         }

@@ -4,8 +4,10 @@ package fr.robins.items.combat.weapons;
 import fr.robins.engine.collisions.HitBox;
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.entities.Fighter;
+import fr.robins.entities.enemy.Enemy;
 import fr.robins.items.Collectable;
 import fr.robins.items.Item;
+import fr.robins.items.combat.AttackType;
 import fr.robins.items.combat.IAttack;
 import fr.robins.types.Vector2D;
 import javafx.scene.Node;
@@ -21,7 +23,10 @@ public class WeaponItem extends Item implements IAttack, Collectable, Displayabl
 
     @Override
     public void attack(Fighter fighter, Fighter target) {
-        target.takeDamage(damage * (1+(fighter.getStrength()/100)), true);
+        if (target instanceof Enemy enemy)
+            enemy.takeDamage(damage * (1+(fighter.getStrength()/100)), true, AttackType.BODILICAL);
+        else
+            target.takeDamage(damage * (1+(fighter.getStrength()/100)), true, AttackType.BODILICAL);
     }
 
     public int getDamage() {

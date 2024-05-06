@@ -2,6 +2,8 @@ package fr.robins.items.combat.spells;
 
 
 import fr.robins.entities.Fighter;
+import fr.robins.entities.enemy.Enemy;
+import fr.robins.items.combat.AttackType;
 import fr.robins.items.combat.IAttack;
 import fr.robins.entities.entitiestype.CharacType;
 import fr.robins.entities.entitiestype.EntityType;
@@ -27,7 +29,7 @@ public class Spell implements IAttack {
     @Override
     public void attack(Fighter fighter , Fighter target) {
         if (fighter.getMana() - manaCost < 0){
-            System.out.println("Tu n'a plus de mana");
+            fighter.setTextToDisplay("Tu n'a pas assez de mana !");
             return;
         }
 
@@ -35,13 +37,22 @@ public class Spell implements IAttack {
 
         if (entityTypeToModify == EntityType.ENEMY){
             if (characToModify == CharacType.HP){
-                target.takeDamage(modificator,true);
+                if (target instanceof Enemy enemy)
+                    enemy.takeDamage(modificator,true, AttackType.MAGICAL);
+                else
+                    target.takeDamage(modificator,true, AttackType.MAGICAL);
+
             }else{
                 fighter.modifyStatistics(-modificator, characToModify, true);
             }
         }else{
             fighter.modifyStatistics(modificator, characToModify, false);
         }
+    }
+
+    @Override
+    public int getDamage() {
+        return modificator;
     }
 
     /**

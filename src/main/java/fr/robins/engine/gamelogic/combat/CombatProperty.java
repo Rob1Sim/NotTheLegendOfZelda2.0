@@ -1,0 +1,76 @@
+package fr.robins.engine.gamelogic.combat;
+
+import fr.robins.entities.Player;
+import fr.robins.entities.enemy.Enemy;
+import javafx.scene.control.Label;
+
+
+import java.util.Random;
+
+public class CombatProperty {
+
+    private Player player;
+    private Enemy enemy;
+    private int turnNumber;
+    private int starter;
+    private Label actionText;
+
+    public CombatProperty(Player player, Enemy enemy, Label actionText){
+        this.player = player;
+        this.enemy = enemy;
+        this.turnNumber = 0;
+        this.starter = new Random().nextInt(2);
+        this.actionText = actionText;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Enemy getEnemy() {
+        return enemy;
+    }
+
+    public void setEnemy(Enemy enemy) {
+        this.enemy = enemy;
+    }
+
+    public int getTurnNumber() {
+        return turnNumber;
+    }
+
+    public void setTurnNumber(int turnNumber) {
+        this.turnNumber = turnNumber;
+    }
+
+    /**
+     * Starter number
+     * @return 0 -> Player, 1 -> Enemy
+     */
+    public int getStarter() {
+        return starter;
+    }
+
+    public void setStarter(int starter) {
+        this.starter = starter;
+    }
+
+    /**
+     * Set the text displayed next to the buttons
+     */
+    public Label getActionText() {
+        return actionText;
+    }
+
+    /**
+     * Set the text displayed next to the buttons
+     * @param actionText new text
+     */
+    public void setActionText(String actionText) {
+        this.actionText.setText(actionText);
+    }
+}

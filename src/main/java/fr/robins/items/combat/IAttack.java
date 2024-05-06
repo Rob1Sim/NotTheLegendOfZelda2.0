@@ -9,5 +9,5 @@ public interface IAttack {
      * @param target Targer
      */
     void attack(Fighter fighter, Fighter target);
-
+    int getDamage();
 }

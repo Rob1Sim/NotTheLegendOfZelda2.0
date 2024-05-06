@@ -3,6 +3,7 @@ package fr.robins.entities;
 
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.entities.entitiestype.CharacType;
+import fr.robins.items.combat.AttackType;
 import fr.robins.items.combat.spells.Spell;
 import fr.robins.types.Vector2D;
 
@@ -10,10 +11,12 @@ import java.util.Random;
 
 public abstract class Fighter extends Entity implements Displayable {
     private final Spell[] spells;
+    private String textToDisplay;
 
     public Fighter(String name, int hp, int mana, int constitution, int strength, int dexterity, int money, Vector2D worldPosition, String spritePath, Spell[] spells) {
         super(name, hp, mana, constitution, strength,dexterity,money,worldPosition,spritePath);
         this.spells = spells;
+        textToDisplay ="";
     }
 
     /**
@@ -23,12 +26,12 @@ public abstract class Fighter extends Entity implements Displayable {
      * @param isDodgeable
      */
     public void modifyStatistics(int modificator, CharacType characType, boolean isDodgeable){
-
+        System.out.println("Ehoh");
         if(isDodging(isDodgeable)){
             modificator = 0;
-            System.out.println(getName() + " à esquivé !");
+            textToDisplay = getName() + " à esquivé !";
         }else {
-            System.out.println(getName() + " reçois "+modificator+" de "+characType.getName()+" !");
+            textToDisplay = getName() + " reçois "+modificator+" de "+characType.getName()+" !";
         }
 
         switch (characType){
@@ -39,18 +42,23 @@ public abstract class Fighter extends Entity implements Displayable {
         }
     }
 
-    public void takeDamage(int damage, boolean isDodgeable) {
-
+    /**
+     * Call when something harm the fighter
+     * @param isDodgeable False -> the fighter will always dodge
+     * @param attackType Which kind of attaks it is (Magical, Bodily
+     */
+    public void takeDamage(int damage, boolean isDodgeable, AttackType attackType) {
+        System.out.println("on rentre du boulot");
         if (isDodging(isDodgeable)) {
             int realDamage = damage - getConstitution();
             if (realDamage> 0){
                 setHp(getHp() - realDamage);
-                System.out.println(getName() + " prend "+realDamage+" dégats !");
+                textToDisplay = getName() + " prend "+realDamage+" dégats !";
             }else{
-                System.out.println(getName() + " prend encaisse les coups !");
+                textToDisplay = getName() + " prend encaisse les coups !";
             }
         }else {
-            System.out.println(getName() + " à esquivé une attaque !");
+            textToDisplay = getName() + " à esquivé une attaque !";
         }
     }
 
@@ -61,5 +69,13 @@ public abstract class Fighter extends Entity implements Displayable {
 
     public Spell[] getSpells() {
         return spells;
+    }
+
+    public String getTextToDisplay() {
+        return textToDisplay;
+    }
+
+    public void setTextToDisplay(String textToDisplay) {
+        this.textToDisplay = textToDisplay;
     }
 }

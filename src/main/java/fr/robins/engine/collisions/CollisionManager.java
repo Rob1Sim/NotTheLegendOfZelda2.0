@@ -174,7 +174,6 @@ public class CollisionManager {
 
         if (index != -1){
             if (items.get(index) instanceof Collectable collectable){
-
                 entity.getInventory().addItem((Item) collectable);
                 GameScene.removeDisplayable(items.get(index),pane);
                 displayableObserver.remove(items.get(index));
