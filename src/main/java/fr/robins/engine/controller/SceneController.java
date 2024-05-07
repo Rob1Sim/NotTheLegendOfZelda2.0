@@ -23,10 +23,13 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class SceneController implements DisplayableListObserver, GameSceneObserver {
     private Stage stage;
@@ -39,6 +42,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
     private GameScene currentGameScene;
     private List<Displayable> displayable;
 
+    MediaPlayer mediaPlayer;
     //Observers
     private final DisplayableSubject displayableObserver;
     private final GameSceneSubject gameSceneObserver;
@@ -65,6 +69,9 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
                 Potion.potionGenerator(PotionType.HEAL_POTION,32,36),
                 Potion.potionGenerator(PotionType.HEAL_POTION,38,35),
                 Potion.potionGenerator(PotionType.MANA_POTION, 39,35));
+
+        Media walkingMusic = new Media(Objects.requireNonNull(getClass().getResource("/music/walking.wav")).toExternalForm());
+        mediaPlayer = new MediaPlayer(walkingMusic);
     }
 
     /**
@@ -73,7 +80,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
     public void switchToGameScene(ActionEvent event) {
         stage = (Stage) (((Node)event.getSource())).getScene().getWindow();
 
-        //Change player nameq
+        //Change player name
         TextField playerName = (TextField) stage.getScene().lookup("#playerName");
         if (playerName != null) {
             if (playerName.getText() != null) {
@@ -89,6 +96,9 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
 
         switchToScene(new Vector2D(35,33));
         gameController.setGameState(GameState.WALKING);
+        //Mets la musique
+
+        mediaPlayer.setAutoPlay(true);
     }
 
     public void switchToCombatScene(Fighter enemy) {
@@ -100,6 +110,11 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
 
         gameSceneObserver.setGameScene(new CombatScene(gameController.getPlayer(),enemy,this,gameController.getGameStateSubject()));
         switchToScene();
+
+        Media combatMusic = new Media(getClass().getResource("/music/fight.wav").toExternalForm());
+        mediaPlayer.pause();
+        mediaPlayer = new MediaPlayer(combatMusic);
+        mediaPlayer.setAutoPlay(true);
     }
 
     public void switchToGameSceneAfterCombat(ActionEvent event) {
@@ -111,6 +126,11 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         //Renvoie le joueur à sa position antérieur
         Player.teleportPlayer(currentGameScene.getPane(),gameController.getPlayer().getPosition());
         gameController.setGameState(GameState.WALKING);
+
+        Media combatMusic = new Media(getClass().getResource("/music/walking.wav").toExternalForm());
+        mediaPlayer.pause();
+        mediaPlayer = new MediaPlayer(combatMusic);
+        mediaPlayer.setAutoPlay(true);
     }
 
     public void switchToEndScene() {

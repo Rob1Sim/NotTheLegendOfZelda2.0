@@ -13,8 +13,9 @@ import fr.robins.entities.Player;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -61,20 +62,26 @@ public class GameController implements GameStateObserver, DisplayableListObserve
             InputStream fxmlStream = getClass().getResourceAsStream("/sceneBuilder/startScene.fxml");
             Pane root = loader.load(fxmlStream);
 
+            Media media = new Media(getClass().getResource("/music/menu.wav").toExternalForm());
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.setAutoPlay(true);
 
             //Button listener
-
             Button startButton = (Button) root.lookup("#startBtn");
             if (startButton != null) {
-                startButton.setOnAction(sceneController::switchToGameScene);
+                startButton.setOnAction(event -> {
+                    mediaPlayer.pause();
+                    sceneController.switchToGameScene(event);
+                });
             }
 
             Button leaveButton = (Button) root.lookup("#quitBtn");
 
             if (leaveButton != null) {
                 leaveButton.setOnAction(actionEvent -> stage.close());
-
             }
+
+
 
             //Scene settings
             Scene scene = new Scene(root);
