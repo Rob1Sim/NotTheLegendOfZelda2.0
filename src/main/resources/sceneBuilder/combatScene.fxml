@@ -171,27 +171,25 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
-            <children>
-                <Label fx:id="enemyName" prefHeight="53.0" prefWidth="387.0" text="Mage" GridPane.columnIndex="1">
-                    <font>
-                        <Font size="30.0"/>
-                    </font>
-                </Label>
-                <Label alignment="CENTER" prefHeight="86.0" prefWidth="148.0" text="HP" GridPane.rowIndex="1">
-                    <font>
-                        <Font size="20.0"/>
-                    </font>
-                </Label>
-                <Label alignment="CENTER" prefHeight="67.0" prefWidth="57.0" text="MP" GridPane.rowIndex="2">
-                    <font>
-                        <Font size="20.0"/>
-                    </font>
-                </Label>
-                <ProgressBar fx:id="enemyHp" prefHeight="21.0" prefWidth="477.0" progress="1.0" styleClass="hp-bar"
-                             GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                <ProgressBar fx:id="enemyMp" prefHeight="18.0" prefWidth="479.0" progress="1.0" styleClass="mp-bar"
-                             GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-            </children>
+            <Label fx:id="enemyName" prefHeight="53.0" prefWidth="387.0" text="Mage" GridPane.columnIndex="1">
+                <font>
+                    <Font size="30.0"/>
+                </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="86.0" prefWidth="148.0" text="HP" GridPane.rowIndex="1">
+                <font>
+                    <Font size="20.0"/>
+                </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="67.0" prefWidth="57.0" text="MP" GridPane.rowIndex="2">
+                <font>
+                    <Font size="20.0"/>
+                </font>
+            </Label>
+            <ProgressBar fx:id="enemyHp" prefHeight="21.0" prefWidth="477.0" progress="1.0" styleClass="hp-bar"
+                         GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <ProgressBar fx:id="enemyMp" prefHeight="18.0" prefWidth="479.0" progress="1.0" styleClass="mp-bar"
+                         GridPane.columnIndex="1" GridPane.rowIndex="2"/>
         </GridPane>
         <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
             <columnConstraints>
@@ -203,27 +201,25 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
-            <children>
-                <Label alignment="CENTER" text="HP" GridPane.rowIndex="1">
-                    <font>
-                        <Font size="20.0"/>
-                    </font>
-                </Label>
-                <Label alignment="CENTER" text="MP" GridPane.rowIndex="2">
-                    <font>
-                        <Font size="20.0"/>
-                    </font>
-                </Label>
-                <ProgressBar fx:id="playerHp" prefHeight="18.0" prefWidth="483.0" progress="1.0" styleClass="hp-bar"
-                             GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                <ProgressBar fx:id="playerMp" prefHeight="18.0" prefWidth="484.0" progress="1.0" styleClass="mp-bar"
-                             GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <Label text="Player" GridPane.columnIndex="1">
-                    <font>
-                        <Font size="30.0"/>
-                    </font>
-                </Label>
-            </children>
+            <Label alignment="CENTER" text="HP" GridPane.rowIndex="1">
+                <font>
+                    <Font size="20.0"/>
+                </font>
+            </Label>
+            <Label alignment="CENTER" text="MP" GridPane.rowIndex="2">
+                <font>
+                    <Font size="20.0"/>
+                </font>
+            </Label>
+            <ProgressBar fx:id="playerHp" prefHeight="18.0" prefWidth="483.0" progress="1.0" styleClass="hp-bar"
+                         GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <ProgressBar fx:id="playerMp" prefHeight="18.0" prefWidth="484.0" progress="1.0" styleClass="mp-bar"
+                         GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Label text="Player" GridPane.columnIndex="1">
+                <font>
+                    <Font size="30.0"/>
+                </font>
+            </Label>
         </GridPane>
         <ImageView fx:id="enemyImage" fitHeight="193.0" fitWidth="239.0" pickOnBounds="true" preserveRatio="true"
                    GridPane.columnIndex="2"/>

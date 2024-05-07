@@ -32,8 +32,6 @@ public class CombatSceneController {
     @FXML
     private Button returnBtn;
 
-    @FXML
-    private Label actionTxt;
 
     //region Attack button
     @FXML
@@ -81,17 +79,17 @@ public class CombatSceneController {
     public void showAttackMenu(ActionEvent event) {
         changeMenuBtnVisibility(false);
         changeAttackButtonVisibility(true);
-        changeReturnButtonState(false);
+        changeReturnButtonState();
     }
     public void showSpellMenu(ActionEvent event) {
         changeMenuBtnVisibility(false);
         changeSpellButtonVisibility(true);
-        changeReturnButtonState(false);
+        changeReturnButtonState();
     }
     public void showObjectMenu(ActionEvent event) {
         changeMenuBtnVisibility(false);
         changeObjectButtonVisibility(true);
-        changeReturnButtonState(false);
+        changeReturnButtonState();
     }
 
     public void returnButton(ActionEvent event) {
@@ -103,7 +101,7 @@ public class CombatSceneController {
             changeObjectButtonVisibility(false);
         }
         changeMenuBtnVisibility(true);
-        changeReturnButtonState(false);
+        changeReturnButtonState();
     }
 
     /**
@@ -141,7 +139,7 @@ public class CombatSceneController {
     /**
      * Change the return button disability (if its make sense)
      */
-    private void changeReturnButtonState(boolean disabled){
-        returnBtn.setDisable(disabled);
+    private void changeReturnButtonState(){
+        returnBtn.setDisable(false);
     }
 }

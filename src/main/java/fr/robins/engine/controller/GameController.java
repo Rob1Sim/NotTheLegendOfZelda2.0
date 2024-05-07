@@ -71,9 +71,7 @@ public class GameController implements GameStateObserver, DisplayableListObserve
             Button leaveButton = (Button) root.lookup("#quitBtn");
 
             if (leaveButton != null) {
-                leaveButton.setOnAction(actionEvent -> {
-                    stage.close();
-                });
+                leaveButton.setOnAction(actionEvent -> stage.close());
 
             }
 
@@ -118,9 +116,6 @@ public class GameController implements GameStateObserver, DisplayableListObserve
 
     @Override
     public void updateDisplayableList() {
-        if (gameState == GameState.WALKING){
-            boolean isDisplayableListChanging = true;
-        }
     }
 
     @Override
