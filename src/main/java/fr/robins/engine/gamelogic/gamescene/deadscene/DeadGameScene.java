@@ -13,7 +13,7 @@ public class DeadGameScene extends GameScene {
 
         FXMLLoader loader = new FXMLLoader();
         try {
-            InputStream fxmlStream = getClass().getResourceAsStream("/sceneBuilder/combatScene.fxml");
+            InputStream fxmlStream = getClass().getResourceAsStream("/sceneBuilder/deadScene.fxml");
 
             pane = loader.load(fxmlStream);
 

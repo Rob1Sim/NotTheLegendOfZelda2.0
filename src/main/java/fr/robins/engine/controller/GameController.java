@@ -43,8 +43,9 @@ public class GameController implements GameStateObserver, DisplayableListObserve
 
     private boolean isDisplayableListChanging = false;
 
-    public GameController(Stage stage ) {
+    public GameController(Stage stage, Player player ) {
         this.stage = stage;
+        this.player = player;
 
         this.gmObserver = new GameStateSubject();
         this.gmObserver.attach(this);
@@ -60,7 +61,6 @@ public class GameController implements GameStateObserver, DisplayableListObserve
     public void init(){
         //Initialisation
         gmObserver.setGameState(GameState.START);
-        player = new Player(new Vector2D(Utilities.WINDOW_WIDTH /2,Utilities.WINDOW_HEIGHT /2));
 
 
         FXMLLoader loader = new FXMLLoader();
