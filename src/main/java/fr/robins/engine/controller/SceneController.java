@@ -68,6 +68,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
                 WeaponItem.weaponGenerator(WeaponType.KNIFE,37,31),
                 WeaponItem.weaponGenerator(WeaponType.IRON_SWORD,38,31),
                 WeaponItem.weaponGenerator(WeaponType.AXE,39,31),
+                WeaponItem.weaponGenerator(WeaponType.SHORT_SWORD,42,42),
                 Potion.potionGenerator(PotionType.HEAL_POTION,32,36),
                 Potion.potionGenerator(PotionType.HEAL_POTION,38,35),
                 Potion.potionGenerator(PotionType.MANA_POTION, 39,35));
@@ -133,7 +134,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
     public void switchToInventoryScene(){
         gameController.setGameState(GameState.INVENTORY);
 
-        gameSceneObserver.setGameScene(new InventoryGameScene());
+        gameSceneObserver.setGameScene(new InventoryGameScene(gameController.getPlayer()));
         switchToScene();
     }
 

@@ -11,6 +11,8 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -23,7 +25,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="343.0" styleClass="title" text="Inventaire" GridPane.columnIndex="2">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="343.0" styleClass="title" text="Inventaire" GridPane.columnIndex="3">
                <font>
                   <Font size="50.0" />
                </font>
@@ -33,13 +35,67 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="383.0" styleClass="txt" text="Objets" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="383.0" styleClass="txt" text="Objets de combat" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <VBox fx:id="objectVBox" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+            <VBox fx:id="weaponVBox" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="235.0" prefWidth="228.0" styleClass="txt" text="Autre objets" GridPane.columnIndex="5" GridPane.rowIndex="1">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <VBox fx:id="weaponVBox" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2" />
-            <VBox fx:id="objectVbox" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+            <VBox fx:id="interactibleObjectVBox" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+            <GridPane prefHeight="127.0" prefWidth="168.0" GridPane.columnIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0" prefWidth="64.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="165.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" prefHeight="95.0" prefWidth="115.0" styleClass="txt" text="HP">
+                     <font>
+                        <Font size="25.0" />
+                     </font></Label>
+                  <ProgressBar fx:id="hpLBar" prefWidth="200.0" progress="1.0" styleClass="hp-bar" GridPane.columnIndex="1" />
+                  <ProgressBar fx:id="mpLBar" prefWidth="200.0" progress="1.0" styleClass="mp-bar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="118.0" prefWidth="64.0" styleClass="txt" text="MP" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="25.0" />
+                     </font></Label>
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="5">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="136.0" prefWidth="114.0" styleClass="txt" text="Or :">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="goldLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="123.0" prefWidth="114.0" styleClass="txt" text="Label" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <Label fx:id="warningTxt" alignment="CENTER" contentDisplay="CENTER" prefHeight="126.0" prefWidth="333.0" styleClass="txt-warning" text="Vous ne pouvez pas avoir plus de 4 objets par catégorie ! " textAlignment="CENTER" visible="false" wrapText="true" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </children>

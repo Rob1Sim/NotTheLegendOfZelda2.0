@@ -14,3 +14,25 @@
     -fx-font-family: "8-bit Arcade In";
     -fx-text-fill: white;
 }
+
+.txt-warning{
+    -fx-font-family: "8-bit Arcade In";
+    -fx-text-fill: red;
+}
+
+
+.checkbox{
+    -fx-font-family: "8-bit Arcade In";
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
+
+.hp-bar{
+    -fx-accent: #FF4500;
+    -fx-box-border:#FF4500;
+}
+
+.mp-bar{
+    -fx-accent: #0077b6;
+    -fx-box-border:#0077b6;
+}
