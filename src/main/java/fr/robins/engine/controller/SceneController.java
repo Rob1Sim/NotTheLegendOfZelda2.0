@@ -21,6 +21,7 @@ import fr.robins.world.TileManager;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -71,6 +72,16 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
      */
     public void switchToGameScene(ActionEvent event) {
         stage = (Stage) (((Node)event.getSource())).getScene().getWindow();
+
+        //Change player nameq
+        TextField playerName = (TextField) stage.getScene().lookup("#playerName");
+        if (playerName != null) {
+            if (playerName.getText() != null) {
+                gameController.getPlayer().setName(playerName.getText());
+            }else{
+                gameController.getPlayer().setName("Link");
+            }
+        }
 
         //Map de spawn
         tileManager = new TileManager("/tiles/tilemap/grandeMap.xml");

@@ -4,41 +4,47 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane prefHeight="900.0" prefWidth="1600.0" styleClass="background">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="130.0" prefWidth="533.0" styleClass="title"
-               text="Not the Legend of Zelda" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="130.0" prefWidth="533.0" styleClass="title" text="Not the Legend of Zelda" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <font>
-                <Font size="45.0"/>
+                <Font size="45.0" />
             </font>
         </Label>
-        <Button fx:id="startBtn" mnemonicParsing="false" prefHeight="154.0" prefWidth="533.0" styleClass="txt"
-                text="Commencer" GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <Button fx:id="startBtn" mnemonicParsing="false" prefHeight="154.0" prefWidth="533.0" styleClass="txt" text="Commencer" GridPane.columnIndex="1" GridPane.rowIndex="4">
             <font>
-                <Font size="30.0"/>
+                <Font size="30.0" />
             </font>
         </Button>
-        <Button fx:id="quitBtn" mnemonicParsing="false" prefHeight="132.0" prefWidth="533.0" styleClass="txt"
-                text="Quitter" GridPane.columnIndex="1" GridPane.rowIndex="5">
+        <Button fx:id="quitBtn" mnemonicParsing="false" prefHeight="132.0" prefWidth="533.0" styleClass="txt" text="Quitter" GridPane.columnIndex="1" GridPane.rowIndex="6">
             <font>
-                <Font size="30.0"/>
+                <Font size="30.0" />
             </font>
         </Button>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+            <Label prefHeight="30.0" prefWidth="228.0" styleClass="txt" text="Entrez votre nom :">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="playerName" prefHeight="28.0" prefWidth="306.0" promptText="Link" />
+         </children>
+      </HBox>
     </GridPane>
 </AnchorPane>

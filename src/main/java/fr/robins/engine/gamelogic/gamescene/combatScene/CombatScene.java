@@ -87,6 +87,13 @@ public class CombatScene extends GameScene {
                 throw new CombatLoadingException("Error while loading enemy name Text !");
             }
 
+            Label playerName = (Label) root.lookup("#playerName");
+            if (playerName != null){
+                System.out.println(player.getName());
+                playerName.setText(player.getName());
+            }else{
+                throw new CombatLoadingException("Error while loading player name Text !");
+            }
 
 
             //Set default combat system values
