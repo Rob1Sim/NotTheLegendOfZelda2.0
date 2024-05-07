@@ -52,7 +52,6 @@ public class Potion extends Consumable implements Displayable {
             }
         }
         fighter.setTextToDisplay(target.getName()+" reçois "+modificator +sType+" !");
-        System.out.println("test");
     }
 
 }

@@ -1,12 +1,9 @@
 package fr.robins.engine;
 
-import fr.robins.engine.gamelogic.combat.CombatProperty;
 import fr.robins.entities.Player;
-import fr.robins.entities.enemy.Enemy;
 import fr.robins.types.DirectionType;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;

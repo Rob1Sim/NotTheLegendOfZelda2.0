@@ -10,14 +10,17 @@ import javafx.scene.control.Label;
 
 import java.util.Random;
 
+/**
+ * Store all data that the combat manager need to access
+ */
 public class CombatProperty {
 
     private Player player;
     private Enemy enemy;
     private int turnNumber;
-    private int starter;
-    private Label actionText;
-    private GameStateSubject gameState;
+    private final int starter;
+    private final Label actionText;
+    private final GameStateSubject gameState;
 
     private final SceneController sceneController;
 
@@ -62,11 +65,6 @@ public class CombatProperty {
     public int getStarter() {
         return starter;
     }
-
-    public void setStarter(int starter) {
-        this.starter = starter;
-    }
-
     /**
      * Set the text displayed next to the buttons
      */

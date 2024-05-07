@@ -10,22 +10,15 @@ import fr.robins.engine.gamelogic.gamestate.GameStateObserver;
 import fr.robins.engine.gamelogic.gamestate.GameStateSubject;
 import fr.robins.engine.gamelogic.displayable.*;
 import fr.robins.entities.Player;
-import fr.robins.types.Utilities;
-import fr.robins.types.Vector2D;
-import fr.robins.world.TileManager;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
-import java.util.Random;
 
 public class GameController implements GameStateObserver, DisplayableListObserver, GameSceneObserver {
 
@@ -62,6 +55,7 @@ public class GameController implements GameStateObserver, DisplayableListObserve
         //Initialisation
         gmObserver.setGameState(GameState.START);
 
+        //region Start Menu
 
         FXMLLoader loader = new FXMLLoader();
         try {
@@ -86,20 +80,19 @@ public class GameController implements GameStateObserver, DisplayableListObserve
             }
 
             //Scene settings
-            //Start Menu
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/sceneBuilder/startScene.css")).toExternalForm());
-
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/sceneBuilder/css/startScene.css")).toExternalForm());
             //Stage settings
             stage.setFullScreenExitHint("");
             stage.setResizable(false);
             stage.setTitle("Not the legend of zelda");
-            //sceneController.test(stage);
             stage.setScene(scene);
             stage.show();
         }catch (IOException e){
             throw new RuntimeException("Error loading Start scene.", e);
         }
+        //endregion
+
     }
 
     public void update(){
@@ -107,8 +100,6 @@ public class GameController implements GameStateObserver, DisplayableListObserve
             gmObserver.setGameState(GameState.DEAD);
         }
         switch (gameState){
-            case START:
-                break;
             case WALKING:
                 Inputs.handleMovementInput(sceneController.getCurrentScene(),player, sceneController.getPane(),stage);
                 CollisionManager.environmentCollisionChecker(player,sceneController.getTileManager());
@@ -116,9 +107,6 @@ public class GameController implements GameStateObserver, DisplayableListObserve
                 break;
             case WIN:
                 sceneController.switchToEndScene();
-                break;
-            case DEAD:
-                sceneController.switchToDeathScene();
                 break;
         }
     }

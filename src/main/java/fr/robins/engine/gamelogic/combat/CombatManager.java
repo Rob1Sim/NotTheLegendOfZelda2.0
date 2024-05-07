@@ -2,33 +2,35 @@ package fr.robins.engine.gamelogic.combat;
 
 
 import fr.robins.engine.gamelogic.gamescene.combatScene.CombatScene;
-import fr.robins.engine.gamelogic.gamescene.combatScene.CombatSceneController;
 import fr.robins.engine.gamelogic.gamestate.GameState;
 import fr.robins.entities.Fighter;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.Enemy;
-import fr.robins.items.Item;
 import fr.robins.items.ItemType;
 import fr.robins.items.combat.IAttack;
-import fr.robins.items.combat.spells.Spell;
 import fr.robins.items.combat.weapons.WeaponItem;
 import fr.robins.items.consumable.Consumable;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Pane;
 
-import java.util.Objects;
 import java.util.Random;
 
+/**
+ * Represent one turn of a combat, called when the player select an action
+ */
 public class CombatManager implements EventHandler<ActionEvent> {
 
     private final Player player;
     private final Enemy enemy;
+    /**
+     * Contains all data needed to assure a combat (cant pass it in other way because it is called by a button)
+     */
     private final CombatProperty combatProperty;
+
     public CombatManager(CombatProperty combatProperty){
 
         this.player = combatProperty.getPlayer();
@@ -76,10 +78,8 @@ public class CombatManager implements EventHandler<ActionEvent> {
         }else
             endCombat(event);
     }
+
     private void enemyTurn(ActionEvent event, String id){
-        System.out.println("Je joue connard");
-
-
         int whatDoIDo = new Random().nextInt(3);
 
         int spellNum = new Random().nextInt(enemy.getSpells().length);
@@ -93,21 +93,18 @@ public class CombatManager implements EventHandler<ActionEvent> {
 
         switch (whatDoIDo){
             case 0:
-                System.out.println("Je lance un spell : "+enemy.getSpells()[spellNum]);
                 enemy.getSpells()[spellNum].attack(enemy,player);
                 break;
             case 1:
                 int whichAttack = new Random().nextInt(enemy.getInventory().getItemsByClass(ItemType.WEAPON).size());
                 WeaponItem weapon = (WeaponItem) enemy.getInventory().getItemsByClass(ItemType.WEAPON).get(whichAttack);
                 weapon.attack(enemy,player);
-                System.out.println("j'attaque "+weapon);
 
                 break;
             case 2:
                 int whichPotion = new Random().nextInt(enemy.getInventory().getItemsByClass(ItemType.CONSUMABLE).size());
                 Consumable consumable = (Consumable) enemy.getInventory().getItemsByClass(ItemType.CONSUMABLE).get(whichPotion);
                 consumable.use(enemy);
-                System.out.println("j'utilise "+consumable);
 
                 break;
         }
@@ -146,11 +143,8 @@ public class CombatManager implements EventHandler<ActionEvent> {
         else consumable.use(player);
         player.getInventory().removeItem(consumable);
         Pane root = (Pane) ((Button)event.getSource()).getScene().getRoot();
-        System.out.println("Il est appelé");
         CombatScene.setEquippedButton(player.getInventory().getEquippedConsumables(),"object",root);
     }
-
-
 
     /**
      * Refresh variables display on the screen
@@ -172,6 +166,9 @@ public class CombatManager implements EventHandler<ActionEvent> {
         });
     }
 
+    /**
+     * Set the menu to the 4th main buttons (Attack, Spell, Objects, Run)
+     */
     private void resetMenu(ActionEvent event, String id){
         for (int i = 1; i < 5; i ++){
             String idToRemove = id.substring(0,id.length()-1);
@@ -205,6 +202,9 @@ public class CombatManager implements EventHandler<ActionEvent> {
 
     }
 
+    /**
+     * Class Event called whenever the combat has ended, it can access player position
+     */
     private static class LeaveCombat implements EventHandler<ActionEvent>{
 
         CombatProperty combatProperty;

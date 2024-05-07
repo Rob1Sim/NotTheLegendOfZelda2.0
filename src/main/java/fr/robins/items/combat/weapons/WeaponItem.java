@@ -1,7 +1,6 @@
 package fr.robins.items.combat.weapons;
 
 
-import fr.robins.engine.collisions.HitBox;
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.entities.Fighter;
 import fr.robins.entities.enemy.Enemy;
@@ -10,8 +9,7 @@ import fr.robins.items.Item;
 import fr.robins.items.combat.AttackType;
 import fr.robins.items.combat.IAttack;
 import fr.robins.types.Vector2D;
-import javafx.scene.Node;
-import javafx.scene.image.ImageView;
+
 
 public class WeaponItem extends Item implements IAttack, Collectable, Displayable {
 
@@ -28,9 +26,9 @@ public class WeaponItem extends Item implements IAttack, Collectable, Displayabl
     @Override
     public void attack(Fighter fighter, Fighter target) {
         if (target instanceof Enemy enemy)
-            enemy.takeDamage(damage * (1+(fighter.getStrength()/100)), true, AttackType.BODILICAL);
+            enemy.takeDamage(damage * (1+(fighter.getStrength()/100)), true, false,AttackType.BODILICAL);
         else
-            target.takeDamage(damage * (1+(fighter.getStrength()/100)), true, AttackType.BODILICAL);
+            target.takeDamage(damage * (1+(fighter.getStrength()/100)), true,false, AttackType.BODILICAL);
     }
 
     public int getDamage() {
@@ -43,13 +41,4 @@ public class WeaponItem extends Item implements IAttack, Collectable, Displayabl
     }
 
 
-    /**
-    public static String listWeaponsNames(List<Item> weaponItems){
-        StringBuilder names = new StringBuilder();
-        for (int i = 0; i<weaponItems.size(); i++){
-            WeaponItem weaponItem = (WeaponItem) weaponItems.get(i);
-            names.append(i).append(": ").append(weaponItem.getName()).append(": ").append(weaponItem.getDamage()).append("dmg\n");
-        }
-        return names.toString();
-    }**/
 }

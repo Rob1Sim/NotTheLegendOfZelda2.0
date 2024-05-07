@@ -38,15 +38,15 @@ public class Spell implements IAttack {
         if (entityTypeToModify == EntityType.ENEMY){
             if (characToModify == CharacType.HP){
                 if (target instanceof Enemy enemy)
-                    enemy.takeDamage(modificator,true, AttackType.MAGICAL);
+                    enemy.takeDamage(modificator,true, false,AttackType.MAGICAL);
                 else
-                    target.takeDamage(modificator,true, AttackType.MAGICAL);
+                    target.takeDamage(modificator,true, false,AttackType.MAGICAL);
 
             }else{
-                fighter.modifyStatistics(-modificator, characToModify, true);
+                fighter.modifyStatistics(-modificator, characToModify, true, false);
             }
         }else{
-            fighter.modifyStatistics(modificator, characToModify, false);
+            fighter.modifyStatistics(modificator, characToModify, false, false);
         }
     }
 
@@ -55,24 +55,6 @@ public class Spell implements IAttack {
         return modificator;
     }
 
-    /**
-    public static String spellsNamesFromList(Spell[] spells){
-        StringBuilder names = new StringBuilder();
-        for (int i = 0; i < spells.length; i++){
-            Spell spell = spells[i];
-            names.append(i).append(": ").append(spell.getName()).append(": ").append(spell.getManaCost()).append(" mp, ");
-            int modifcatorToString = spell.modificator;
-            if (spell.entityTypeToModify == EntityType.PLAYER){
-                names.append("ajoute ");
-            }else {
-                names.append("inflige ");
-                modifcatorToString = -modifcatorToString;
-            }
-            names.append(modifcatorToString).append(" ").append(spell.characToModify).append("\n");
-
-        }
-        return names.toString();
-    }**/
 
     private String getName() {
         return name;

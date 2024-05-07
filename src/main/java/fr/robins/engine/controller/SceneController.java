@@ -105,10 +105,6 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         gameController.setGameState(GameState.WIN);
     }
 
-    public void switchToDeathScene(){
-        System.out.println("JE SUIS MORT");
-    }
-
     public void switchToALocationScene(String xmlMapPath) {
         setTileManager(new TileManager(xmlMapPath));
     }

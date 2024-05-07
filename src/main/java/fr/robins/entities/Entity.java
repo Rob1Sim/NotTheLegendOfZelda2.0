@@ -26,7 +26,7 @@ public abstract class Entity implements Displayable {
     private double speed = 4;
     private int maxHp;
     private int maxMana;
-    private String spritePath;
+    private final String spritePath;
 
     private EntityHitbox hitBox;
     private final HitBox collisionHitBox;
@@ -104,10 +104,6 @@ public abstract class Entity implements Displayable {
 
     public double getSpeed() {
         return speed;
-    }
-
-    public void setSpeed(double speed) {
-        this.speed = speed;
     }
 
     public int getStrength() {

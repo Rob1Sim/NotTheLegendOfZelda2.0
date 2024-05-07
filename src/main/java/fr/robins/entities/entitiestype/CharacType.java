@@ -6,6 +6,7 @@ public enum CharacType {
     CONSTITUTION("Constitution"),
     STRENGTH("Force"),
     DEXTERITY("Dextérité"),
+    MONEY("GOLD"),
     ;
 
     private final String name;

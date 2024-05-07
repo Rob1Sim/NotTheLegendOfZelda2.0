@@ -21,12 +21,12 @@ public abstract class Fighter extends Entity implements Displayable {
 
     /**
      * Modify player statistics
-     * @param modificator
-     * @param characType
-     * @param isDodgeable
+     * @param modificator how many modificaiton
+     * @param characType the charac to modify
+     * @param isDodgeable is it can be dodge
      */
-    public void modifyStatistics(int modificator, CharacType characType, boolean isDodgeable){
-        if(isDodging(isDodgeable)){
+    public void modifyStatistics(int modificator, CharacType characType, boolean isDodgeable, boolean alwaysDodgeable){
+        if(isDodging(isDodgeable,alwaysDodgeable)){
             modificator = 0;
             textToDisplay = getName() + " à esquivé !";
         }else {
@@ -46,8 +46,8 @@ public abstract class Fighter extends Entity implements Displayable {
      * @param isDodgeable False -> the fighter will always dodge
      * @param attackType Which kind of attaks it is (Magical, Bodily
      */
-    public void takeDamage(int damage, boolean isDodgeable, AttackType attackType) {
-        if (isDodging(isDodgeable)) {
+    public void takeDamage(int damage, boolean isDodgeable,boolean alwaysDodgeable ,AttackType attackType) {
+        if (!isDodging(isDodgeable,alwaysDodgeable)) {
             int realDamage = damage - getConstitution();
             if (realDamage> 0){
                 setHp(getHp() - realDamage);
@@ -60,9 +60,14 @@ public abstract class Fighter extends Entity implements Displayable {
         }
     }
 
-    private boolean isDodging(boolean isDodgeable){
+    /**
+     * Calculate if the dodge the attack
+     * @param isDodgeable  If is isDodgeable is False, the attack can not be dodge
+     * @return False -> if it doe not dodge
+     */
+    private boolean isDodging(boolean isDodgeable, boolean alwaysDodgeable){
         int probablity = new Random().nextInt(100);
-        return (probablity >= getDexterity() && isDodgeable);
+        return alwaysDodgeable || isDodgeable && (probablity <= getDexterity());
     }
 
     public Spell[] getSpells() {

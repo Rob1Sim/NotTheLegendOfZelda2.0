@@ -81,6 +81,14 @@ public class CombatScene extends GameScene {
             }else{
                 throw new CombatLoadingException("Error while loading action text !");
             }
+            Label enemyName = (Label) root.lookup("#enemyName");
+            if (enemyName != null){
+                enemyName.setText(enemy.getName());
+            }else{
+                throw new CombatLoadingException("Error while loading enemy name Text !");
+            }
+
+
 
             //Set default combat system values
             combatProperty = new CombatProperty((Player) player, (Enemy) enemy, actionText,sceneController, gameState);

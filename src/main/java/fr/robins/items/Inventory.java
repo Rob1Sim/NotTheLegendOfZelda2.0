@@ -48,7 +48,6 @@ public class Inventory {
     public void removeItem(Item item) {
         if (item instanceof Consumable consumableItem){
             Consumable c = (Consumable) getItemByName(consumableItem.getName());
-            System.out.println("bah alors "+consumableItem.getQuantity());
             if (c != null){
                 c.decreaseQuantity();
                 if (c.getQuantity() <= 0){

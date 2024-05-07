@@ -1,6 +1,5 @@
 package fr.robins.entities.enemy;
 
-
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.entities.Fighter;
 import fr.robins.items.combat.AttackType;
@@ -17,14 +16,19 @@ public class Enemy extends Fighter implements Displayable {
     }
 
     @Override
-    public void takeDamage(int damage, boolean isDodgeable, AttackType attackType) {
+    public void takeDamage(int damage, boolean isDodgeable,boolean alwaysDodge ,AttackType attackType) {
         if (enemyType == EnemyType.ENEMY_GHOST && attackType == AttackType.BODILICAL){
-            isDodgeable = false;
+            alwaysDodge = true;
         }
-        super.takeDamage(damage, isDodgeable,attackType);
-        if (!isDodgeable)
-            setTextToDisplay("Gros con je suis un fantôme, tu pensais pouvoir me toucher ??");
+        super.takeDamage(damage, isDodgeable,alwaysDodge,attackType);
 
+        switch (enemyType){
+            case ENEMY_GHOST -> {
+                if (alwaysDodge){
+                    setTextToDisplay("Imbécile je suis un fantôme, tu pensais pouvoir me toucher ??");
+                }
+            }
+        }
 
     }
 

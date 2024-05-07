@@ -17,8 +17,8 @@ public enum EnemyType {
             new Spell(SpellType.KILLER_QUEEN),
             new Spell(SpellType.REQUIEM)},
             new Inventory(), 10,"/sprites/characters/c_dark_magician.png","VOUS .. NE ... PASSEREZ ... PAS ... *blurp*! "),
-    ENEMY_GHOST("Ghost", 10, 30, 5, 5, 10, new Spell[]{new Spell(SpellType.LIGHTNING)}, new Inventory(new WeaponItem(WeaponType.GHOST_FIST)), 10, "/sprites/characters/c_white_ghost.png","*Argh* La magie ... mon seule point faible !"),
-    ENEMY_RAT("Rat", 5, 2, 2, 5, 1, new Spell[]{}, new Inventory(new WeaponItem(WeaponType.RAT_CLAWS)), 1, "/sprites/characters/c_roman_brown.png","*Argh* L'argent ... plus ... plus d'argent *blurp* !"),;
+    ENEMY_GHOST("Fantome", 10, 30, 5, 5, 10, new Spell[]{new Spell(SpellType.LIGHTNING)}, new Inventory(new WeaponItem(WeaponType.GHOST_FIST)), 10, "/sprites/characters/c_white_ghost.png","Argh ! La magie ... mon seule point faible !"),
+    ENEMY_RAT("Rat", 5, 2, 2, 5, 1, new Spell[]{}, new Inventory(new WeaponItem(WeaponType.RAT_CLAWS)), 1, "/sprites/characters/c_roman_brown.png","Argh ! L'argent ... je veux ... plus ... plus d'argent *blurp* !"),;
 
 
 

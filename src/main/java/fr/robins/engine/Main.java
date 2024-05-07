@@ -2,7 +2,6 @@ package fr.robins.engine;
 
 import fr.robins.engine.controller.GameController;
 
-import fr.robins.engine.gamelogic.gamescene.GameSceneSubject;
 import fr.robins.engine.gamelogic.gamescene.deadscene.DeadGameScene;
 import fr.robins.entities.Player;
 import fr.robins.types.Utilities;
@@ -37,7 +36,7 @@ public class Main extends Application {
 
         //Dead Scene
         Scene deadScene = new Scene(new DeadGameScene().getPane());
-        deadScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/sceneBuilder/startScene.css")).toExternalForm());
+        deadScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/sceneBuilder/css/startScene.css")).toExternalForm());
 
         Button retryBtn = (Button) deadScene.lookup("#retry");
         retryBtn.setOnAction(event ->  stage.close());

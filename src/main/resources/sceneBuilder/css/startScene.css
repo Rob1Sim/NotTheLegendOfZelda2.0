@@ -15,5 +15,5 @@
 }
 
 .background{
-    -fx-background-image: url("images/pixelArt.jpg");
+    -fx-background-image: url("../images/pixelArt.jpg");
 }
