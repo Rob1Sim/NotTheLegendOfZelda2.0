@@ -105,12 +105,15 @@ public class GameController implements GameStateObserver, DisplayableListObserve
         }
         switch (gameState){
             case WALKING:
-                Inputs.handleMovementInput(sceneController.getCurrentScene(),player, sceneController.getPane(),stage);
+                Inputs.handleMovementInput(player, sceneController.getPane(),stage, sceneController);
                 CollisionManager.environmentCollisionChecker(player,sceneController.getTileManager());
                 CollisionManager.displayableCollisionChecker(displayableListObserver,currentGameScene.getPane(),player, sceneController);
                 break;
             case WIN:
                 sceneController.switchToEndScene();
+                break;
+            case INVENTORY:
+                Inputs.handleInventoryInput(stage,sceneController);
                 break;
         }
     }

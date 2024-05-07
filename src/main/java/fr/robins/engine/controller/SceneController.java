@@ -3,6 +3,7 @@ package fr.robins.engine.controller;
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.engine.gamelogic.gamescene.combatScene.CombatScene;
 import fr.robins.engine.gamelogic.gamescene.GameScene;
+import fr.robins.engine.gamelogic.gamescene.inventoryscene.InventoryGameScene;
 import fr.robins.engine.gamelogic.gamestate.GameState;
 import fr.robins.engine.gamelogic.displayable.DisplayableListObserver;
 import fr.robins.engine.gamelogic.displayable.DisplayableSubject;
@@ -16,6 +17,7 @@ import fr.robins.items.combat.weapons.WeaponItem;
 import fr.robins.items.combat.weapons.WeaponType;
 import fr.robins.items.consumable.potions.Potion;
 import fr.robins.items.consumable.potions.PotionType;
+import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
 import fr.robins.world.TileManager;
 import javafx.event.ActionEvent;
@@ -120,17 +122,30 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
     public void switchToGameSceneAfterCombat(ActionEvent event) {
         stage = (Stage) (((Node)event.getSource())).getScene().getWindow();
 
-        gameSceneObserver.setGameScene(new GameScene(tileManager, displayable, gameController.getPlayer()));
-
-        switchToScene();
-        //Renvoie le joueur à sa position antérieur
-        Player.teleportPlayer(currentGameScene.getPane(),gameController.getPlayer().getPosition());
-        gameController.setGameState(GameState.WALKING);
+        switchToGameSceneAfterLeavingMenu();
 
         Media combatMusic = new Media(getClass().getResource("/music/walking.wav").toExternalForm());
         mediaPlayer.pause();
         mediaPlayer = new MediaPlayer(combatMusic);
         mediaPlayer.setAutoPlay(true);
+    }
+
+    public void switchToInventoryScene(){
+        gameController.setGameState(GameState.INVENTORY);
+
+        gameSceneObserver.setGameScene(new InventoryGameScene());
+        switchToScene();
+    }
+
+    public void switchToGameSceneAfterLeavingMenu(){
+        gameSceneObserver.setGameScene(new GameScene(tileManager, displayable, gameController.getPlayer()));
+        switchToScene();
+
+        //Renvoie le joueur à sa position antérieur, on enlève la moitié de l'écran moins une tuile pour éviter que avec le recentrement de l'écran le joueur se déplace
+        Vector2D newPosition = new Vector2D(gameController.getPlayer().getPosition().getX(),gameController.getPlayer().getPosition().getY()+ ((Utilities.WINDOW_HEIGHT/2)-((double) Utilities.TILE_SIZE )));
+
+        Player.teleportPlayer(currentGameScene.getPane(),newPosition);
+        gameController.setGameState(GameState.WALKING);
     }
 
     public void switchToEndScene() {

@@ -5,5 +5,6 @@ public enum GameState {
     WALKING,
     COMBAT,
     WIN,
-    DEAD
+    DEAD,
+    INVENTORY
 }

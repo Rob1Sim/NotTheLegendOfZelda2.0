@@ -1,5 +1,6 @@
 package fr.robins.engine;
 
+import fr.robins.engine.controller.SceneController;
 import fr.robins.entities.Player;
 import fr.robins.types.DirectionType;
 import fr.robins.types.Utilities;
@@ -11,9 +12,9 @@ import javafx.stage.Stage;
 
 
 public class Inputs {
-    public static void handleMovementInput(Scene scene, Player player, Pane backgroundPane, Stage stage){
+    public static void handleMovementInput(Player player, Pane backgroundPane, Stage stage, SceneController sceneController){
 
-        scene.setOnKeyPressed(event ->{
+        stage.getScene().setOnKeyPressed(event ->{
             KeyCode keycode = event.getCode();
             switch (keycode) {
                 case Z:
@@ -41,10 +42,13 @@ public class Inputs {
                     break;
                 case F1:
                     Utilities.DEBUG = !Utilities.DEBUG;
+                case I:
+                    System.out.println("Message");
+                    sceneController.switchToInventoryScene();
             }
         });
 
-        scene.setOnKeyReleased(keyEvent -> {
+        stage.getScene().setOnKeyReleased(keyEvent -> {
             KeyCode keycode = keyEvent.getCode();
             if (keycode == KeyCode.Z || keycode == KeyCode.S) {
                 player.getVelocity().setY(0);
@@ -67,6 +71,15 @@ public class Inputs {
             backgroundPane.setTranslateX(backgroundPane.getTranslateX() + player.getVelocity().getX());
         }
 
+    }
+
+    public static void handleInventoryInput(Stage stage, SceneController sceneController){
+        stage.getScene().setOnKeyPressed(keyEvent -> {
+            KeyCode keycode = keyEvent.getCode();
+            if (keycode == KeyCode.I) {
+                sceneController.switchToGameSceneAfterLeavingMenu();
+            }
+        });
     }
 
 }

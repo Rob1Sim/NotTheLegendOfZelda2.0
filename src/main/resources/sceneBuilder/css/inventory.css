@@ -1,0 +1,16 @@
+@font-face {
+    src: url("fonts/ARCADEIN.tff");
+}
+@font-face {
+    src: url("fonts/ARCADEOUT.tff");
+}
+
+.title{
+    -fx-font-family: "8-bit Arcade In";
+    -fx-text-fill: white;
+}
+
+.txt{
+    -fx-font-family: "8-bit Arcade In";
+    -fx-text-fill: white;
+}
