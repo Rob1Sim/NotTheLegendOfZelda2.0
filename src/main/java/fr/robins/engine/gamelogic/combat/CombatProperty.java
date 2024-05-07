@@ -1,7 +1,6 @@
 package fr.robins.engine.gamelogic.combat;
 
 import fr.robins.engine.controller.SceneController;
-import fr.robins.engine.gamelogic.gamestate.GameState;
 import fr.robins.engine.gamelogic.gamestate.GameStateSubject;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.Enemy;

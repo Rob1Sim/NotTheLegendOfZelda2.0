@@ -55,11 +55,6 @@ public class Spell implements IAttack {
         return modificator;
     }
 
-
-    private String getName() {
-        return name;
-    }
-
     public String getSpellName() {
         return name;
     }
@@ -68,17 +63,6 @@ public class Spell implements IAttack {
         return manaCost;
     }
 
-    public int getModificator() {
-        return modificator;
-    }
-
-    public CharacType getCharacToModify() {
-        return characToModify;
-    }
-
-    public EntityType getEntityTypeToModify() {
-        return entityTypeToModify;
-    }
 
 
 }

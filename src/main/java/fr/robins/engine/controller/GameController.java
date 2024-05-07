@@ -22,7 +22,7 @@ import java.util.Objects;
 
 public class GameController implements GameStateObserver, DisplayableListObserver, GameSceneObserver {
 
-    private Player player;
+    private final Player player;
     private final Stage stage;
     private final SceneController sceneController;
 
@@ -33,8 +33,6 @@ public class GameController implements GameStateObserver, DisplayableListObserve
 
     private GameState gameState;
     private GameScene currentGameScene;
-
-    private boolean isDisplayableListChanging = false;
 
     public GameController(Stage stage, Player player ) {
         this.stage = stage;
@@ -121,7 +119,7 @@ public class GameController implements GameStateObserver, DisplayableListObserve
     @Override
     public void updateDisplayableList() {
         if (gameState == GameState.WALKING){
-            isDisplayableListChanging = true;
+            boolean isDisplayableListChanging = true;
         }
     }
 
@@ -129,10 +127,6 @@ public class GameController implements GameStateObserver, DisplayableListObserve
     public void updateGameScene() {
         currentGameScene = gameSceneObserver.getGameScene();
 
-    }
-
-    public GameState getGameState() {
-        return gameState;
     }
 
     public void setGameState(GameState gameState) {

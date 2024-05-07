@@ -23,7 +23,7 @@ public abstract class Entity implements Displayable {
     private int strength;
     private int dexterity;
     private int money;
-    private double speed = 4;
+    private final double speed = 4;
     private int maxHp;
     private int maxMana;
     private final String spritePath;

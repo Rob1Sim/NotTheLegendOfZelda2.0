@@ -5,7 +5,6 @@ import fr.robins.engine.controller.SceneController;
 import fr.robins.engine.gamelogic.combat.CombatManager;
 import fr.robins.engine.gamelogic.combat.CombatProperty;
 import fr.robins.engine.gamelogic.gamescene.GameScene;
-import fr.robins.engine.gamelogic.gamestate.GameState;
 import fr.robins.engine.gamelogic.gamestate.GameStateSubject;
 import fr.robins.entities.Fighter;
 import fr.robins.entities.Player;

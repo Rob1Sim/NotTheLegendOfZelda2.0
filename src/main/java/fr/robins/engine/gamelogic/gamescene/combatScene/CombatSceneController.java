@@ -4,9 +4,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.image.ImageView;
 
 public class CombatSceneController {
 
+    public Button leaveBtn;
+    public Label enemyName;
+    public ProgressBar enemyHp;
+    public ProgressBar enemyMp;
+    public ProgressBar playerHp;
+    public ProgressBar playerMp;
+    public ImageView enemyImage;
+    public ImageView playerImage;
     @FXML
     private Button attackBtn;
 

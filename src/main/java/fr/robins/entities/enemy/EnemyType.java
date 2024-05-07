@@ -7,8 +7,6 @@ import fr.robins.items.combat.spells.SpellType;
 import fr.robins.items.combat.weapons.WeaponItem;
 import fr.robins.items.combat.weapons.WeaponType;
 
-import java.util.ArrayList;
-
 public enum EnemyType {
 
     MAGE("Mage", 20, 100, 5, 5, 5,

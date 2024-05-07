@@ -120,9 +120,7 @@ public class CombatManager implements EventHandler<ActionEvent> {
      */
     private void endCombat(ActionEvent event){
         if (enemy.getHp()<=0){
-            Platform.runLater(()->{
-                combatProperty.setActionText(enemy.getDeathPhrase());
-            });
+            Platform.runLater(()-> combatProperty.setActionText(enemy.getDeathPhrase()));
             Button leaveButton = (Button) ((Button)event.getSource()).getScene().lookup("#leaveBtn");
             leaveButton.setDisable(false);
             leaveButton.setText("Quitter");

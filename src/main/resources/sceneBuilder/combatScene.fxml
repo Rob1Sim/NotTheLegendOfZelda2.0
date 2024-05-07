@@ -6,183 +6,228 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: black;" stylesheets="/sceneBuilder/css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.robins.engine.gamelogic.gamescene.combatScene.CombatSceneController">
-   <children>
-      <GridPane layoutX="54.0" layoutY="125.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: black;"
+            stylesheets="/sceneBuilder/css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="fr.robins.engine.gamelogic.gamescene.combatScene.CombatSceneController">
+    <GridPane layoutX="54.0" layoutY="125.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="209.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="391.0" minHeight="10.0" prefHeight="199.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="515.0" minHeight="10.0" prefHeight="406.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="209.0" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="391.0" minHeight="10.0" prefHeight="199.0" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="515.0" minHeight="10.0" prefHeight="406.0" vgrow="SOMETIMES"/>
         </rowConstraints>
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
-               <children>
-                  <Label fx:id="actionTxt" prefHeight="299.0" prefWidth="982.0" text="J'ai juré ça pue la merde" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <GridPane prefHeight="300.0" prefWidth="841.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <children>
-                        <Button fx:id="attackBtn" mnemonicParsing="false" onAction="#showAttackMenu" prefHeight="451.0" prefWidth="365.0" styleClass="action-button" text="Attaque">
-                           <font>
-                              <Font size="20.0" />
-                           </font></Button>
-                        <Button fx:id="spellBtn" mnemonicParsing="false" onAction="#showSpellMenu" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="Sorts" GridPane.columnIndex="1">
-                           <font>
-                              <Font size="20.0" />
-                           </font></Button>
-                        <Button fx:id="objectBtn" mnemonicParsing="false" onAction="#showObjectMenu" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="Objets" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="20.0" />
-                           </font></Button>
-                        <Button fx:id="runBtn" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0" styleClass="action-button" text="にげるんだよ" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="20.0" />
-                           </font></Button>
+        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+            <Label fx:id="actionTxt" prefHeight="299.0" prefWidth="982.0" text="J'ai juré ça pue la merde"
+                   HBox.hgrow="ALWAYS">
+                <font>
+                    <Font size="21.0"/>
+                </font>
+                <padding>
+                    <Insets left="10.0"/>
+                </padding>
+            </Label>
+            <GridPane prefHeight="300.0" prefWidth="841.0">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <HBox.margin>
+                    <Insets/>
+                </HBox.margin>
+                <Button fx:id="attackBtn" mnemonicParsing="false" onAction="#showAttackMenu"
+                        prefHeight="451.0" prefWidth="365.0" styleClass="action-button" text="Attaque">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="spellBtn" mnemonicParsing="false" onAction="#showSpellMenu"
+                        prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="Sorts"
+                        GridPane.columnIndex="1">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="objectBtn" mnemonicParsing="false" onAction="#showObjectMenu"
+                        prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="Objets"
+                        GridPane.rowIndex="1">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="runBtn" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0"
+                        styleClass="action-button" text="にげるんだよ" GridPane.columnIndex="1"
+                        GridPane.rowIndex="1">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
 
-                         <Button fx:id="attack1" mnemonicParsing="false" prefHeight="451.0" prefWidth="365.0" styleClass="action-button" text="" visible="false">
-                             <font>
-                                 <Font size="20.0" />
-                             </font></Button>
-                         <Button fx:id="attack2" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.columnIndex="1">
-                             <font>
-                                 <Font size="20.0" />
-                             </font></Button>
-                         <Button fx:id="attack3" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.rowIndex="1">
-                             <font>
-                                 <Font size="20.0" />
-                             </font></Button>
-                         <Button fx:id="attack4" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                             <font>
-                                 <Font size="20.0" />
-                             </font></Button>
-                         <Button fx:id="spell1" mnemonicParsing="false" prefHeight="451.0" prefWidth="365.0" styleClass="action-button" text="" visible="false">
-                             <font>
-                                 <Font size="20.0" />
-                             </font></Button>
-                         <Button fx:id="spell2" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.columnIndex="1">
-                             <font>
-                                 <Font size="20.0" />
-                             </font></Button>
-                         <Button fx:id="spell3" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.rowIndex="1">
-                             <font>
-                                 <Font size="20.0" />
-                             </font></Button>
-                         <Button fx:id="spell4" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                             <font>
-                                 <Font size="20.0" />
-                             </font></Button>
-                         <Button fx:id="object1" mnemonicParsing="false" prefHeight="451.0" prefWidth="365.0" styleClass="action-button" text="" visible="false">
-                             <font>
-                                 <Font size="20.0" />
-                             </font></Button>
-                         <Button fx:id="object2" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.columnIndex="1">
-                             <font>
-                                 <Font size="20.0" />
-                             </font></Button>
-                         <Button fx:id="object3" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.rowIndex="1">
-                             <font>
-                                 <Font size="20.0" />
-                             </font></Button>
-                         <Button fx:id="object4" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0" styleClass="action-button" text="" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                             <font>
-                                 <Font size="20.0" />
-                             </font></Button>
-                        <Button fx:id="returnBtn" disable="true" mnemonicParsing="false" onAction="#returnButton" prefHeight="284.0" prefWidth="243.0" styleClass="action-button" text="Retour" GridPane.columnIndex="2">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="leaveBtn" disable="true" mnemonicParsing="false" prefHeight="217.0" prefWidth="521.0" styleClass="action-button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Button fx:id="attack1" mnemonicParsing="false" prefHeight="451.0" prefWidth="365.0"
+                        styleClass="action-button" visible="false">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="attack2" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0"
+                        styleClass="action-button" visible="false" GridPane.columnIndex="1">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="attack3" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0"
+                        styleClass="action-button" visible="false" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="attack4" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0"
+                        styleClass="action-button" visible="false" GridPane.columnIndex="1"
+                        GridPane.rowIndex="1">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="spell1" mnemonicParsing="false" prefHeight="451.0" prefWidth="365.0"
+                        styleClass="action-button" visible="false">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="spell2" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0"
+                        styleClass="action-button" visible="false" GridPane.columnIndex="1">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="spell3" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0"
+                        styleClass="action-button" visible="false" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="spell4" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0"
+                        styleClass="action-button" visible="false" GridPane.columnIndex="1"
+                        GridPane.rowIndex="1">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="object1" mnemonicParsing="false" prefHeight="451.0" prefWidth="365.0"
+                        styleClass="action-button" visible="false">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="object2" mnemonicParsing="false" prefHeight="369.0" prefWidth="365.0"
+                        styleClass="action-button" visible="false" GridPane.columnIndex="1">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="object3" mnemonicParsing="false" prefHeight="357.0" prefWidth="365.0"
+                        styleClass="action-button" visible="false" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="object4" mnemonicParsing="false" prefHeight="401.0" prefWidth="365.0"
+                        styleClass="action-button" visible="false" GridPane.columnIndex="1"
+                        GridPane.rowIndex="1">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="returnBtn" disable="true" mnemonicParsing="false" onAction="#returnButton"
+                        prefHeight="284.0" prefWidth="243.0" styleClass="action-button" text="Retour"
+                        GridPane.columnIndex="2">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="leaveBtn" disable="true" mnemonicParsing="false" prefHeight="217.0"
+                        prefWidth="521.0" styleClass="action-button" GridPane.columnIndex="2"
+                        GridPane.rowIndex="1"/>
 
-                     </children>
-                  </GridPane>
-               </children>
-            </HBox>
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="57.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="652.0" minWidth="10.0" prefWidth="477.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label fx:id="enemyName" prefHeight="53.0" prefWidth="387.0" text="Mage" GridPane.columnIndex="1">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="86.0" prefWidth="148.0" text="HP" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="67.0" prefWidth="57.0" text="MP" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <ProgressBar fx:id="enemyHp" prefHeight="21.0" prefWidth="477.0" progress="1.0" styleClass="hp-bar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ProgressBar fx:id="enemyMp" prefHeight="18.0" prefWidth="479.0" progress="1.0" styleClass="mp-bar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-               </children>
             </GridPane>
-            <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="48.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="495.0" minWidth="10.0" prefWidth="485.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label alignment="CENTER" text="HP" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" text="MP" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <ProgressBar fx:id="playerHp" prefHeight="18.0" prefWidth="483.0" progress="1.0" styleClass="hp-bar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ProgressBar fx:id="playerMp" prefHeight="18.0" prefWidth="484.0" progress="1.0" styleClass="mp-bar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="Player" GridPane.columnIndex="1">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-               </children>
-            </GridPane>
-            <ImageView fx:id="enemyImage" fitHeight="193.0" fitWidth="239.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-            <ImageView fx:id="playerImage" fitHeight="196.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
-         </children>
-      </GridPane>
-   </children>
+        </HBox>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="57.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="652.0" minWidth="10.0" prefWidth="477.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label fx:id="enemyName" prefHeight="53.0" prefWidth="387.0" text="Mage" GridPane.columnIndex="1">
+                    <font>
+                        <Font size="30.0"/>
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="86.0" prefWidth="148.0" text="HP" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="67.0" prefWidth="57.0" text="MP" GridPane.rowIndex="2">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Label>
+                <ProgressBar fx:id="enemyHp" prefHeight="21.0" prefWidth="477.0" progress="1.0" styleClass="hp-bar"
+                             GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <ProgressBar fx:id="enemyMp" prefHeight="18.0" prefWidth="479.0" progress="1.0" styleClass="mp-bar"
+                             GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            </children>
+        </GridPane>
+        <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="48.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="495.0" minWidth="10.0" prefWidth="485.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label alignment="CENTER" text="HP" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Label>
+                <Label alignment="CENTER" text="MP" GridPane.rowIndex="2">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Label>
+                <ProgressBar fx:id="playerHp" prefHeight="18.0" prefWidth="483.0" progress="1.0" styleClass="hp-bar"
+                             GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <ProgressBar fx:id="playerMp" prefHeight="18.0" prefWidth="484.0" progress="1.0" styleClass="mp-bar"
+                             GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Label text="Player" GridPane.columnIndex="1">
+                    <font>
+                        <Font size="30.0"/>
+                    </font>
+                </Label>
+            </children>
+        </GridPane>
+        <ImageView fx:id="enemyImage" fitHeight="193.0" fitWidth="239.0" pickOnBounds="true" preserveRatio="true"
+                   GridPane.columnIndex="2"/>
+        <ImageView fx:id="playerImage" fitHeight="196.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true"
+                   GridPane.rowIndex="1"/>
+    </GridPane>
 </AnchorPane>

@@ -83,8 +83,6 @@ public class Inventory {
 
     /**
      * Return a list of item by its class
-     * @param itemType
-     * @return
      */
     public List<Item> getItemsByClass(ItemType itemType) {
         List<Item> items = new ArrayList<>();

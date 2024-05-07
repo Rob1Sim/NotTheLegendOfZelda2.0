@@ -31,7 +31,6 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
     private Stage stage;
 
     private Scene currentScene;
-    private Scene lastScene;
 
     private TileManager tileManager;
     private final GameController gameController;
@@ -123,9 +122,6 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
      * Change the scene with javafx
      */
     private void switchToScene(){
-        if (currentScene != null){
-            lastScene = currentScene;
-        }
         Scene scene = new Scene(currentGameScene.getPane());
         currentScene = scene;
         stage.setScene(scene);

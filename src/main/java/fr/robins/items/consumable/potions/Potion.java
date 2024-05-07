@@ -1,14 +1,12 @@
 package fr.robins.items.consumable.potions;
 
 
-import fr.robins.engine.collisions.HitBox;
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.entities.Entity;
 import fr.robins.entities.Fighter;
 import fr.robins.items.consumable.Consumable;
 import fr.robins.entities.entitiestype.CharacType;
 import fr.robins.types.Vector2D;
-import javafx.scene.Node;
 
 public class Potion extends Consumable implements Displayable {
 
@@ -23,7 +21,6 @@ public class Potion extends Consumable implements Displayable {
 
     /**
      * use a potion, if the taret is an enemy, then use negative values
-     * @param target
      */
     @Override
     public void use(Entity target) {
