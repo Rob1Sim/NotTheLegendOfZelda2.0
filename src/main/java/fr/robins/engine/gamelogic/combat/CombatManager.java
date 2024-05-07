@@ -81,10 +81,10 @@ public class CombatManager implements EventHandler<ActionEvent> {
 
     private void enemyTurn(ActionEvent event, String id){
         int whatDoIDo = new Random().nextInt(3);
-
-        int spellNum = new Random().nextInt(enemy.getSpells().length);
-        if(whatDoIDo == 0){
-            if ((enemy.getMana() - enemy.getSpells()[spellNum].getManaCost())<=0){
+        int spellNumber = -1;
+        if(whatDoIDo == 0 && enemy.getSpells().length>0 ){
+            spellNumber = new Random().nextInt(enemy.getSpells().length);
+            if ((enemy.getMana() - enemy.getSpells()[spellNumber].getManaCost())<=0){
                 whatDoIDo = 1;
             }
         } else if (whatDoIDo == 2 && enemy.getInventory().getItemsByClass(ItemType.CONSUMABLE).isEmpty()) {
@@ -93,7 +93,7 @@ public class CombatManager implements EventHandler<ActionEvent> {
 
         switch (whatDoIDo){
             case 0:
-                enemy.getSpells()[spellNum].attack(enemy,player);
+                enemy.getSpells()[spellNumber].attack(enemy,player);
                 break;
             case 1:
                 int whichAttack = new Random().nextInt(enemy.getInventory().getItemsByClass(ItemType.WEAPON).size());

@@ -71,4 +71,5 @@ public abstract class Item implements Displayable {
     public void deleteSprite(){
         sprite.setImage(null);
     }
+
 }

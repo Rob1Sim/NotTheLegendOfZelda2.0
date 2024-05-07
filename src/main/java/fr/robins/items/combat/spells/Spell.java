@@ -34,7 +34,7 @@ public class Spell implements IAttack {
         }
 
         fighter.setMana(fighter.getMana() - manaCost);
-
+        fighter.setTextToDisplay(fighter.getName()+" lance "+this.getSpellName()+" !");
         if (entityTypeToModify == EntityType.ENEMY){
             if (characToModify == CharacType.HP){
                 if (target instanceof Enemy enemy)

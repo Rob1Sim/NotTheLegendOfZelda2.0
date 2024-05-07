@@ -10,13 +10,14 @@ import fr.robins.items.combat.weapons.WeaponType;
 public enum EnemyType {
 
     MAGE("Mage", 20, 100, 5, 5, 5,
-            new Spell[]{new Spell(SpellType.BITES_THE_DUST),
+            new Spell[]{new Spell(SpellType.FIRE_BALL),
             new Spell(SpellType.HEAVEN_BLESSING),
-            new Spell(SpellType.KILLER_QUEEN),
-            new Spell(SpellType.REQUIEM)},
-            new Inventory(), 10,"/sprites/characters/c_dark_magician.png","VOUS .. NE ... PASSEREZ ... PAS ... *blurp*! "),
-    ENEMY_GHOST("Fantome", 10, 30, 5, 5, 10, new Spell[]{new Spell(SpellType.LIGHTNING)}, new Inventory(new WeaponItem(WeaponType.GHOST_FIST)), 10, "/sprites/characters/c_white_ghost.png","Argh ! La magie ... mon seule point faible !"),
-    ENEMY_RAT("Rat", 5, 2, 2, 5, 1, new Spell[]{}, new Inventory(new WeaponItem(WeaponType.RAT_CLAWS)), 1, "/sprites/characters/c_roman_brown.png","Argh ! L'argent ... je veux ... plus ... plus d'argent *blurp* !"),;
+            new Spell(SpellType.DIVINE_STRIKE),
+            new Spell(SpellType.KALASH)},
+            new Inventory(new WeaponItem(WeaponType.KNIFE)), 10,"/sprites/characters/c_dark_magician.png","VOUS .. NE ... PASSEREZ ... PAS ... *blurp*! "),
+    GHOST("Fantome", 10, 30, 5, 5, 10, new Spell[]{new Spell(SpellType.LIGHTNING)}, new Inventory(new WeaponItem(WeaponType.GHOST_FIST)), 10, "/sprites/characters/c_white_ghost.png","Argh ! La magie ... mon seule point faible !"),
+    RAT("Rat", 5, 2, 2, 5, 1, new Spell[]{}, new Inventory(new WeaponItem(WeaponType.RAT_CLAWS)), 1, "/sprites/characters/c_roman_brown.png","Argh ! L'argent ... je veux ... plus ... plus d'argent *blurp* !"),;
+
 
 
 

@@ -54,14 +54,16 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
 
         this.displayableObserver.setDisplayables(new ArrayList<>());
         this.displayableObserver.add(
-                new Enemy(EnemyType.ENEMY_GHOST,TileManager.tilesToCoordinates(38,33)),
-                new WeaponItem(WeaponType.AXE, TileManager.tilesToCoordinates(35,31)),
-                new WeaponItem(WeaponType.DOUBLE_AXE, TileManager.tilesToCoordinates(36,31)),
-                new WeaponItem(WeaponType.KNIFE, TileManager.tilesToCoordinates(37,31)),
-                new WeaponItem(WeaponType.IRON_SWORD, TileManager.tilesToCoordinates(38,31)),
-                new WeaponItem(WeaponType.AXE, TileManager.tilesToCoordinates(39,31)),
-                new Potion(PotionType.HEAL_POTION,TileManager.tilesToCoordinates(32,36)),
-                new Potion(PotionType.HEAL_POTION,TileManager.tilesToCoordinates(38,35)));
+                Enemy.enemyGenerator(EnemyType.GHOST,33,38),
+                Enemy.enemyGenerator(EnemyType.RAT,40,38),
+                Enemy.enemyGenerator(EnemyType.MAGE,42,38),
+                WeaponItem.weaponGenerator(WeaponType.DOUBLE_AXE,36,31),
+                WeaponItem.weaponGenerator(WeaponType.KNIFE,37,31),
+                WeaponItem.weaponGenerator(WeaponType.IRON_SWORD,38,31),
+                WeaponItem.weaponGenerator(WeaponType.AXE,39,31),
+                Potion.potionGenerator(PotionType.HEAL_POTION,32,36),
+                Potion.potionGenerator(PotionType.HEAL_POTION,38,35),
+                Potion.potionGenerator(PotionType.MANA_POTION, 39,35));
     }
 
     /**

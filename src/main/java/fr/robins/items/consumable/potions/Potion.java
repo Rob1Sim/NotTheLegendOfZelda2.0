@@ -4,9 +4,12 @@ package fr.robins.items.consumable.potions;
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.entities.Entity;
 import fr.robins.entities.Fighter;
+import fr.robins.items.combat.weapons.WeaponItem;
+import fr.robins.items.combat.weapons.WeaponType;
 import fr.robins.items.consumable.Consumable;
 import fr.robins.entities.entitiestype.CharacType;
 import fr.robins.types.Vector2D;
+import fr.robins.world.TileManager;
 
 public class Potion extends Consumable implements Displayable {
 
@@ -49,6 +52,10 @@ public class Potion extends Consumable implements Displayable {
             }
         }
         fighter.setTextToDisplay(target.getName()+" reçois "+modificator +sType+" !");
+    }
+
+    public static Potion potionGenerator(PotionType potionType, int column, int row) {
+        return new Potion(potionType, TileManager.tilesToCoordinates(column,row));
     }
 
 }

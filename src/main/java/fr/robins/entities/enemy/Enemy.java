@@ -4,6 +4,7 @@ import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.entities.Fighter;
 import fr.robins.items.combat.AttackType;
 import fr.robins.types.Vector2D;
+import fr.robins.world.TileManager;
 
 public class Enemy extends Fighter implements Displayable {
     private final EnemyType enemyType;
@@ -17,13 +18,13 @@ public class Enemy extends Fighter implements Displayable {
 
     @Override
     public void takeDamage(int damage, boolean isDodgeable,boolean alwaysDodge ,AttackType attackType) {
-        if (enemyType == EnemyType.ENEMY_GHOST && attackType == AttackType.BODILICAL){
+        if (enemyType == EnemyType.GHOST && attackType == AttackType.BODILICAL){
             alwaysDodge = true;
         }
         super.takeDamage(damage, isDodgeable,alwaysDodge,attackType);
 
         switch (enemyType){
-            case ENEMY_GHOST -> {
+            case GHOST -> {
                 if (alwaysDodge){
                     setTextToDisplay("Imbécile je suis un fantôme, tu pensais pouvoir me toucher ??");
                 }
@@ -34,5 +35,9 @@ public class Enemy extends Fighter implements Displayable {
 
     public String getDeathPhrase() {
         return deathPhrase;
+    }
+
+    public static Enemy enemyGenerator(EnemyType enemyType, int column, int row){
+        return new Enemy(enemyType, TileManager.tilesToCoordinates(column,row));
     }
 }

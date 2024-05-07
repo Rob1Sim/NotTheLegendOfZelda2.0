@@ -5,13 +5,13 @@ import fr.robins.entities.entitiestype.EntityType;
 
 
 public enum SpellType {
-    BITES_THE_DUST("Bites the dust", 30, 10, CharacType.HP, EntityType.ENEMY),
+    FIRE_BALL("Boule de feu supreme", 30, 10, CharacType.HP, EntityType.ENEMY),
     LIGHTNING("Eclair", 16, 15, CharacType.HP,EntityType.ENEMY),
-    REQUIEM("Gold Experience Requiem", 15, 30, CharacType.CONSTITUTION,EntityType.PLAYER),
-    KILLER_QUEEN("Killer Queen",25,15, CharacType.HP,EntityType.ENEMY),
-    HERMIT_PURPLE("Hermit Purple",30,30, CharacType.HP,EntityType.ENEMY),
+    BOOST_CONST("Résistance draconique", 15, 30, CharacType.CONSTITUTION,EntityType.PLAYER),
+    DIVINE_STRIKE("Frappe divine",25,15, CharacType.HP,EntityType.ENEMY),
+    KALASH("Kalashnikov occulte",30,30, CharacType.HP,EntityType.ENEMY),
     HEAL("Régénération Vitale", 20,10, CharacType.HP, EntityType.PLAYER),
-    HEAVEN_BLESSING("Made In Heaven", 10,10, CharacType.STRENGTH, EntityType.PLAYER),
+    HEAVEN_BLESSING("Bénédiction des dieux", 10,10, CharacType.STRENGTH, EntityType.PLAYER),
 
     ;
 

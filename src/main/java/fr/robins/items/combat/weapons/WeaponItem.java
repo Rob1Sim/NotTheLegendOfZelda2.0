@@ -9,6 +9,7 @@ import fr.robins.items.Item;
 import fr.robins.items.combat.AttackType;
 import fr.robins.items.combat.IAttack;
 import fr.robins.types.Vector2D;
+import fr.robins.world.TileManager;
 
 
 public class WeaponItem extends Item implements IAttack, Collectable, Displayable {
@@ -38,6 +39,10 @@ public class WeaponItem extends Item implements IAttack, Collectable, Displayabl
     @Override
     public String toString() {
         return getName()+" : "+getDamage();
+    }
+
+    public static WeaponItem weaponGenerator(WeaponType weaponType, int column, int row) {
+        return new WeaponItem(weaponType, TileManager.tilesToCoordinates(column,row));
     }
 
 
