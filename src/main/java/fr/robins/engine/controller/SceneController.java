@@ -73,8 +73,8 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
                 Potion.potionGenerator(PotionType.HEAL_POTION,38,35),
                 Potion.potionGenerator(PotionType.MANA_POTION, 39,35));
 
-        Media walkingMusic = new Media(Objects.requireNonNull(getClass().getResource("/music/walking.wav")).toExternalForm());
-        mediaPlayer = new MediaPlayer(walkingMusic);
+        //Media walkingMusic = new Media(Objects.requireNonNull(getClass().getResource("/music/walking.wav")).toExternalForm());
+        //mediaPlayer = new MediaPlayer(walkingMusic);
     }
 
     /**
@@ -101,7 +101,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         gameController.setGameState(GameState.WALKING);
         //Mets la musique
 
-        mediaPlayer.setAutoPlay(true);
+        //mediaPlayer.setAutoPlay(true);
     }
 
     public void switchToCombatScene(Fighter enemy) {
@@ -114,10 +114,10 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         gameSceneObserver.setGameScene(new CombatScene(gameController.getPlayer(),enemy,this,gameController.getGameStateSubject()));
         switchToScene();
 
-        Media combatMusic = new Media(getClass().getResource("/music/fight.wav").toExternalForm());
-        mediaPlayer.pause();
-        mediaPlayer = new MediaPlayer(combatMusic);
-        mediaPlayer.setAutoPlay(true);
+        //Media combatMusic = new Media(getClass().getResource("/music/fight.wav").toExternalForm());
+        //mediaPlayer.pause();
+        //mediaPlayer = new MediaPlayer(combatMusic);
+        //mediaPlayer.setAutoPlay(true);
     }
 
     public void switchToGameSceneAfterCombat(ActionEvent event) {
@@ -125,10 +125,10 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
 
         switchToGameSceneAfterLeavingMenu();
 
-        Media combatMusic = new Media(getClass().getResource("/music/walking.wav").toExternalForm());
-        mediaPlayer.pause();
-        mediaPlayer = new MediaPlayer(combatMusic);
-        mediaPlayer.setAutoPlay(true);
+        //Media combatMusic = new Media(getClass().getResource("/music/walking.wav").toExternalForm());
+        //mediaPlayer.pause();
+        //mediaPlayer = new MediaPlayer(combatMusic);
+        //mediaPlayer.setAutoPlay(true);
     }
 
     public void switchToInventoryScene(){

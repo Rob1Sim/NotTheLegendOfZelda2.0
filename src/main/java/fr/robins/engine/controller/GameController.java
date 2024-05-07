@@ -62,17 +62,19 @@ public class GameController implements GameStateObserver, DisplayableListObserve
             InputStream fxmlStream = getClass().getResourceAsStream("/sceneBuilder/startScene.fxml");
             Pane root = loader.load(fxmlStream);
 
-            Media media = new Media(getClass().getResource("/music/menu.wav").toExternalForm());
-            MediaPlayer mediaPlayer = new MediaPlayer(media);
-            mediaPlayer.setAutoPlay(true);
+            try {
+                //Media media = new Media(getClass().getResource("/music/menu.wav").toExternalForm());
+                //MediaPlayer mediaPlayer = new MediaPlayer(media);
+                //mediaPlayer.setAutoPlay(true);
 
-            //Button listener
-            Button startButton = (Button) root.lookup("#startBtn");
-            if (startButton != null) {
-                startButton.setOnAction(event -> {
-                    mediaPlayer.pause();
-                    sceneController.switchToGameScene(event);
-                });
+                //Button listener
+                Button startButton = (Button) root.lookup("#startBtn");
+                if (startButton != null) {
+                    //mediaPlayer.pause();
+                    startButton.setOnAction(sceneController::switchToGameScene);
+                }
+            }catch (java.lang.UnsupportedOperationException e){
+                System.out.println(e.getMessage());
             }
 
             Button leaveButton = (Button) root.lookup("#quitBtn");

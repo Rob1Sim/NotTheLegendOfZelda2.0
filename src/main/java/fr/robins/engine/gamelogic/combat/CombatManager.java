@@ -89,6 +89,8 @@ public class CombatManager implements EventHandler<ActionEvent> {
             }
         } else if (whatDoIDo == 2 && enemy.getInventory().getItemsByClass(ItemType.CONSUMABLE).isEmpty()) {
             whatDoIDo = 1;
+        }else if(enemy.getSpells().length == 0 ) {
+            whatDoIDo = 1;
         }
 
         switch (whatDoIDo){
