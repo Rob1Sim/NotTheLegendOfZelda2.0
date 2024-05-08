@@ -43,7 +43,6 @@ public class Inputs {
                 case F1:
                     Utilities.DEBUG = !Utilities.DEBUG;
                 case I:
-                    System.out.println("Message");
                     sceneController.switchToInventoryScene();
             }
         });
@@ -57,7 +56,6 @@ public class Inputs {
                 player.getVelocity().setX(0);
             }
         });
-
         if (!player.getHitBox().isColliding() || Utilities.NO_CLIPPING){
             //Correspond à la position du fond
             Vector2D cameraPosition = new Vector2D(-backgroundPane.getTranslateX(), -backgroundPane.getTranslateY());

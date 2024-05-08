@@ -4,6 +4,7 @@ import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.entities.Entity;
 import fr.robins.entities.Player;
 import fr.robins.items.Item;
+import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
 
 public abstract class Interactable extends Item implements Displayable {
@@ -11,6 +12,8 @@ public abstract class Interactable extends Item implements Displayable {
     public Interactable(String name, String spritePath , Vector2D position, boolean isCollisionable) {
         super(name,spritePath,position);
         this.isCollisionable = isCollisionable;
+        this.getHitBox().setWidth(Utilities.TILE_SIZE);
+        this.getHitBox().setHeight(Utilities.TILE_SIZE);
     }
 
     public boolean isCollisionable() {

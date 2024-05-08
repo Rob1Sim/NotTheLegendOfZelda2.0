@@ -10,6 +10,7 @@ import fr.robins.engine.gamelogic.gamestate.GameStateObserver;
 import fr.robins.engine.gamelogic.gamestate.GameStateSubject;
 import fr.robins.engine.gamelogic.displayable.*;
 import fr.robins.entities.Player;
+import fr.robins.types.Utilities;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -63,14 +64,9 @@ public class GameController implements GameStateObserver, DisplayableListObserve
             Pane root = loader.load(fxmlStream);
 
             try {
-                //Media media = new Media(getClass().getResource("/music/menu.wav").toExternalForm());
-                //MediaPlayer mediaPlayer = new MediaPlayer(media);
-                //mediaPlayer.setAutoPlay(true);
 
-                //Button listener
                 Button startButton = (Button) root.lookup("#startBtn");
                 if (startButton != null) {
-                    //mediaPlayer.pause();
                     startButton.setOnAction(sceneController::switchToGameScene);
                 }
             }catch (java.lang.UnsupportedOperationException e){
@@ -105,6 +101,7 @@ public class GameController implements GameStateObserver, DisplayableListObserve
         if (gameState != GameState.DEAD && player.getHp() <= 0){
             gmObserver.setGameState(GameState.DEAD);
         }
+
         switch (gameState){
             case WALKING:
                 Inputs.handleMovementInput(player, sceneController.getPane(),stage, sceneController);
@@ -117,6 +114,10 @@ public class GameController implements GameStateObserver, DisplayableListObserve
             case INVENTORY:
                 Inputs.handleInventoryInput(stage,sceneController);
                 break;
+            case LOADING:
+                if (player.getPosition().getX() != ((Utilities.WINDOW_WIDTH /2)-((double) Utilities.TILE_SIZE /2))){
+                    setGameState(GameState.WALKING);
+                }
         }
     }
 

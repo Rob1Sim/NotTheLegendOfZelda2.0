@@ -6,5 +6,6 @@ public enum GameState {
     COMBAT,
     WIN,
     DEAD,
-    INVENTORY
+    INVENTORY,
+    LOADING
 }

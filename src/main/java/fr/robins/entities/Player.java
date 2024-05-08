@@ -55,7 +55,7 @@ public class Player extends Fighter implements Displayable {
 
     public static void teleportPlayer(Pane backgroundPane, Vector2D coordinates){
         backgroundPane.setTranslateX(-coordinates.getX() + ((Utilities.WINDOW_WIDTH /2)-((double) Utilities.TILE_SIZE /2)));
-        backgroundPane.setTranslateY(-coordinates.getY() + ((Utilities.WINDOW_WIDTH /2)-((double) Utilities.TILE_SIZE /2)));
+        backgroundPane.setTranslateY(-coordinates.getY() + ((Utilities.WINDOW_HEIGHT /2)-((double) Utilities.TILE_SIZE/2)));
     }
 
     @Override

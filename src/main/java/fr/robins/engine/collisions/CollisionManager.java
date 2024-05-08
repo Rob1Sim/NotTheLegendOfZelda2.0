@@ -81,6 +81,7 @@ public class CollisionManager {
             case RIGHT:
                 //on prédit la case qui va arrivé
                 entityRightCol = (int) ((entityRightWorldx + entity.getSpeed())/Utilities.TILE_SIZE);
+
                 getTilesFromLayersLeftRight(tileManager, entityRightCol, entityTopRow, entityBottomRow, listOfFrontTilesOnLayers);
                 isThereACollision(entity,listOfFrontTilesOnLayers,tileManager);
                 break;
@@ -119,7 +120,6 @@ public class CollisionManager {
         for (int[] listOfFrontTilesOnLayer : listOfFrontTilesOnLayers) {
             if (listOfFrontTilesOnLayer[0] != -1 && tileManager.getTilesMap().get(listOfFrontTilesOnLayer[0]).isCollision() ||
                     listOfFrontTilesOnLayer[1] != -1 && tileManager.getTilesMap().get(listOfFrontTilesOnLayer[1]).isCollision()){
-
                 entity.getHitBox().setColliding(true);
             }
         }
@@ -179,6 +179,7 @@ public class CollisionManager {
                 displayableObserver.remove(items.get(index));
             }else if (items.get(index) instanceof Interactable interactableI){
                 interactableI.interact(entity);
+
             }else if (items.get(index) instanceof Enemy enemy){
                 sceneController.switchToCombatScene(enemy);
             }

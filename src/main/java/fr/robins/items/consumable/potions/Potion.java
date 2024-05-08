@@ -4,8 +4,6 @@ package fr.robins.items.consumable.potions;
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.entities.Entity;
 import fr.robins.entities.Fighter;
-import fr.robins.items.combat.weapons.WeaponItem;
-import fr.robins.items.combat.weapons.WeaponType;
 import fr.robins.items.consumable.Consumable;
 import fr.robins.entities.entitiestype.CharacType;
 import fr.robins.types.Vector2D;
