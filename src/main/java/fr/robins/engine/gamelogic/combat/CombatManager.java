@@ -1,8 +1,10 @@
 package fr.robins.engine.gamelogic.combat;
 
 
+import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.engine.gamelogic.gamescene.combatScene.CombatScene;
 import fr.robins.engine.gamelogic.gamestate.GameState;
+import fr.robins.entities.Entity;
 import fr.robins.entities.Fighter;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.Enemy;
@@ -217,7 +219,7 @@ public class CombatManager implements EventHandler<ActionEvent> {
 
         @Override
         public void handle(ActionEvent event) {
-            combatProperty.getSceneController().getDisplayableObserver().remove(enemy);
+            Displayable.removeDisplayable(enemy, combatProperty.getSceneController().getDisplayableObserver());
             combatProperty.getSceneController().switchToGameSceneAfterCombat(event);
         }
     }

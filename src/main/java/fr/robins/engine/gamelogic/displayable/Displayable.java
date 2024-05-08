@@ -10,4 +10,7 @@ public interface Displayable {
     Vector2D getPosition();
     void setSprite(String spritePath);
     void deleteSprite();
+    static void removeDisplayable(Displayable displayable, DisplayableSubject displayableObserver){
+        displayableObserver.remove(displayable);
+    }
 }

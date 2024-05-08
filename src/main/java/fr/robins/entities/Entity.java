@@ -3,6 +3,7 @@ package fr.robins.entities;
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.engine.collisions.EntityHitbox;
 import fr.robins.engine.collisions.HitBox;
+import fr.robins.engine.gamelogic.displayable.DisplayableSubject;
 import fr.robins.items.Inventory;
 import fr.robins.types.DirectionType;
 import fr.robins.types.Vector2D;
@@ -91,7 +92,6 @@ public abstract class Entity implements Displayable {
     public Node draw() {
         return spriteView;
     }
-
 
     //region Getter et Setter
     public int getHp() {

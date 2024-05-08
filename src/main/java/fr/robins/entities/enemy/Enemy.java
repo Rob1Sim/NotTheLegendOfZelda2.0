@@ -40,4 +40,5 @@ public class Enemy extends Fighter implements Displayable {
     public static Enemy enemyGenerator(EnemyType enemyType, int column, int row){
         return new Enemy(enemyType, TileManager.tilesToCoordinates(column,row));
     }
+
 }
