@@ -16,9 +16,11 @@ public abstract class Item implements Displayable {
     private ImageView sprite;
     private final HitBox hitBox;
     private Vector2D position;
+    private String spritePath;
 
     public Item(String name, String spritePath, Vector2D position) {
         this.name = name;
+        this.spritePath = spritePath;
         sprite = new ImageView(spritePath);
         sprite.setCache(false);
         this.position = position;
@@ -67,9 +69,16 @@ public abstract class Item implements Displayable {
         }
     }
 
+    public ImageView getSprite() {
+        return sprite;
+    }
+
     @Override
     public void deleteSprite(){
         sprite.setImage(null);
     }
 
+    protected void resetSprite(){
+        sprite.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(spritePath))));
+    }
 }

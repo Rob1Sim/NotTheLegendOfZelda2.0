@@ -2,6 +2,7 @@ package fr.robins.items;
 
 import fr.robins.items.combat.weapons.WeaponItem;
 import fr.robins.items.consumable.Consumable;
+import fr.robins.items.posable.Posable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +12,7 @@ public class Inventory {
     private final List<Item> items;
     private final List<Item> equippedConsumables;
     private final List<Item> equippedWeapons;
+    private Item posableEquippedItem;
 
     public Inventory() {
         items = new ArrayList<>();
@@ -40,6 +42,9 @@ public class Inventory {
             //if
             if (item instanceof WeaponItem weaponItem && equippedWeapons.size() < 4)
                 equippedWeapons.add(weaponItem);
+            if (item instanceof Posable && posableEquippedItem == null){
+                posableEquippedItem = item;
+            }
 
         }
     }
@@ -59,6 +64,9 @@ public class Inventory {
             items.remove(item);
             if (item instanceof WeaponItem)
                 equippedWeapons.remove(item);
+            if (item instanceof Posable && posableEquippedItem.equals(item)){
+                posableEquippedItem = null;
+            }
         }
     }
 
@@ -109,5 +117,13 @@ public class Inventory {
 
     public List<Item> getEquippedWeapons() {
         return equippedWeapons;
+    }
+
+    public Item getPosableEquippedItem() {
+        return posableEquippedItem;
+    }
+
+    public void setPosableEquippedItem(Item posableEquippedItem) {
+        this.posableEquippedItem = posableEquippedItem;
     }
 }

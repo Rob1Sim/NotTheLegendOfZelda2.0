@@ -101,7 +101,6 @@ public class GameController implements GameStateObserver, DisplayableListObserve
         if (gameState != GameState.DEAD && player.getHp() <= 0){
             gmObserver.setGameState(GameState.DEAD);
         }
-
         switch (gameState){
             case WALKING:
                 Inputs.handleMovementInput(player, sceneController.getPane(),stage, sceneController);

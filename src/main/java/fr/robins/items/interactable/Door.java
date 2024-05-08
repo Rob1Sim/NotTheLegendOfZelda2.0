@@ -10,7 +10,7 @@ public class Door extends Interactable{
     SceneController sceneController;
     int mapIndex;
     public Door(Vector2D position, SceneController sceneController, int mapIndex) {
-        super("Door", "/tiles/tile_0009.png", position, false);
+        super("Door", "/tiles/tile_0009.png", position, false, false);
         this.sceneController = sceneController;
         this.mapIndex = mapIndex;
      }

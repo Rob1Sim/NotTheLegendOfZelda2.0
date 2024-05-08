@@ -11,6 +11,7 @@ import fr.robins.entities.npc.NPC;
 import fr.robins.items.Collectable;
 import fr.robins.items.Item;
 import fr.robins.items.interactable.Interactable;
+import fr.robins.items.posable.Posable;
 import fr.robins.types.Utilities;
 
 import fr.robins.types.Vector2D;
@@ -175,8 +176,12 @@ public class CollisionManager {
         if (index != -1){
             if (items.get(index) instanceof Collectable collectable){
                 entity.getInventory().addItem((Item) collectable);
-                GameScene.removeDisplayable(items.get(index),pane);
-                displayableObserver.remove(items.get(index));
+                //Si c'est un item posable on ne le supprime pas des objets afficher pour pouvoir l'utiliser
+                if (collectable instanceof Posable posableI){
+                    posableI.setPosition(new Vector2D());
+                }else{
+                    Displayable.removeDisplayable(items.get(index),displayableObserver,pane);
+                }
             }else if (items.get(index) instanceof Interactable interactableI){
                 interactableI.interact(entity);
 

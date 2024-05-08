@@ -9,9 +9,11 @@ import fr.robins.types.Vector2D;
 
 public abstract class Interactable extends Item implements Displayable {
     private boolean isCollisionable;
-    public Interactable(String name, String spritePath , Vector2D position, boolean isCollisionable) {
+    private boolean isDestructible;
+    public Interactable(String name, String spritePath , Vector2D position, boolean isCollisionable, boolean isDestructible) {
         super(name,spritePath,position);
         this.isCollisionable = isCollisionable;
+        this.isDestructible = isDestructible;
         this.getHitBox().setWidth(Utilities.TILE_SIZE);
         this.getHitBox().setHeight(Utilities.TILE_SIZE);
     }
@@ -25,4 +27,8 @@ public abstract class Interactable extends Item implements Displayable {
     }
 
     public abstract void interact(Entity entity);
+
+    public boolean isDestructible() {
+        return isDestructible;
+    }
 }

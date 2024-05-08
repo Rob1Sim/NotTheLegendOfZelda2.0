@@ -10,7 +10,7 @@ def double_image_size(image_path):
 
     # Crée une nouvelle image avec une taille deux fois plus grande que l'originale
 
-    new_image = original_image.resize((width * 2, height * 2), Image.Resampling.NEAREST)
+    new_image = original_image.resize((width * 3, height * 3), Image.Resampling.NEAREST)
 
     return new_image
 

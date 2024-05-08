@@ -219,7 +219,7 @@ public class CombatManager implements EventHandler<ActionEvent> {
 
         @Override
         public void handle(ActionEvent event) {
-            Displayable.removeDisplayable(enemy, combatProperty.getSceneController().getDisplayableObserver());
+            combatProperty.getSceneController().getDisplayableObserver().remove(enemy);
             combatProperty.getSceneController().switchToGameSceneAfterCombat(event);
         }
     }

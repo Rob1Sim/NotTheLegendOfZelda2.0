@@ -13,11 +13,17 @@ import fr.robins.entities.Fighter;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.Enemy;
 import fr.robins.entities.enemy.EnemyType;
+import fr.robins.items.Item;
+import fr.robins.items.ItemType;
 import fr.robins.items.combat.weapons.WeaponItem;
 import fr.robins.items.combat.weapons.WeaponType;
 import fr.robins.items.consumable.potions.Potion;
 import fr.robins.items.consumable.potions.PotionType;
 import fr.robins.items.interactable.Door;
+import fr.robins.items.interactable.destructible.Destructible;
+import fr.robins.items.interactable.destructible.DestructibleType;
+import fr.robins.items.posable.Bomb;
+import fr.robins.items.posable.Posable;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
 import fr.robins.world.MapScene;
@@ -86,7 +92,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         tileManager = mapScenes.getFirst().getTileManager();
         gameSceneObserver.setGameScene(new GameScene(tileManager, displayable, gameController.getPlayer()));
 
-        switchToScene(new Vector2D(32,35));
+        switchToScene(new Vector2D(35,28));
         gameController.setGameState(GameState.WALKING);
     }
 
@@ -139,6 +145,12 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
             gameController.getPlayer().getVelocity().set(0,0);
 
             MapScene mapScene = mapScenes.get(mapIndex);
+
+            //Affecte les élément posables à la liste des truc a rendre de la nouvelle scène
+            for(Item item: gameController.getPlayer().getInventory().getItemsByClass(ItemType.POSABLE)){
+                mapScene.getDisplayableList().add(item);
+            }
+
             displayableObserver.setDisplayables( mapScene.getDisplayableList() );
             setTileManager(mapScene.getTileManager());
 
@@ -213,6 +225,9 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         spawnDisplaybles.add(Potion.potionGenerator(PotionType.HEAL_POTION,38,35));
         spawnDisplaybles.add(Potion.potionGenerator(PotionType.MANA_POTION,39,35));
         spawnDisplaybles.add(Door.doorGenerator(45,37,this,1));
+        spawnDisplaybles.add(Bomb.bombGenerator(40,35));
+        spawnDisplaybles.add(Destructible.destructibleGenerator(35,35, DestructibleType.BARREL));
+
 
         return new MapScene("/tiles/tilemap/grandeMap.xml",spawnDisplaybles,new Vector2D(43,37));
     }

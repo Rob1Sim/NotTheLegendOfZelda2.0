@@ -32,7 +32,7 @@ public class InventoryGameScene extends GameScene {
 
             VBox weaponVBox = (VBox) pane.lookup("#weaponVBox");
             VBox collectableVBox = (VBox) pane.lookup("#objectVBox");
-            VBox posableObjects = (VBox) pane.lookup("#interactibleObjectVBox");
+            VBox posableObjects = (VBox) pane.lookup("#posableVBox");
             Label goldLabel = (Label) pane.lookup("#goldLabel");
             ProgressBar hpBar = (ProgressBar) pane.lookup("#hpLBar");
             ProgressBar mpBar = (ProgressBar) pane.lookup("#mpLBar");
@@ -65,15 +65,20 @@ public class InventoryGameScene extends GameScene {
                     checkBox.setOnAction(new EquipmentChanger(player.getInventory(),warningLabel));
                     checkBox.getStyleClass().add("checkbox");
                     collectableVBox.getChildren().add(checkBox);
+                    checkBox.setPrefSize(229,21);
                 }
 
                 //TODO: Finir ça quand y'aura des trucs posables
                 for(Item item : inventory.getItemsByClass(ItemType.POSABLE)) {
+                    System.out.println("test");
                     CheckBox checkBox = new CheckBox(item.getName());
-                    if (inventory.getEquippedConsumables().contains(item))
-                        checkBox.setSelected(true);
+                    if (inventory.getPosableEquippedItem() != null)
+                        if (inventory.getPosableEquippedItem().equals(item))
+                            checkBox.setSelected(true);
                     checkBox.setOnAction(new EquipmentChanger(player.getInventory(),warningLabel));
-                    //posableObjects.getChildren().add(checkBox);
+                    checkBox.getStyleClass().add("checkbox");
+                    posableObjects.getChildren().add(checkBox);
+                    checkBox.setPrefSize(229,21);
                 }
 
             }else {
@@ -110,8 +115,10 @@ public class InventoryGameScene extends GameScene {
                                     inventory.getEquippedWeapons().add(inventory.getItemByName(name));
                                     warningTxt.setVisible(false);
                                 }
-                                else
+                                else{
+                                    warningTxt.setText("Vous ne pouvez pas avoir plus de 4 objets par catégorie ! ");
                                     warningTxt.setVisible(true);
+                                }
                             }
                         break;
                     case "objectVBox":
@@ -120,11 +127,21 @@ public class InventoryGameScene extends GameScene {
                                 inventory.getEquippedConsumables().add(inventory.getItemByName(name));
                                 warningTxt.setVisible(false);
                             }
-                            else
+                            else {
+                                warningTxt.setText("Vous ne pouvez pas avoir plus de 4 objets par catégorie ! ");
                                 warningTxt.setVisible(true);
+                            }
                         }
                         break;
-                    case "interactibleObjectVBox":
+                    case "posableVBox":
+                        Item item = inventory.getItemByName(name);
+                        if (inventory.getPosableEquippedItem() == null || !inventory.getPosableEquippedItem().equals(item)){
+                            inventory.setPosableEquippedItem(item);
+                        }else{
+                                warningTxt.setText("Vous ne pouvez pas avoir plus de 1 objets dans cette catégorie !");
+                                warningTxt.setVisible(true);
+                        }
+
                         break;
                 }
             }else {
@@ -136,7 +153,8 @@ public class InventoryGameScene extends GameScene {
                     case "objectVBox":
                         inventory.getEquippedConsumables().remove(inventory.getItemByName(name));
                         break;
-                    case "interactibleObjectVBox":
+                    case "posableVBox":
+                        inventory.setPosableEquippedItem(null);
                         break;
                 }
             }

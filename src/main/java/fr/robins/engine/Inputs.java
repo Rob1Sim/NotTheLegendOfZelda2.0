@@ -2,6 +2,7 @@ package fr.robins.engine;
 
 import fr.robins.engine.controller.SceneController;
 import fr.robins.entities.Player;
+import fr.robins.items.posable.Posable;
 import fr.robins.types.DirectionType;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
@@ -42,8 +43,14 @@ public class Inputs {
                     break;
                 case F1:
                     Utilities.DEBUG = !Utilities.DEBUG;
+                    break;
                 case I:
                     sceneController.switchToInventoryScene();
+                    break;
+                case F:
+                    if (player.getInventory().getPosableEquippedItem() != null){
+                        ((Posable)player.getInventory().getPosableEquippedItem()).use(player, sceneController.getDisplayableObserver(), backgroundPane);
+                    }
             }
         });
 
