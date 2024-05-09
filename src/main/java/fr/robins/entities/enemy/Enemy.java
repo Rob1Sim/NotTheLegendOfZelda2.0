@@ -18,7 +18,7 @@ public class Enemy extends Fighter implements Displayable {
 
     @Override
     public void takeDamage(int damage, boolean isDodgeable,boolean alwaysDodge ,AttackType attackType) {
-        if (enemyType == EnemyType.GHOST && attackType == AttackType.BODILICAL){
+        if ((enemyType == EnemyType.GHOST ||enemyType == EnemyType.CASPER) && attackType == AttackType.BODILICAL){
             alwaysDodge = true;
         }
         super.takeDamage(damage, isDodgeable,alwaysDodge,attackType);

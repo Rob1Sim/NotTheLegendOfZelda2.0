@@ -1,6 +1,7 @@
 package fr.robins.engine.controller;
 
 import fr.robins.engine.gamelogic.gamescene.GameScene;
+import fr.robins.engine.gamelogic.gamescene.endscene.WinGameScene;
 import fr.robins.engine.gamelogic.gamestate.GameState;
 import fr.robins.engine.Inputs;
 import fr.robins.engine.collisions.CollisionManager;
@@ -11,6 +12,7 @@ import fr.robins.engine.gamelogic.gamestate.GameStateSubject;
 import fr.robins.engine.gamelogic.displayable.*;
 import fr.robins.entities.Player;
 import fr.robins.types.Utilities;
+import fr.robins.world.TileManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,6 +21,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class GameController implements GameStateObserver, DisplayableListObserver, GameSceneObserver {
@@ -34,6 +37,8 @@ public class GameController implements GameStateObserver, DisplayableListObserve
 
     private GameState gameState;
     private GameScene currentGameScene;
+
+    private boolean isGameFinished = false;
 
     public GameController(Stage stage, Player player ) {
         this.stage = stage;
@@ -99,6 +104,11 @@ public class GameController implements GameStateObserver, DisplayableListObserve
         if (gameState != GameState.DEAD && player.getHp() <= 0){
             gmObserver.setGameState(GameState.DEAD);
         }
+        if (gmObserver.isGameWin() && !isGameFinished){
+            isGameFinished = true;
+            gmObserver.setGameState(GameState.WIN);
+        }
+        System.out.println(Arrays.toString(TileManager.coordinatesToTiles(player.getPosition())));
         switch (gameState){
             case WALKING:
                 Inputs.handleMovementInput(player, sceneController.getPane(),stage, sceneController);
@@ -106,7 +116,7 @@ public class GameController implements GameStateObserver, DisplayableListObserve
                 CollisionManager.displayableCollisionChecker(displayableListObserver,currentGameScene.getPane(),player, sceneController);
                 break;
             case WIN:
-                sceneController.switchToEndScene();
+                sceneController.switchToMenuScene(new WinGameScene());
                 break;
             case MENU:
                 Inputs.handleInventoryInput(stage,sceneController);

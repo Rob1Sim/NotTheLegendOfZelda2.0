@@ -84,7 +84,10 @@ public class CombatManager implements EventHandler<ActionEvent> {
     private void enemyTurn(ActionEvent event, String id){
         int whatDoIDo = new Random().nextInt(3);
         int spellNumber = -1;
+        System.out.println(whatDoIDo);
+
         if(whatDoIDo == 0 && enemy.getSpells().length>0 ){
+            System.out.println("Je lance un sort");
             spellNumber = new Random().nextInt(enemy.getSpells().length);
             if ((enemy.getMana() - enemy.getSpells()[spellNumber].getManaCost())<=0){
                 whatDoIDo = 1;
@@ -124,6 +127,7 @@ public class CombatManager implements EventHandler<ActionEvent> {
      */
     private void endCombat(ActionEvent event){
         if (enemy.getHp()<=0){
+            player.setMoney(player.getMoney()+enemy.getMoney());
             Platform.runLater(()-> combatProperty.setActionText(enemy.getDeathPhrase()));
             Button leaveButton = (Button) ((Button)event.getSource()).getScene().lookup("#leaveBtn");
             leaveButton.setDisable(false);

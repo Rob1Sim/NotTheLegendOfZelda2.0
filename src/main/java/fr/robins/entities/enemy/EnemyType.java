@@ -16,7 +16,17 @@ public enum EnemyType {
             new Spell(SpellType.KALASH)},
             new Inventory(new WeaponItem(WeaponType.KNIFE)), 10,"/sprites/characters/c_dark_magician.png","VOUS .. NE ... PASSEREZ ... PAS ... *blurp*! "),
     GHOST("Fantome", 10, 30, 5, 5, 10, new Spell[]{new Spell(SpellType.LIGHTNING)}, new Inventory(new WeaponItem(WeaponType.GHOST_FIST)), 10, "/sprites/characters/c_white_ghost.png","Argh ! La magie ... mon seule point faible !"),
-    RAT("Rat", 5, 2, 2, 5, 1, new Spell[]{}, new Inventory(new WeaponItem(WeaponType.RAT_CLAWS)), 1, "/sprites/characters/c_roman_brown.png","Argh ! L'argent ... je veux ... plus ... plus d'argent *blurp* !"),;
+    RAT("Rat", 5, 2, 2, 5, 1, new Spell[]{}, new Inventory(new WeaponItem(WeaponType.RAT_CLAWS)), 1, "/sprites/characters/c_roman_brown.png","Argh ! L'argent ... je veux ... plus ... plus d'argent *blurp* !"),
+    BOSS_MAGE("Roi démon", 100, 500, 10, 10, 15,
+            new Spell[]{new Spell(SpellType.FIRE_BALL),
+                    new Spell(SpellType.LIGHTNING),
+                    new Spell(SpellType.DIVINE_STRIKE),
+                    new Spell(SpellType.KALASH)},
+            new Inventory(new WeaponItem(WeaponType.KNIFE)), 10,"/sprites/characters/c_dark_magician.png","VOUS .. NE ... PASSEREZ ... PAS ... *blurp*! "),
+    ROMAN("Roman", 25, 2, 12, 15, 1, new Spell[]{}, new Inventory(new WeaponItem(WeaponType.RAT_CLAWS)), 10, "/sprites/characters/c_roman_brown.png","Argh ! L'argent ... je veux ... plus ... plus d'argent *blurp* !"),
+    CASPER("Casper", 30, 30, 15, 15, 10, new Spell[]{new Spell(SpellType.LIGHTNING)}, new Inventory(new WeaponItem(WeaponType.GHOST_FIST)), 20, "/sprites/characters/c_white_ghost.png","Argh ! La magie ... mon seule point faible !"),
+
+    ;
 
 
 

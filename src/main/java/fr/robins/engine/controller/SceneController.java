@@ -3,6 +3,7 @@ package fr.robins.engine.controller;
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.engine.gamelogic.gamescene.combatScene.CombatScene;
 import fr.robins.engine.gamelogic.gamescene.GameScene;
+import fr.robins.engine.gamelogic.gamescene.endscene.WinGameScene;
 import fr.robins.engine.gamelogic.gamestate.GameState;
 import fr.robins.engine.gamelogic.displayable.DisplayableListObserver;
 import fr.robins.engine.gamelogic.displayable.DisplayableSubject;
@@ -92,7 +93,8 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         tileManager = mapScenes.getFirst().getTileManager();
         gameSceneObserver.setGameScene(new GameScene(tileManager, displayable, gameController.getPlayer()));
 
-        switchToScene(new Vector2D(35,28));
+        //SPAWN
+        switchToScene(new Vector2D(27,41));
         gameController.setGameState(GameState.WALKING);
     }
 
@@ -134,9 +136,6 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         gameController.setGameState(GameState.WALKING);
     }
 
-    public void switchToEndScene() {
-        gameController.setGameState(GameState.WIN);
-    }
 
     /**
      * Change the map displayed, and teleport the player, the map should be in the Map List
@@ -220,26 +219,34 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
     public MapScene generateSpawnMap(){
         List<Displayable> spawnDisplaybles = new ArrayList<>();
 
-        spawnDisplaybles.add( Enemy.enemyGenerator(EnemyType.GHOST,33,38));
-        spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.RAT,40,38));
-        spawnDisplaybles.add( Enemy.enemyGenerator(EnemyType.MAGE,42,38));
-        spawnDisplaybles.add( WeaponItem.weaponGenerator(WeaponType.DOUBLE_AXE,36,31));
-        spawnDisplaybles.add(WeaponItem.weaponGenerator(WeaponType.KNIFE,37,31));
-        spawnDisplaybles.add(WeaponItem.weaponGenerator(WeaponType.IRON_SWORD,38,31));
-        spawnDisplaybles.add(WeaponItem.weaponGenerator(WeaponType.AXE,39,31));
-        spawnDisplaybles.add(WeaponItem.weaponGenerator(WeaponType.SHORT_SWORD,42,42));
-        spawnDisplaybles.add(Potion.potionGenerator(PotionType.HEAL_POTION,32,36));
-        spawnDisplaybles.add(Potion.potionGenerator(PotionType.HEAL_POTION,38,35));
-        spawnDisplaybles.add(Potion.potionGenerator(PotionType.MANA_POTION,39,35));
-        spawnDisplaybles.add(Door.doorGenerator(45,37,this,1));
-        spawnDisplaybles.add(Bomb.bombGenerator(40,35));
-        spawnDisplaybles.add(Destructible.destructibleGenerator(DestructibleType.BARREL,35,35 ));
-        spawnDisplaybles.add(NPC.npcGenerator(NPCType.NPC_OLD_WOMAN,36, 36));
-        spawnDisplaybles.add(Trader.traderGenerator(NPCType.NPC_TRADER,38, 38));
+        spawnDisplaybles.add(Door.doorGenerator(19,44,this,1));
+        spawnDisplaybles.add(Trader.traderGenerator(NPCType.NPC_BLACK_SMITH,26,17));
+        spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.GHOST,26,57));
+        spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.GHOST,22,58));
+        spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.MAGE,51,43));
+        spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.RAT,48,38));
+        spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.RAT,58,35));
+        spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.ROMAN,42,23));
+        spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.CASPER,54,23));
+        spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.MAGE,58,10));
+        spawnDisplaybles.add(WeaponItem.weaponGenerator(WeaponType.AXE,44,9));
+        spawnDisplaybles.add(NPC.npcGenerator(NPCType.NPC_VIKING,33,42));
+        spawnDisplaybles.add(NPC.npcGenerator(NPCType.NPC_WOMAN,21,42));
+        spawnDisplaybles.add(Trader.traderGenerator(NPCType.NPC_TRADER,11,58));
+        spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.CASPER,51,48));
+        spawnDisplaybles.add(WeaponItem.weaponGenerator(WeaponType.SHORT_SWORD,27,44));
+        spawnDisplaybles.add(Destructible.destructibleGenerator(DestructibleType.BARREL,29,47));
+        spawnDisplaybles.add(Destructible.destructibleGenerator(DestructibleType.TABLE,11,61));
+        spawnDisplaybles.add(Destructible.destructibleGenerator(DestructibleType.CHAIR,11,60));
+        spawnDisplaybles.add(Destructible.destructibleGenerator(DestructibleType.CRATE,47,14));
+        spawnDisplaybles.add(Destructible.destructibleGenerator(DestructibleType.CRATE,48,14));
+        spawnDisplaybles.add(Destructible.destructibleGenerator(DestructibleType.CRATE,49,14));
 
+        Enemy boss = Enemy.enemyGenerator(EnemyType.BOSS_MAGE,12,21);
+        gameController.getGameStateSubject().setBoss(boss);
+        spawnDisplaybles.add(boss);
 
-
-        return new MapScene("/tiles/tilemap/grandeMap.xml",spawnDisplaybles,new Vector2D(43,37));
+        return new MapScene("/tiles/tilemap/finalMap.xml",spawnDisplaybles,new Vector2D(20,44));
     }
 
     public MapScene examScene(){
@@ -247,7 +254,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
 
         examDisplaybles.add(Enemy.enemyGenerator(EnemyType.RAT,38,36));
         examDisplaybles.add(Door.doorGenerator(30,35,this,0));
-        examDisplaybles.add(Trader.traderGenerator(NPCType.NPC_BLACK_SMITH,35,36));
+
 
 
         return new MapScene("/tiles/tilemap/map2.xml",examDisplaybles,new Vector2D(31,35));

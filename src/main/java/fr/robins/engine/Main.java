@@ -2,7 +2,7 @@ package fr.robins.engine;
 
 import fr.robins.engine.controller.GameController;
 
-import fr.robins.engine.gamelogic.gamescene.deadscene.DeadGameScene;
+import fr.robins.engine.gamelogic.gamescene.endscene.DeadGameScene;
 import fr.robins.entities.Player;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;

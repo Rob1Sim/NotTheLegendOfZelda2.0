@@ -18,8 +18,8 @@ public enum NPCType {
             new WeaponItem(WeaponType.SHORT_SWORD, new Vector2D())
     ), 100,  "/sprites/characters/c_black_smith.png", "Je te salut aventurier ! Ma forge est toujours prête à servir !"),
     NPC_TRADER("Le marchand", 10, 5, 5, 5, 100,
-            new Inventory(new Potion(PotionType.HEAL_POTION,new Vector2D(), 3),
-            new Potion(PotionType.MANA_POTION,new Vector2D(), 3),
+            new Inventory(new Potion(PotionType.HEAL_POTION,new Vector2D(), 6),
+            new Potion(PotionType.MANA_POTION,new Vector2D(), 6),
             new Bomb(new Vector2D(0,0))),
             100, "/sprites/characters/c_trader.png"," Bonsoir aventurier ! La M-16 56Mn enchanté est à -50% aujourd'hui !"),
     NPC_WOMAN("Chara", 10, 5, 5, 5, 10,new Inventory(), 100,  "/sprites/characters/c_princess.png","Je te vois."),

@@ -5,13 +5,16 @@ import fr.robins.entities.Player;
 import fr.robins.items.Inventory;
 import fr.robins.items.Item;
 import fr.robins.items.ItemType;
+import fr.robins.items.consumable.Consumable;
 import fr.robins.types.exceptions.InventoryLoadingException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -64,7 +67,15 @@ public class InventoryGameScene extends GameScene {
                         checkBox.setSelected(true);
                     checkBox.setOnAction(new EquipmentChanger(player.getInventory(),warningLabel));
                     checkBox.getStyleClass().add("checkbox");
-                    collectableVBox.getChildren().add(checkBox);
+                    HBox hBox = new HBox();
+                    hBox.getChildren().add(checkBox);
+                    Label label = new Label(String.valueOf(((Consumable)item).getQuantity()));
+                    label.getStyleClass().add("txt");
+                    label.setStyle("-fx-font-size: 30px");
+                    hBox.getChildren().add(label);
+
+                    hBox.setAlignment(Pos.CENTER);
+                    collectableVBox.getChildren().add(hBox);
                     checkBox.setPrefSize(229,21);
                 }
 
