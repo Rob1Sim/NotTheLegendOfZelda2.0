@@ -13,6 +13,8 @@ import fr.robins.entities.Fighter;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.Enemy;
 import fr.robins.entities.enemy.EnemyType;
+import fr.robins.entities.npc.NPC;
+import fr.robins.entities.npc.NPCType;
 import fr.robins.items.Item;
 import fr.robins.items.ItemType;
 import fr.robins.items.combat.weapons.WeaponItem;
@@ -227,6 +229,8 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         spawnDisplaybles.add(Door.doorGenerator(45,37,this,1));
         spawnDisplaybles.add(Bomb.bombGenerator(40,35));
         spawnDisplaybles.add(Destructible.destructibleGenerator(35,35, DestructibleType.BARREL));
+        spawnDisplaybles.add(NPC.npcGenerator(36, 36, NPCType.NPC_OLD_WOMAN));
+
 
 
         return new MapScene("/tiles/tilemap/grandeMap.xml",spawnDisplaybles,new Vector2D(43,37));

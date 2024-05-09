@@ -2,7 +2,6 @@ package fr.robins.items.interactable;
 
 import fr.robins.engine.controller.SceneController;
 import fr.robins.entities.Entity;
-import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
 import fr.robins.world.TileManager;
 

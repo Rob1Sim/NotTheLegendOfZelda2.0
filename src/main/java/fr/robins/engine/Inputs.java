@@ -51,6 +51,11 @@ public class Inputs {
                     if (player.getInventory().getPosableEquippedItem() != null){
                         ((Posable)player.getInventory().getPosableEquippedItem()).use(player, sceneController.getDisplayableObserver(), backgroundPane);
                     }
+                    break;
+                case E:
+                    if (player.canInteract() && player.getInteractable() != null){
+                        player.getInteractable().interact();
+                    }
             }
         });
 

@@ -3,6 +3,7 @@ package fr.robins.entities;
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.items.combat.spells.Spell;
 import fr.robins.items.combat.spells.SpellType;
+import fr.robins.items.interactable.InteractableWithInput;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
 import javafx.scene.Node;
@@ -17,6 +18,9 @@ public class Player extends Fighter implements Displayable {
 
     private final Image[] sprites;
     private Image currentSprite;
+    private boolean canInteract = false;
+    private InteractableWithInput interactable;
+
 
     public Player(Vector2D spawnPosition) {
         super("Player",100,30,10,10,10,10,spawnPosition ,"/sprites/player/chevalier_idle.png",new Spell[]{new Spell(SpellType.LIGHTNING), new Spell(SpellType.BOOST_CONST), new Spell(SpellType.HEAL), new Spell(SpellType.DIVINE_STRIKE)} );
@@ -66,4 +70,20 @@ public class Player extends Fighter implements Displayable {
         }
     }
 
+    /**
+     * True if the player is in front of a PNJ
+     * @return
+     */
+    public boolean canInteract() {
+        return canInteract;
+    }
+
+    public void setCanInteract(boolean canInteract, InteractableWithInput interactable) {
+        this.canInteract = canInteract;
+        this.interactable = interactable;
+    }
+
+    public InteractableWithInput getInteractable() {
+        return interactable;
+    }
 }

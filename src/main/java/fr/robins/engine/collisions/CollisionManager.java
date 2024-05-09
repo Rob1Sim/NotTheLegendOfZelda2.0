@@ -6,11 +6,13 @@ import fr.robins.engine.gamelogic.displayable.DisplayableSubject;
 import fr.robins.engine.gamelogic.gamescene.GameScene;
 import fr.robins.engine.gamelogic.gamescene.GameSceneSubject;
 import fr.robins.entities.Entity;
+import fr.robins.entities.Player;
 import fr.robins.entities.enemy.Enemy;
 import fr.robins.entities.npc.NPC;
 import fr.robins.items.Collectable;
 import fr.robins.items.Item;
 import fr.robins.items.interactable.Interactable;
+import fr.robins.items.interactable.InteractableWithInput;
 import fr.robins.items.posable.Posable;
 import fr.robins.types.Utilities;
 
@@ -133,6 +135,10 @@ public class CollisionManager {
      */
     public static void displayableCollisionChecker(DisplayableSubject displayableObserver, Pane pane, Entity entity, SceneController sceneController){
         int index = -1;
+
+        //RayCast to see if the player encounter an input interactible items/NPC
+        int indexInteractable = -1;
+
         List<Displayable> items = displayableObserver.getDisplayables();
 
         for (int i = 0; i < items.size(); i++) {
@@ -141,35 +147,43 @@ public class CollisionManager {
             futureHitBox.setHeight(entity.getHitBox().getHeight());
             futureHitBox.setWidth(entity.getHitBox().getWidth());
 
+
             switch (entity.getDirection()){
                 case UP:
-                    futureHitBox.setCoords(new Vector2D(entity.getHitBox().getX(),entity.getHitBox().getY() - entity.getSpeed()));
+                    //Collisions
+                    futureHitBox.setCoords(new Vector2D(entity.getHitBox().getX(),entity.getHitBox().getY() - entity.getSpeed()*1.5));
                     if (futureHitBox.isIntersecting(items.get(i).getHitBox())){
                         index = i;
+                        indexInteractable = i;
                         checkCollision(entity,items.get(i));
                     }
+
                     break;
                 case DOWN:
-                    futureHitBox.setCoords(new Vector2D(entity.getHitBox().getX(),entity.getHitBox().getY() + entity.getSpeed()));
+                    futureHitBox.setCoords(new Vector2D(entity.getHitBox().getX(),entity.getHitBox().getY() + entity.getHitBox().getHeight()/3 + entity.getSpeed()));
                     if (futureHitBox.isIntersecting(items.get(i).getHitBox())){
                         index = i;
+                        indexInteractable = i;
                         checkCollision(entity,items.get(i));
                     }
+
                     break;
                 case LEFT:
-                    futureHitBox.setCoords(new Vector2D(entity.getHitBox().getX() - entity.getSpeed(),entity.getHitBox().getY()));
+                    futureHitBox.setCoords(new Vector2D(entity.getHitBox().getX() - entity.getSpeed()*1.5,entity.getHitBox().getY()));
                     if (futureHitBox.isIntersecting(items.get(i).getHitBox())){
                         index = i;
+                        indexInteractable = i;
                         checkCollision(entity,items.get(i));
                     }
+
                     break;
                 case RIGHT:
-                    futureHitBox.setCoords(new Vector2D(entity.getHitBox().getX() + entity.getSpeed(),entity.getHitBox().getY()));
+                    futureHitBox.setCoords(new Vector2D(entity.getHitBox().getX() + entity.getHitBox().getWidth()/3 + entity.getSpeed() ,entity.getHitBox().getY()));
                     if (futureHitBox.isIntersecting(items.get(i).getHitBox())){
                         index = i;
+                        indexInteractable = i;
                         checkCollision(entity,items.get(i));
                     }
-                    break;
             }
         }
 
@@ -189,7 +203,16 @@ public class CollisionManager {
                 sceneController.switchToCombatScene(enemy);
             }
         }
+
+        if (indexInteractable != -1){
+            if (items.get(indexInteractable) instanceof InteractableWithInput interactable){
+                ((Player)entity).setCanInteract(true,interactable);
+            }
+        }else{
+            ((Player)entity).setCanInteract(false,null);
+        }
     }
+
 
     /**
      * check and set collision with a displayable if there is one
