@@ -1,13 +1,22 @@
 package fr.robins.entities.npc;
 
 import fr.robins.items.Inventory;
+import fr.robins.items.combat.weapons.WeaponItem;
+import fr.robins.items.combat.weapons.WeaponType;
 import fr.robins.items.consumable.potions.Potion;
 import fr.robins.items.consumable.potions.PotionType;
 import fr.robins.items.posable.Bomb;
 import fr.robins.types.Vector2D;
 
 public enum NPCType {
-    NPC_BLACK_SMITH("Le forgeron", 10, 10, 10, 5, 10,new Inventory(), 100,  "/sprites/characters/c_black_smith.png", "Je te salut aventurier ! Ma forge est toujours prête à servir !"),
+    NPC_BLACK_SMITH("Le forgeron", 10, 10, 10, 5, 10,new Inventory(
+            new WeaponItem(WeaponType.SHORT_SWORD, new Vector2D()),
+            new WeaponItem(WeaponType.AXE, new Vector2D()),
+            new WeaponItem(WeaponType.DOUBLE_AXE, new Vector2D()),
+            new WeaponItem(WeaponType.IRON_SWORD, new Vector2D()),
+            new WeaponItem(WeaponType.KNIFE, new Vector2D()),
+            new WeaponItem(WeaponType.SHORT_SWORD, new Vector2D())
+    ), 100,  "/sprites/characters/c_black_smith.png", "Je te salut aventurier ! Ma forge est toujours prête à servir !"),
     NPC_TRADER("Le marchand", 10, 5, 5, 5, 100,
             new Inventory(new Potion(PotionType.HEAL_POTION,new Vector2D(), 3),
             new Potion(PotionType.MANA_POTION,new Vector2D(), 3),

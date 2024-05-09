@@ -15,7 +15,7 @@ public class Destructible extends Interactable {
         return;
     }
 
-    public static Destructible destructibleGenerator(int column, int row, DestructibleType destructibleType) {
+    public static Destructible destructibleGenerator(DestructibleType destructibleType,int column, int row) {
         return new Destructible(destructibleType,TileManager.tilesToCoordinates(column,row));
     }
 }

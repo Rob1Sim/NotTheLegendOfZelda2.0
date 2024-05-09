@@ -23,7 +23,7 @@ public class NPC extends Entity implements Displayable, InteractableWithInput {
         sceneController.switchToMenuScene(new DialogueGameScene(this));
     }
 
-    public static NPC npcGenerator(int column, int row, NPCType type) {
+    public static NPC npcGenerator(NPCType type,int column, int row) {
         return new NPC(type, TileManager.tilesToCoordinates(column,row));
     }
 

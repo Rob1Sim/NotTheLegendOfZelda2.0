@@ -17,7 +17,7 @@ public class Trader extends NPC implements InteractableWithInput {
         sceneController.switchToMenuScene(new TradeGameScene(this,sceneController));
     }
 
-    public static Trader traderGenerator(int column, int row, NPCType type) {
+    public static Trader traderGenerator(NPCType type,int column, int row) {
         return new Trader(type, TileManager.tilesToCoordinates(column,row));
     }
 }

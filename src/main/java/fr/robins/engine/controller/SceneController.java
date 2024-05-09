@@ -233,9 +233,9 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         spawnDisplaybles.add(Potion.potionGenerator(PotionType.MANA_POTION,39,35));
         spawnDisplaybles.add(Door.doorGenerator(45,37,this,1));
         spawnDisplaybles.add(Bomb.bombGenerator(40,35));
-        spawnDisplaybles.add(Destructible.destructibleGenerator(35,35, DestructibleType.BARREL));
-        spawnDisplaybles.add(NPC.npcGenerator(36, 36, NPCType.NPC_OLD_WOMAN));
-        spawnDisplaybles.add(Trader.traderGenerator(38, 38, NPCType.NPC_TRADER));
+        spawnDisplaybles.add(Destructible.destructibleGenerator(DestructibleType.BARREL,35,35 ));
+        spawnDisplaybles.add(NPC.npcGenerator(NPCType.NPC_OLD_WOMAN,36, 36));
+        spawnDisplaybles.add(Trader.traderGenerator(NPCType.NPC_TRADER,38, 38));
 
 
 
@@ -247,6 +247,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
 
         examDisplaybles.add(Enemy.enemyGenerator(EnemyType.RAT,38,36));
         examDisplaybles.add(Door.doorGenerator(30,35,this,0));
+        examDisplaybles.add(Trader.traderGenerator(NPCType.NPC_BLACK_SMITH,35,36));
 
 
         return new MapScene("/tiles/tilemap/map2.xml",examDisplaybles,new Vector2D(31,35));

@@ -42,7 +42,7 @@
             <ImageView fx:id="npcSprite" fitHeight="204.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true" smooth="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <VBox fx:id="traderVBox" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.rowSpan="2" />
             <VBox fx:id="playerVBox" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
-            <Label fx:id="playerLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="438.0" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+            <Label fx:id="playerLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="438.0" styleClass="txt" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <font>
                   <Font size="25.0" />
                </font></Label>
