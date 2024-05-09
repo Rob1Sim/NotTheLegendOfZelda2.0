@@ -13,11 +13,21 @@ public class Potion extends Consumable implements Displayable {
 
     private final CharacType type;
     private final int modificator;
+    private final PotionType potionType;
+    private final Vector2D position;
+    private final int quantity;
 
     public Potion(PotionType potionType, Vector2D position) {
-        super(potionType.getName(), potionType.getSpritePath() ,position,potionType.isUseHasWeapon());
-        modificator = potionType.getModificator();
+        this(potionType,position,1);
+    }
+
+    public Potion(PotionType potionType, Vector2D position, int quantity) {
+        super(potionType.getName(), potionType.getSpritePath() ,position,potionType.isUseHasWeapon(), quantity, potionType.getPrice());
+        this.modificator = potionType.getModificator();
         this.type = potionType.getCharacType();
+        this.potionType = potionType;
+        this.position = position;
+        this.quantity = quantity;
     }
 
     /**
@@ -52,8 +62,14 @@ public class Potion extends Consumable implements Displayable {
         fighter.setTextToDisplay(target.getName()+" reçois "+modificator +sType+" !");
     }
 
-    public static Potion potionGenerator(PotionType potionType, int column, int row) {
-        return new Potion(potionType, TileManager.tilesToCoordinates(column,row));
+    @Override
+    public Consumable clone() {
+        return new Potion(this.potionType, this.position, this.quantity);
     }
+
+    public static Potion potionGenerator(PotionType potionType, int column, int row) {
+        return new Potion(potionType, TileManager.tilesToCoordinates(column,row),1);
+    }
+
 
 }

@@ -23,7 +23,7 @@ import java.util.TimerTask;
 
 public class Bomb extends Posable{
     public Bomb(Vector2D position) {
-        super("Bombe", "/sprites/items/bomb.png", position);
+        super("Bombe", "/sprites/items/bomb.png", position, 50);
     }
 
     @Override

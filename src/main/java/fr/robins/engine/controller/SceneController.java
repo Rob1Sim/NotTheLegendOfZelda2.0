@@ -14,6 +14,7 @@ import fr.robins.entities.enemy.Enemy;
 import fr.robins.entities.enemy.EnemyType;
 import fr.robins.entities.npc.NPC;
 import fr.robins.entities.npc.NPCType;
+import fr.robins.entities.npc.Trader;
 import fr.robins.items.Item;
 import fr.robins.items.ItemType;
 import fr.robins.items.combat.weapons.WeaponItem;
@@ -234,6 +235,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         spawnDisplaybles.add(Bomb.bombGenerator(40,35));
         spawnDisplaybles.add(Destructible.destructibleGenerator(35,35, DestructibleType.BARREL));
         spawnDisplaybles.add(NPC.npcGenerator(36, 36, NPCType.NPC_OLD_WOMAN));
+        spawnDisplaybles.add(Trader.traderGenerator(38, 38, NPCType.NPC_TRADER));
 
 
 
@@ -248,6 +250,10 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
 
 
         return new MapScene("/tiles/tilemap/map2.xml",examDisplaybles,new Vector2D(31,35));
+    }
+
+    public Player getPlayer(){
+        return gameController.getPlayer();
     }
 
 }

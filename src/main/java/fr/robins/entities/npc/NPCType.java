@@ -1,10 +1,18 @@
 package fr.robins.entities.npc;
 
 import fr.robins.items.Inventory;
+import fr.robins.items.consumable.potions.Potion;
+import fr.robins.items.consumable.potions.PotionType;
+import fr.robins.items.posable.Bomb;
+import fr.robins.types.Vector2D;
 
 public enum NPCType {
     NPC_BLACK_SMITH("Le forgeron", 10, 10, 10, 5, 10,new Inventory(), 100,  "/sprites/characters/c_black_smith.png", "Je te salut aventurier ! Ma forge est toujours prête à servir !"),
-    NPC_TRADER("Le marchand", 10, 5, 5, 5, 100, new Inventory(), 100, "/sprites/characters/c_trader.png"," Bonsoir aventurier ! La M-16 56Mn enchanté est à -50% aujourd'hui !"),
+    NPC_TRADER("Le marchand", 10, 5, 5, 5, 100,
+            new Inventory(new Potion(PotionType.HEAL_POTION,new Vector2D(), 3),
+            new Potion(PotionType.MANA_POTION,new Vector2D(), 3),
+            new Bomb(new Vector2D(0,0))),
+            100, "/sprites/characters/c_trader.png"," Bonsoir aventurier ! La M-16 56Mn enchanté est à -50% aujourd'hui !"),
     NPC_WOMAN("Chara", 10, 5, 5, 5, 10,new Inventory(), 100,  "/sprites/characters/c_princess.png","Je te vois."),
     NPC_OLD_WOMAN("Mémé", 10, 5, 5, 5, 10,new Inventory(), 100,  "/sprites/characters/c_old_woman.png","Ce visage ! Serait-tu l'enfant de Jurons ?"),
     NPC_VIKING("Hydyr", 10, 15, 15, 5, 10,new Inventory(), 100,  "/sprites/characters/c_viking.png","MY MOTHER TOLD ME, SOMEDAY I WILL BUY GALLEYS WITH GOOD OARS SAILS TO DISTANT SHORES ... (cette personne chante très faux)");

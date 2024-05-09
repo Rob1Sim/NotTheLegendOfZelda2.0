@@ -5,7 +5,6 @@ import fr.robins.items.consumable.Consumable;
 import fr.robins.items.posable.Posable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Inventory {
@@ -22,7 +21,9 @@ public class Inventory {
 
     public Inventory(Item... items) {
         this();
-        this.items.addAll(Arrays.asList(items));
+        for (Item item : items) {
+            this.addItem(item);
+        }
 
     }
 
@@ -31,9 +32,10 @@ public class Inventory {
             Item consumable = getItemByName(consumableItem.getName());
             if (consumable != null){
                 ((Consumable)consumable).addQuantity(consumableItem.getQuantity());
-            }else{
 
-                items.add(item);
+            }else{
+                items.add(consumableItem);
+
                 if (equippedConsumables.size() < 4)
                     equippedConsumables.add(consumableItem);
             }

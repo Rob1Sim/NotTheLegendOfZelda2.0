@@ -13,6 +13,7 @@ public class NPC extends Entity implements Displayable, InteractableWithInput {
     private final String dialogueText;
     public NPC(NPCType type, Vector2D position) {
         super(type.getName(), type.getHp(),type.getMana(),type.getConstitution(), type.getStrength(), type.getDexterity() , type.getMoney(), position, type.getSprite());
+        this.setInventory(type.getInventory());
         dialogueText = type.getDialogueText();
     }
 

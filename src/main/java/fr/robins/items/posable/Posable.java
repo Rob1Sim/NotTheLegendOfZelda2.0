@@ -11,8 +11,8 @@ import javafx.scene.layout.Pane;
 import java.util.List;
 
 public abstract class Posable extends Item implements Collectable {
-    public Posable(String name, String spritePath, Vector2D position) {
-        super(name, spritePath, position);
+    public Posable(String name, String spritePath, Vector2D position, int price) {
+        super(name, spritePath, position, price );
     }
     public abstract void use(Player player, DisplayableSubject displayablesEntity, Pane pane);
 }

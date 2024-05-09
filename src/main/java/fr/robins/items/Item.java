@@ -17,13 +17,15 @@ public abstract class Item implements Displayable {
     private final HitBox hitBox;
     private Vector2D position;
     private String spritePath;
+    private int price;
 
-    public Item(String name, String spritePath, Vector2D position) {
+    public Item(String name, String spritePath, Vector2D position, int price) {
         this.name = name;
         this.spritePath = spritePath;
         sprite = new ImageView(spritePath);
         sprite.setCache(false);
         this.position = position;
+        this.price = price;
         hitBox = new HitBox(position, Utilities.TILE_SIZE/2,Utilities.TILE_SIZE/2, Color.GREEN);
         setPosition(position);
     }
@@ -80,5 +82,13 @@ public abstract class Item implements Displayable {
 
     protected void resetSprite(){
         sprite.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(spritePath))));
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

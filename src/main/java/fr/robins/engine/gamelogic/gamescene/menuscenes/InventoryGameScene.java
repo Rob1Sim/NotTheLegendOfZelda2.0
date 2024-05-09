@@ -41,7 +41,7 @@ public class InventoryGameScene extends GameScene {
             if (hpBar != null && mpBar != null && goldLabel != null) {
                 hpBar.setProgress((double) player.getHp() /player.getMaxHp());
                 mpBar.setProgress((double) player.getMana() /player.getMaxMana());
-                goldLabel.setText((player.getMoney()).toString());
+                goldLabel.setText(String.valueOf(player.getMoney()));
             }
 
             //Load items into the interface

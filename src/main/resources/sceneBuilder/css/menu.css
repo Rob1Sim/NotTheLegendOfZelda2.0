@@ -43,3 +43,11 @@
     -fx-border-width: 2px;
     -fx-border-color: white;
 }
+
+.action-button{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-font-family: "8-bit Arcade In";
+}

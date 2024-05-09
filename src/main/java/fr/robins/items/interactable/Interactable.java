@@ -11,7 +11,7 @@ public abstract class Interactable extends Item implements Displayable {
     private boolean isCollisionable;
     private boolean isDestructible;
     public Interactable(String name, String spritePath , Vector2D position, boolean isCollisionable, boolean isDestructible) {
-        super(name,spritePath,position);
+        super(name,spritePath,position, 0);
         this.isCollisionable = isCollisionable;
         this.isDestructible = isDestructible;
         this.getHitBox().setWidth((double) Utilities.TILE_SIZE /2);

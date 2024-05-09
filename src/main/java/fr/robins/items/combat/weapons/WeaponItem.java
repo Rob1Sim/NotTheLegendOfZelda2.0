@@ -16,7 +16,7 @@ public class WeaponItem extends Item implements IAttack, Collectable, Displayabl
 
     private final int damage;
     public WeaponItem(WeaponType weaponType, Vector2D position) {
-        super(weaponType.getName(), weaponType.getSpritePath(), position);
+        super(weaponType.getName(), weaponType.getSpritePath(), position, weaponType.getPrice());
         this.damage = weaponType.getDamage();
     }
 

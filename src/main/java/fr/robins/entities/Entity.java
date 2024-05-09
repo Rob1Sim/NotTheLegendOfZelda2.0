@@ -122,7 +122,7 @@ public abstract class Entity implements Displayable {
         this.constitution = constitution;
     }
 
-    public Integer getMoney() {
+    public int getMoney() {
         return money;
     }
 

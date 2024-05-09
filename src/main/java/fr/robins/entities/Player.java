@@ -23,7 +23,7 @@ public class Player extends Fighter implements Displayable {
 
 
     public Player(Vector2D spawnPosition) {
-        super("Player",100,30,10,10,10,10,spawnPosition ,"/sprites/player/chevalier_idle.png",new Spell[]{new Spell(SpellType.LIGHTNING), new Spell(SpellType.BOOST_CONST), new Spell(SpellType.HEAL), new Spell(SpellType.DIVINE_STRIKE)} );
+        super("Player",100,30,10,10,10,100,spawnPosition ,"/sprites/player/chevalier_idle.png",new Spell[]{new Spell(SpellType.LIGHTNING), new Spell(SpellType.BOOST_CONST), new Spell(SpellType.HEAL), new Spell(SpellType.DIVINE_STRIKE)} );
         sprites = new Image[4];
         sprites[0] = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/sprites/player/chevalier_idle.png")));
         sprites[1] = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/sprites/player/chevalier_back.png")));
