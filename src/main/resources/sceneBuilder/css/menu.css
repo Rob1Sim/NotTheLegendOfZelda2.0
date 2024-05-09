@@ -36,3 +36,10 @@
     -fx-accent: #0077b6;
     -fx-box-border:#0077b6;
 }
+
+.dialogue-box{
+    -fx-font-family: "8-bit Arcade In";
+    -fx-text-fill: white;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+}

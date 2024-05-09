@@ -1,12 +1,12 @@
 package fr.robins.engine;
 
 import fr.robins.engine.controller.SceneController;
+import fr.robins.engine.gamelogic.gamescene.menuscenes.InventoryGameScene;
 import fr.robins.entities.Player;
 import fr.robins.items.posable.Posable;
 import fr.robins.types.DirectionType;
 import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -45,7 +45,7 @@ public class Inputs {
                     Utilities.DEBUG = !Utilities.DEBUG;
                     break;
                 case I:
-                    sceneController.switchToInventoryScene();
+                    sceneController.switchToMenuScene(new InventoryGameScene(player));
                     break;
                 case F:
                     if (player.getInventory().getPosableEquippedItem() != null){
@@ -54,7 +54,7 @@ public class Inputs {
                     break;
                 case E:
                     if (player.canInteract() && player.getInteractable() != null){
-                        player.getInteractable().interact();
+                        player.getInteractable().interact(sceneController);
                     }
             }
         });
@@ -86,7 +86,7 @@ public class Inputs {
     public static void handleInventoryInput(Stage stage, SceneController sceneController){
         stage.getScene().setOnKeyPressed(keyEvent -> {
             KeyCode keycode = keyEvent.getCode();
-            if (keycode == KeyCode.I) {
+            if (keycode == KeyCode.I || keycode == KeyCode.ESCAPE) {
                 sceneController.switchToGameSceneAfterLeavingMenu();
             }
         });

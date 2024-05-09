@@ -15,8 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -110,7 +108,7 @@ public class GameController implements GameStateObserver, DisplayableListObserve
             case WIN:
                 sceneController.switchToEndScene();
                 break;
-            case INVENTORY:
+            case MENU:
                 Inputs.handleInventoryInput(stage,sceneController);
                 break;
             case LOADING:

@@ -3,7 +3,6 @@ package fr.robins.engine.controller;
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.engine.gamelogic.gamescene.combatScene.CombatScene;
 import fr.robins.engine.gamelogic.gamescene.GameScene;
-import fr.robins.engine.gamelogic.gamescene.inventoryscene.InventoryGameScene;
 import fr.robins.engine.gamelogic.gamestate.GameState;
 import fr.robins.engine.gamelogic.displayable.DisplayableListObserver;
 import fr.robins.engine.gamelogic.displayable.DisplayableSubject;
@@ -25,8 +24,6 @@ import fr.robins.items.interactable.Door;
 import fr.robins.items.interactable.destructible.Destructible;
 import fr.robins.items.interactable.destructible.DestructibleType;
 import fr.robins.items.posable.Bomb;
-import fr.robins.items.posable.Posable;
-import fr.robins.types.Utilities;
 import fr.robins.types.Vector2D;
 import fr.robins.world.MapScene;
 import fr.robins.world.TileManager;
@@ -50,7 +47,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
 
     private GameScene currentGameScene;
     private List<Displayable> displayable;
-    private List<MapScene> mapScenes;
+    private final List<MapScene> mapScenes;
 
     //Observers
     private final DisplayableSubject displayableObserver;
@@ -117,11 +114,12 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
     }
 
     /**
-     * Call when the player press I
+     * Display the menu
+     * @param gameScene Menu Scene
      */
-    public void switchToInventoryScene(){
-        gameController.setGameState(GameState.INVENTORY);
-        gameSceneObserver.setGameScene(new InventoryGameScene(gameController.getPlayer()));
+    public void switchToMenuScene(GameScene gameScene){
+        gameController.setGameState(GameState.MENU);
+        gameSceneObserver.setGameScene(gameScene);
         switchToScene();
     }
 
@@ -139,7 +137,10 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         gameController.setGameState(GameState.WIN);
     }
 
-
+    /**
+     * Change the map displayed, and teleport the player, the map should be in the Map List
+     * @param mapIndex index of the map list
+     */
     public void switchToALocationScene(int mapIndex) {
 
         if (mapIndex < mapScenes.size() && mapIndex >= 0) {
@@ -150,7 +151,9 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
 
             //Affecte les élément posables à la liste des truc a rendre de la nouvelle scène
             for(Item item: gameController.getPlayer().getInventory().getItemsByClass(ItemType.POSABLE)){
-                mapScene.getDisplayableList().add(item);
+                if (!mapScene.getDisplayableList().contains(item)){
+                    mapScene.getDisplayableList().add(item);
+                }
             }
 
             displayableObserver.setDisplayables( mapScene.getDisplayableList() );
@@ -180,6 +183,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         stage.setScene(scene);
         stage.show();
     }
+
 
     public Scene getCurrentScene() {
         return currentScene;

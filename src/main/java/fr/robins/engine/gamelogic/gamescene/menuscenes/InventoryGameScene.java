@@ -1,4 +1,4 @@
-package fr.robins.engine.gamelogic.gamescene.inventoryscene;
+package fr.robins.engine.gamelogic.gamescene.menuscenes;
 
 import fr.robins.engine.gamelogic.gamescene.GameScene;
 import fr.robins.entities.Player;
@@ -28,7 +28,7 @@ public class InventoryGameScene extends GameScene {
 
             pane = loader.load(fxmlStream);
 
-            pane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/sceneBuilder/css/inventory.css")).toExternalForm());
+            pane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/sceneBuilder/css/menu.css")).toExternalForm());
 
             VBox weaponVBox = (VBox) pane.lookup("#weaponVBox");
             VBox collectableVBox = (VBox) pane.lookup("#objectVBox");
