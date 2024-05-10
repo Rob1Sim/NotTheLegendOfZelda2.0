@@ -108,7 +108,6 @@ public class GameController implements GameStateObserver, DisplayableListObserve
             isGameFinished = true;
             gmObserver.setGameState(GameState.WIN);
         }
-        System.out.println(Arrays.toString(TileManager.coordinatesToTiles(player.getPosition())));
         switch (gameState){
             case WALKING:
                 Inputs.handleMovementInput(player, sceneController.getPane(),stage, sceneController);

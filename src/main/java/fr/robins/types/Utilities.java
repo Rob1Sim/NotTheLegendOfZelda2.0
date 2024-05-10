@@ -7,7 +7,7 @@ public class Utilities {
     public static double WINDOW_WIDTH = 1600;
     public static double WINDOW_HEIGHT = 900;
     public final static int TILE_SIZE = 96;
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = false;
     public static boolean NO_CLIPPING = false;
 
     public static void setFullScreen(Stage stage, boolean fullscreen) {
