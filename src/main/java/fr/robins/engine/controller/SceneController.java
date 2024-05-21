@@ -15,6 +15,7 @@ import fr.robins.entities.enemy.Enemy;
 import fr.robins.entities.enemy.EnemyType;
 import fr.robins.entities.npc.NPC;
 import fr.robins.entities.npc.NPCType;
+import fr.robins.entities.npc.Stealer;
 import fr.robins.entities.npc.Trader;
 import fr.robins.items.Item;
 import fr.robins.items.ItemType;
@@ -23,8 +24,11 @@ import fr.robins.items.combat.weapons.WeaponType;
 import fr.robins.items.consumable.potions.Potion;
 import fr.robins.items.consumable.potions.PotionType;
 import fr.robins.items.interactable.Door;
+import fr.robins.items.interactable.WaterTile;
 import fr.robins.items.interactable.destructible.Destructible;
 import fr.robins.items.interactable.destructible.DestructibleType;
+import fr.robins.items.others.OtherItem;
+import fr.robins.items.others.OtherItemType;
 import fr.robins.items.posable.Bomb;
 import fr.robins.types.Vector2D;
 import fr.robins.world.MapScene;
@@ -234,6 +238,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         spawnDisplaybles.add(NPC.npcGenerator(NPCType.NPC_WOMAN,21,42));
         spawnDisplaybles.add(Trader.traderGenerator(NPCType.NPC_TRADER,11,58));
         spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.CASPER,51,48));
+
         spawnDisplaybles.add(WeaponItem.weaponGenerator(WeaponType.SHORT_SWORD,27,44));
         spawnDisplaybles.add(Destructible.destructibleGenerator(DestructibleType.BARREL,29,47));
         spawnDisplaybles.add(Destructible.destructibleGenerator(DestructibleType.TABLE,11,61));

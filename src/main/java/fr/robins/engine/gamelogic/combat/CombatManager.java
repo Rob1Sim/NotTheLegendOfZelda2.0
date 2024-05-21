@@ -87,7 +87,6 @@ public class CombatManager implements EventHandler<ActionEvent> {
         System.out.println(whatDoIDo);
 
         if(whatDoIDo == 0 && enemy.getSpells().length>0 ){
-            System.out.println("Je lance un sort");
             spellNumber = new Random().nextInt(enemy.getSpells().length);
             if ((enemy.getMana() - enemy.getSpells()[spellNumber].getManaCost())<=0){
                 whatDoIDo = 1;
