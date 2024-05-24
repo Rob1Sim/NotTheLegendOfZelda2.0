@@ -50,14 +50,22 @@ public abstract class Fighter extends Entity implements Displayable {
         if (!isDodging(isDodgeable,alwaysDodgeable)) {
             int realDamage = damage - getConstitution();
             if (realDamage> 0){
-                setHp(getHp() - realDamage);
-                textToDisplay = getName() + " prend "+realDamage+" dégats !";
+                setDamageEqualHp(getHp() - realDamage);
             }else{
                 textToDisplay = getName() + " prend encaisse les coups !";
             }
         }else {
             textToDisplay = getName() + " à esquivé une attaque !";
         }
+    }
+
+    /**
+     * Set the hp of the target to the damage value
+     * @param damage
+     */
+    public void setDamageEqualHp(int damage) {
+        setHp(damage);
+        textToDisplay = getName() + " prend "+damage+" dégats !";
     }
 
     /**

@@ -21,6 +21,7 @@ import fr.robins.items.Item;
 import fr.robins.items.ItemType;
 import fr.robins.items.combat.weapons.WeaponItem;
 import fr.robins.items.combat.weapons.WeaponType;
+import fr.robins.items.combat.weapons.WeaponX;
 import fr.robins.items.consumable.potions.Potion;
 import fr.robins.items.consumable.potions.PotionType;
 import fr.robins.items.interactable.Door;
@@ -238,6 +239,9 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         spawnDisplaybles.add(NPC.npcGenerator(NPCType.NPC_WOMAN,21,42));
         spawnDisplaybles.add(Trader.traderGenerator(NPCType.NPC_TRADER,11,58));
         spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.CASPER,51,48));
+
+        spawnDisplaybles.add(WeaponX.weaponGenerator(WeaponType.WEAPON_X,35,45));
+        spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.WEAPON_X,37,45));
 
         spawnDisplaybles.add(WeaponItem.weaponGenerator(WeaponType.SHORT_SWORD,27,44));
         spawnDisplaybles.add(Destructible.destructibleGenerator(DestructibleType.BARREL,29,47));

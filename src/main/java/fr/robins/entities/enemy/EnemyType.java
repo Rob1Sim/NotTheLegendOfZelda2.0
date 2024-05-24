@@ -27,7 +27,7 @@ public enum EnemyType {
     ROMAN("Roman", 25, 2, 12, 15, 1, new Spell[]{}, new Inventory(new WeaponItem(WeaponType.RAT_CLAWS)), 10, "/sprites/characters/c_roman_brown.png","Argh ! L'argent ... je veux ... plus ... plus d'argent *blurp* !"),
     CASPER("Casper", 30, 30, 15, 15, 10, new Spell[]{new Spell(SpellType.LIGHTNING)}, new Inventory(new WeaponItem(WeaponType.GHOST_FIST)), 20, "/sprites/characters/c_white_ghost.png","Argh ! La magie ... mon seule point faible !"),
     CASPER_PICKPOCKET("Casper le pickpocket", 10, 30, 15, 15, 10, new Spell[]{}, new Inventory(new StealingWeapon(WeaponType.PICK_POCKET_GLOVES)), 20, "/sprites/characters/c_white_ghost.png","Argh ! La magie ... mon seule point faible !"),
-
+    WEAPON_X("Rat génétiquement modifé",10,0,5,15,10,new Spell[]{},new Inventory(new WeaponItem(WeaponType.RAT_CLAWS)),20,"/sprites/characters/c_roman_brown.png","Oh non l'arme X ma seule faiblesse (ou pas enfaite) !")
     ;
 
 
