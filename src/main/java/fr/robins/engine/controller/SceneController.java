@@ -13,10 +13,7 @@ import fr.robins.entities.Fighter;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.Enemy;
 import fr.robins.entities.enemy.EnemyType;
-import fr.robins.entities.npc.NPC;
-import fr.robins.entities.npc.NPCType;
-import fr.robins.entities.npc.Stealer;
-import fr.robins.entities.npc.Trader;
+import fr.robins.entities.npc.*;
 import fr.robins.items.Item;
 import fr.robins.items.ItemType;
 import fr.robins.items.combat.weapons.WeaponItem;
@@ -25,12 +22,14 @@ import fr.robins.items.combat.weapons.WeaponX;
 import fr.robins.items.consumable.potions.Potion;
 import fr.robins.items.consumable.potions.PotionType;
 import fr.robins.items.interactable.Door;
+import fr.robins.items.interactable.EndTile;
 import fr.robins.items.interactable.WaterTile;
 import fr.robins.items.interactable.destructible.Destructible;
 import fr.robins.items.interactable.destructible.DestructibleType;
 import fr.robins.items.others.OtherItem;
 import fr.robins.items.others.OtherItemType;
 import fr.robins.items.posable.Bomb;
+import fr.robins.items.posable.NuclearBomb;
 import fr.robins.types.Vector2D;
 import fr.robins.world.MapScene;
 import fr.robins.world.TileManager;
@@ -248,6 +247,10 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
 
         spawnDisplaybles.add(WeaponX.weaponGenerator(WeaponType.WEAPON_X,35,45));
         spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.WEAPON_X,37,45));
+        spawnDisplaybles.add(EndNPC.endNPCGenerator(NPCType.NPC_VIKING,32,45));
+        spawnDisplaybles.add(EndTile.endTileGenerator(32,47,this));
+        spawnDisplaybles.add(NuclearBomb.nuclearBombGenerator(32,48,this));
+
 
         spawnDisplaybles.add(WeaponItem.weaponGenerator(WeaponType.SHORT_SWORD,27,44));
         spawnDisplaybles.add(Destructible.destructibleGenerator(DestructibleType.BARREL,29,47));
