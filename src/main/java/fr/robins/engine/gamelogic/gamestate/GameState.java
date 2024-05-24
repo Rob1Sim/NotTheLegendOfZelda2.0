@@ -7,5 +7,6 @@ public enum GameState {
     WIN,
     DEAD,
     MENU,
-    LOADING
+    LOADING,
+    WIN_MENU
 }

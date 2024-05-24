@@ -10,7 +10,7 @@ import fr.robins.world.TileManager;
 
 public class NPC extends Entity implements Displayable, InteractableWithInput {
 
-    private final String dialogueText;
+    private String dialogueText;
     public NPC(NPCType type, Vector2D position) {
         super(type.getName(), type.getHp(),type.getMana(),type.getConstitution(), type.getStrength(), type.getDexterity() , type.getMoney(), position, type.getSprite());
         this.setInventory(type.getInventory());
@@ -29,5 +29,9 @@ public class NPC extends Entity implements Displayable, InteractableWithInput {
 
     public String getDialogueText() {
         return dialogueText;
+    }
+
+    public void setDialogueText(String dialogueText) {
+        this.dialogueText = dialogueText;
     }
 }

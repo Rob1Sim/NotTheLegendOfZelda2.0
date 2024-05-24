@@ -2,6 +2,7 @@ package fr.robins.engine;
 
 import fr.robins.engine.controller.SceneController;
 import fr.robins.engine.gamelogic.gamescene.menuscenes.InventoryGameScene;
+import fr.robins.engine.gamelogic.gamestate.GameState;
 import fr.robins.entities.Player;
 import fr.robins.items.posable.Posable;
 import fr.robins.types.DirectionType;
@@ -91,6 +92,17 @@ public class Inputs {
             }
         });
     }
+
+    public static void handleWinMenuInputs(Stage stage, SceneController sceneController){
+        stage.getScene().setOnKeyPressed(keyEvent -> {
+            KeyCode keycode = keyEvent.getCode();
+            if (keycode == KeyCode.I || keycode == KeyCode.ESCAPE) {
+                sceneController.getGameController().getGameStateSubject().setGameState(GameState.WIN);
+                //sceneController.switchToMenuScene(new WinGameScene());
+            }
+        });
+    }
+
 
 }
 

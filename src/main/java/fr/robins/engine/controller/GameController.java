@@ -104,10 +104,7 @@ public class GameController implements GameStateObserver, DisplayableListObserve
         if (gameState != GameState.DEAD && player.getHp() <= 0){
             gmObserver.setGameState(GameState.DEAD);
         }
-        if (gmObserver.isGameWin() && !isGameFinished){
-            isGameFinished = true;
-            gmObserver.setGameState(GameState.WIN);
-        }
+
         switch (gameState){
             case WALKING:
                 Inputs.handleMovementInput(player, sceneController.getPane(),stage, sceneController);
@@ -116,9 +113,13 @@ public class GameController implements GameStateObserver, DisplayableListObserve
                 break;
             case WIN:
                 sceneController.switchToMenuScene(new WinGameScene());
+                isGameFinished = true;
                 break;
             case MENU:
                 Inputs.handleInventoryInput(stage,sceneController);
+                break;
+            case WIN_MENU:
+                Inputs.handleWinMenuInputs(stage,sceneController);
                 break;
             case LOADING:
                 if (player.getPosition().getX() != ((Utilities.WINDOW_WIDTH /2)-((double) Utilities.TILE_SIZE /2))){
@@ -147,6 +148,7 @@ public class GameController implements GameStateObserver, DisplayableListObserve
     public void setGameState(GameState gameState) {
         this.gmObserver.setGameState(gameState);
     }
+
 
     public Player getPlayer() {
         return player;

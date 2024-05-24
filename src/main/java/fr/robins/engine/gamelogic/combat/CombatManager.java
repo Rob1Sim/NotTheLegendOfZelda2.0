@@ -3,15 +3,20 @@ package fr.robins.engine.gamelogic.combat;
 
 import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.engine.gamelogic.gamescene.combatScene.CombatScene;
+import fr.robins.engine.gamelogic.gamescene.menuscenes.DialogueGameScene;
 import fr.robins.engine.gamelogic.gamestate.GameState;
 import fr.robins.entities.Entity;
 import fr.robins.entities.Fighter;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.Enemy;
+import fr.robins.entities.enemy.EnemyType;
+import fr.robins.entities.npc.NPC;
+import fr.robins.entities.npc.NPCType;
 import fr.robins.items.ItemType;
 import fr.robins.items.combat.IAttack;
 import fr.robins.items.combat.weapons.WeaponItem;
 import fr.robins.items.consumable.Consumable;
+import fr.robins.types.Vector2D;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Pane;
 
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -224,6 +230,13 @@ public class CombatManager implements EventHandler<ActionEvent> {
         public void handle(ActionEvent event) {
             combatProperty.getSceneController().getDisplayableObserver().remove(enemy);
             combatProperty.getSceneController().switchToGameSceneAfterCombat(event);
+            //Conditions de victoire
+            if (Objects.equals(combatProperty.getEnemy().getName(), EnemyType.WEAPON_X.getName())){
+                NPC npc = new NPC(NPCType.NPC_OLD_WOMAN,new Vector2D());
+                npc.setDialogueText("Bravo hero, vous avez vaincu le rat ! ");
+                combatProperty.getSceneController().switchToMenuScene(new DialogueGameScene(npc),GameState.WIN_MENU);
+            }
+
         }
     }
 }

@@ -131,6 +131,12 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         switchToScene();
     }
 
+    public void switchToMenuScene(GameScene gameScene, GameState gameState){
+        gameController.setGameState(gameState);
+        gameSceneObserver.setGameScene(gameScene);
+        switchToScene();
+    }
+
     /**
      * Call whenever a menu is closed
      */
@@ -252,7 +258,6 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         spawnDisplaybles.add(Destructible.destructibleGenerator(DestructibleType.CRATE,49,14));
 
         Enemy boss = Enemy.enemyGenerator(EnemyType.BOSS_MAGE,12,21);
-        gameController.getGameStateSubject().setBoss(boss);
         spawnDisplaybles.add(boss);
 
         return new MapScene("/tiles/tilemap/finalMap.xml",spawnDisplaybles,new Vector2D(20,44));
@@ -273,4 +278,7 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
         return gameController.getPlayer();
     }
 
+    public GameController getGameController(){
+        return gameController;
+    }
 }

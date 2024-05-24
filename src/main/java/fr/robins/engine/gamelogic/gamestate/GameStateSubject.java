@@ -9,7 +9,6 @@ public class GameStateSubject {
 
     private final List<GameStateObserver> observers = new ArrayList<GameStateObserver>();
     private GameState gameState;
-    private Entity boss;
 
     public GameState getGameState() {
         return gameState;
@@ -17,20 +16,6 @@ public class GameStateSubject {
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
         notifyObservers();
-    }
-
-    //Condition de victoire
-    public boolean isGameWin() {
-        return boss != null && boss.getHp() <= 0;
-    }
-
-
-    public Entity getBoss() {
-        return boss;
-    }
-
-    public void setBoss(Entity boss) {
-        this.boss = boss;
     }
 
 
