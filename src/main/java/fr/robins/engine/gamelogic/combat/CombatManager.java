@@ -1,11 +1,9 @@
 package fr.robins.engine.gamelogic.combat;
 
 
-import fr.robins.engine.gamelogic.displayable.Displayable;
 import fr.robins.engine.gamelogic.gamescene.combatScene.CombatScene;
 import fr.robins.engine.gamelogic.gamescene.menuscenes.DialogueGameScene;
 import fr.robins.engine.gamelogic.gamestate.GameState;
-import fr.robins.entities.Entity;
 import fr.robins.entities.Fighter;
 import fr.robins.entities.Player;
 import fr.robins.entities.enemy.Enemy;
@@ -15,6 +13,7 @@ import fr.robins.entities.npc.NPCType;
 import fr.robins.items.ItemType;
 import fr.robins.items.combat.IAttack;
 import fr.robins.items.combat.weapons.WeaponItem;
+import fr.robins.items.combat.weapons.WeaponType;
 import fr.robins.items.consumable.Consumable;
 import fr.robins.types.Vector2D;
 import javafx.application.Platform;
@@ -26,6 +25,7 @@ import javafx.scene.layout.Pane;
 
 import java.util.Objects;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Represent one turn of a combat, called when the player select an action
@@ -229,6 +229,23 @@ public class CombatManager implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
             combatProperty.getSceneController().getDisplayableObserver().remove(enemy);
+
+            if (Objects.equals(combatProperty.getEnemy().getName(), EnemyType.RAT_GROUP.getName())){
+                AtomicBoolean isTheLast = new AtomicBoolean(true);
+                combatProperty.getSceneController().getDisplayableObserver().getDisplayables().forEach(e->{
+                    if (e instanceof Enemy enemy1){
+                        if (Objects.equals(enemy1.getName(), EnemyType.RAT_GROUP.getName())){
+                            isTheLast.set(false);
+                        }
+                    }
+                });
+
+                if (isTheLast.get()){
+                    System.out.println("C'est spawn");
+                    combatProperty.getSceneController().getDisplayableObserver().add(new WeaponItem(WeaponType.DOUBLE_AXE,combatProperty.getEnemy().getPosition().add(new Vector2D(10,10))));
+                }
+            }
+
             combatProperty.getSceneController().switchToGameSceneAfterCombat(event);
             //Conditions de victoire
             if (Objects.equals(combatProperty.getEnemy().getName(), EnemyType.WEAPON_X.getName())){
@@ -237,7 +254,8 @@ public class CombatManager implements EventHandler<ActionEvent> {
                 combatProperty.getSceneController().switchToMenuScene(new DialogueGameScene(npc),GameState.WIN_MENU);
             }
 
-        }
+
+            }
     }
 }
 

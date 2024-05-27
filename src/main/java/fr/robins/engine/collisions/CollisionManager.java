@@ -140,7 +140,6 @@ public class CollisionManager {
         int indexInteractable = -1;
 
         List<Displayable> items = displayableObserver.getDisplayables();
-
         for (int i = 0; i < items.size(); i++) {
             HitBox futureHitBox = new HitBox();
 
@@ -204,7 +203,7 @@ public class CollisionManager {
             }
         }
 
-        if (indexInteractable != -1){
+        if (indexInteractable != -1 && indexInteractable < items.size()){
             if (items.get(indexInteractable) instanceof InteractableWithInput interactable){
                 ((Player)entity).setCanInteract(true,interactable);
             }

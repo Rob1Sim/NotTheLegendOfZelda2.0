@@ -247,6 +247,10 @@ public class SceneController implements DisplayableListObserver, GameSceneObserv
 
         spawnDisplaybles.add(WeaponX.weaponGenerator(WeaponType.WEAPON_X,35,45));
         spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.WEAPON_X,37,45));
+
+        spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.RAT_GROUP,36,45));
+        spawnDisplaybles.add(Enemy.enemyGenerator(EnemyType.RAT_GROUP,36,44));
+
         spawnDisplaybles.add(EndNPC.endNPCGenerator(NPCType.NPC_VIKING,32,45));
         spawnDisplaybles.add(EndTile.endTileGenerator(32,47,this));
         spawnDisplaybles.add(NuclearBomb.nuclearBombGenerator(32,48,this));
